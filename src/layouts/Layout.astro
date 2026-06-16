@@ -1,0 +1,180 @@
+---
+// Base layout shell — wraps all pages
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Alexandria Braniff — Web developer for small businesses. Custom websites built from Vancouver, BC.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Alexandria Braniff" />
+
+    <title>{title}</title>
+
+    <!-- Google Fonts: Syne (display) + Plus Jakarta Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      /* ----------------------------------------
+         CSS Custom Properties — color tokens
+      ---------------------------------------- */
+      :root {
+        --color-base: #0e0e10;
+        --color-surface: #1a1a1e;
+        --color-surface2: #252529;
+        --color-text: #f5f5f3;
+        --color-muted: #a1a1aa;
+        --color-coral: #ff6f61;
+        --color-coral-dark: #e85a4c;
+        --color-teal: #2dd4bf;
+        --color-teal-dark: #1bb8a5;
+      }
+
+      /* ----------------------------------------
+         Global reset + base styles
+      ---------------------------------------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        color-scheme: dark;
+        font-size: 16px;
+      }
+
+      body {
+        background-color: var(--color-base);
+        color: var(--color-text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* ----------------------------------------
+         Grain noise texture overlay on body
+         Creates depth on the dark background
+      ---------------------------------------- */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.05'/></svg>");
+        background-repeat: repeat;
+        background-size: 200px 200px;
+      }
+
+      /* ----------------------------------------
+         Dark scrollbar styling
+      ---------------------------------------- */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--color-base);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-surface2);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-muted);
+      }
+
+      /* Firefox scrollbar */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-surface2) var(--color-base);
+      }
+
+      /* ----------------------------------------
+         Hero fade-up animation keyframe
+      ---------------------------------------- */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ----------------------------------------
+         Reduced motion: disable all animation
+      ---------------------------------------- */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ----------------------------------------
+         Utility: visually hidden (accessibility)
+      ---------------------------------------- */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Site header -->
+    <Header />
+
+    <!-- Page content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Site footer -->
+    <Footer />
+  </body>
+</html>

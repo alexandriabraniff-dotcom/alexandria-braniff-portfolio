@@ -1,0 +1,73 @@
+---
+// AnimateIn — fade-up entrance animation using IntersectionObserver
+// Wrap any content you want to animate in on scroll with this component
+interface Props {
+  delay?: number; // Delay in milliseconds, for stagger effects
+  class?: string; // Additional classes to pass to the wrapper div
+}
+
+const { delay = 0, class: className = '' } = Astro.props;
+---
+
+<div
+  data-animate
+  class={`animate-wrapper ${className}`}
+  style={delay > 0 ? `transition-delay: ${delay}ms;` : ''}
+>
+  <slot />
+</div>
+
+<style>
+  /* Initial hidden state */
+  .animate-wrapper {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Visible state — triggered by IntersectionObserver adding .visible class */
+  .animate-wrapper.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // ----------------------------------------
+  // IntersectionObserver for all [data-animate] elements
+  // Runs once per page, picks up all animate wrappers
+  // ----------------------------------------
+
+  // Avoid registering multiple observers if component is used multiple times
+  if (!(window as any).__animateObserverInit) {
+    (window as any).__animateObserverInit = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Once visible, stop observing to save resources
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    // Observe all current elements (and re-run on DOMContentLoaded for safety)
+    function observeAll() {
+      document.querySelectorAll('[data-animate]').forEach((el) => {
+        observer.observe(el);
+      });
+    }
+
+    observeAll();
+    document.addEventListener('DOMContentLoaded', observeAll);
+  }
+</script>

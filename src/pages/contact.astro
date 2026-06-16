@@ -1,0 +1,382 @@
+---
+// Contact page — form (left) + info (right), AJAX submission, validation
+import Layout from '../layouts/Layout.astro';
+import AnimateIn from '../components/AnimateIn.astro';
+---
+
+<Layout
+  title="Contact — Alexandria Braniff"
+  description="Get in touch to discuss your project. I typically respond within one business day."
+>
+
+  <section class="px-6 lg:px-8 pt-16 pb-32 lg:pt-24 lg:pb-40">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start">
+
+        <!-- ============================================
+             LEFT COLUMN — Contact form
+        ============================================ -->
+        <AnimateIn>
+          <div>
+            <!-- Section label -->
+            <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
+              Contact
+            </p>
+
+            <!-- Heading -->
+            <h1
+              class="font-display font-bold text-text leading-[1.1] mb-4"
+              style="font-size: clamp(2rem, 5vw, 4rem);"
+            >
+              Let's build something.
+            </h1>
+
+            <!-- Subline -->
+            <p class="font-body text-muted text-base mb-12 max-w-md">
+              Tell me about your project and I'll get back to you within one business day.
+            </p>
+
+            <!-- Error banner (hidden by default) -->
+            <div
+              id="form-error-banner"
+              class="hidden mb-8 p-4 rounded border border-coral/30 bg-coral/5"
+              role="alert"
+            >
+              <p class="font-body text-sm text-coral">
+                Something went wrong - please try again.
+              </p>
+            </div>
+
+            <!-- Contact form -->
+            <!-- ACTION PLACEHOLDER: Replace YOUR_FORM_ID with your Formspree form ID -->
+            <!-- See README for setup instructions -->
+            <form
+              id="contact-form"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+              novalidate
+              class="space-y-6"
+            >
+
+              <!-- Name field -->
+              <div class="form-field">
+                <label
+                  for="field-name"
+                  class="block font-body text-sm font-medium text-text mb-2"
+                >
+                  Your name <span class="text-coral" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="field-name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  placeholder="Jane Smith"
+                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
+                  aria-required="true"
+                  aria-describedby="name-error"
+                />
+                <p
+                  id="name-error"
+                  class="field-error hidden mt-2 font-body text-xs text-coral"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  Please enter your name.
+                </p>
+              </div>
+
+              <!-- Email field -->
+              <div class="form-field">
+                <label
+                  for="field-email"
+                  class="block font-body text-sm font-medium text-text mb-2"
+                >
+                  Email address <span class="text-coral" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="field-email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="jane@yourbusiness.com"
+                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
+                  aria-required="true"
+                  aria-describedby="email-error"
+                />
+                <p
+                  id="email-error"
+                  class="field-error hidden mt-2 font-body text-xs text-coral"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  Please enter a valid email address.
+                </p>
+              </div>
+
+              <!-- Message field -->
+              <div class="form-field">
+                <label
+                  for="field-message"
+                  class="block font-body text-sm font-medium text-text mb-2"
+                >
+                  Tell me about your project <span class="text-coral" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="field-message"
+                  name="message"
+                  required
+                  rows="5"
+                  placeholder="What kind of site do you need? What does your business do? Any details you can share are helpful..."
+                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200 resize-y min-h-[140px]"
+                  aria-required="true"
+                  aria-describedby="message-error"
+                ></textarea>
+                <p
+                  id="message-error"
+                  class="field-error hidden mt-2 font-body text-xs text-coral"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  Please enter your message.
+                </p>
+              </div>
+
+              <!-- Submit button -->
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full flex items-center justify-center gap-2 font-body font-semibold text-sm bg-coral text-base rounded px-6 py-4 hover:bg-coral-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <span id="submit-text">Send message</span>
+                <span id="submit-arrow" aria-hidden="true">&#8594;</span>
+                <!-- Loading spinner (hidden by default) -->
+                <svg
+                  id="submit-spinner"
+                  class="hidden animate-spin w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12" cy="12" r="10"
+                    stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-dasharray="31.4"
+                    stroke-dashoffset="10"
+                  />
+                </svg>
+              </button>
+
+            </form>
+
+            <!-- Success state (hidden by default, shown after successful submission) -->
+            <div
+              id="form-success"
+              class="hidden text-center py-12"
+              role="status"
+              aria-live="polite"
+            >
+              <!-- Checkmark SVG -->
+              <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-teal/10 flex items-center justify-center">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 14L11 20L23 8"
+                      stroke="#2DD4BF"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <h2
+                class="font-display font-bold text-text mb-4"
+                style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+              >
+                Thanks - I'll be in touch soon.
+              </h2>
+              <p class="font-body text-muted text-sm">
+                I typically respond within one business day.
+              </p>
+            </div>
+
+          </div>
+        </AnimateIn>
+
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ============================================
+  // Contact form: client-side validation + AJAX submit
+  // ============================================
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const submitText = document.getElementById('submit-text');
+  const submitArrow = document.getElementById('submit-arrow');
+  const submitSpinner = document.getElementById('submit-spinner');
+  const formSuccess = document.getElementById('form-success');
+  const formErrorBanner = document.getElementById('form-error-banner');
+
+  const nameField = document.getElementById('field-name') as HTMLInputElement | null;
+  const emailField = document.getElementById('field-email') as HTMLInputElement | null;
+  const messageField = document.getElementById('field-message') as HTMLTextAreaElement | null;
+
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const messageError = document.getElementById('message-error');
+
+  // Email validation regex
+  function isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  }
+
+  // Show/hide error for a field
+  function setFieldError(errorEl: HTMLElement | null, fieldEl: HTMLElement | null, show: boolean) {
+    if (!errorEl || !fieldEl) return;
+    if (show) {
+      errorEl.classList.remove('hidden');
+      fieldEl.classList.add('border-coral');
+      fieldEl.classList.remove('border-surface2');
+      fieldEl.setAttribute('aria-invalid', 'true');
+    } else {
+      errorEl.classList.add('hidden');
+      fieldEl.classList.remove('border-coral');
+      fieldEl.classList.add('border-surface2');
+      fieldEl.setAttribute('aria-invalid', 'false');
+    }
+  }
+
+  // Validate all fields, returns true if valid
+  function validateForm(): boolean {
+    let valid = true;
+
+    const nameVal = nameField?.value.trim() ?? '';
+    const emailVal = emailField?.value.trim() ?? '';
+    const messageVal = messageField?.value.trim() ?? '';
+
+    if (!nameVal) {
+      setFieldError(nameError, nameField, true);
+      valid = false;
+    } else {
+      setFieldError(nameError, nameField, false);
+    }
+
+    if (!emailVal || !isValidEmail(emailVal)) {
+      setFieldError(emailError, emailField, true);
+      valid = false;
+    } else {
+      setFieldError(emailError, emailField, false);
+    }
+
+    if (!messageVal) {
+      setFieldError(messageError, messageField, true);
+      valid = false;
+    } else {
+      setFieldError(messageError, messageField, false);
+    }
+
+    return valid;
+  }
+
+  // Clear errors on input
+  nameField?.addEventListener('input', () => setFieldError(nameError, nameField, false));
+  emailField?.addEventListener('input', () => setFieldError(emailError, emailField, false));
+  messageField?.addEventListener('input', () => setFieldError(messageError, messageField, false));
+
+  // Set loading state on submit button
+  function setLoading(loading: boolean) {
+    if (!submitBtn || !submitText || !submitArrow || !submitSpinner) return;
+    if (loading) {
+      submitBtn.disabled = true;
+      submitText.textContent = 'Sending...';
+      submitArrow.classList.add('hidden');
+      submitSpinner.classList.remove('hidden');
+    } else {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Send message';
+      submitArrow.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+    }
+  }
+
+  // Form submit handler
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Hide previous banners
+    formErrorBanner?.classList.add('hidden');
+
+    // Validate
+    if (!validateForm()) {
+      // Focus first errored field
+      const firstError = form.querySelector('[aria-invalid="true"]') as HTMLElement | null;
+      firstError?.focus();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Show success state
+        form.classList.add('hidden');
+        formSuccess?.classList.remove('hidden');
+        formSuccess?.focus();
+      } else {
+        // Show error banner
+        formErrorBanner?.classList.remove('hidden');
+        formErrorBanner?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setLoading(false);
+      }
+    } catch {
+      // Network error
+      formErrorBanner?.classList.remove('hidden');
+      formErrorBanner?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setLoading(false);
+    }
+  });
+</script>
+
+<style>
+  /* Focus ring on form inputs */
+  input:focus,
+  textarea:focus {
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+  }
+
+  /* Spin animation for loading spinner */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .animate-spin {
+    animation: spin 0.8s linear infinite;
+  }
+</style>

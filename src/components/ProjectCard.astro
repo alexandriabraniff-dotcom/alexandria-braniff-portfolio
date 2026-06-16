@@ -1,0 +1,128 @@
+---
+// ProjectCard — renders a single portfolio project entry
+// Accepts the full project object from projects.json
+interface Props {
+  project: {
+    id: string;
+    name: string;
+    blurb: string;
+    image: string;
+    url: string | null;
+    comingSoon: boolean;
+    detail: {
+      business: string;
+      built: string;
+      notable: string;
+    } | null;
+  };
+}
+
+const { project } = Astro.props;
+---
+
+{project.comingSoon ? (
+  <!-- Coming soon card — styled but not interactive -->
+  <div
+    class="group bg-surface rounded-lg overflow-hidden opacity-70 cursor-default border border-surface2"
+    aria-label={`${project.name} — coming soon`}
+  >
+    <!-- Placeholder image area with COMING SOON label -->
+    <div class="w-full aspect-video bg-surface2 flex items-center justify-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-surface2 to-base opacity-80"></div>
+      <span class="relative z-10 font-display font-bold text-xs tracking-[0.25em] text-teal uppercase">
+        Coming Soon
+      </span>
+    </div>
+
+    <!-- Card content -->
+    <div class="p-6">
+      <h3 class="font-display font-bold text-lg text-text mb-2">
+        {project.name}
+      </h3>
+      <p class="font-body text-sm text-muted leading-relaxed">
+        {project.blurb}
+      </p>
+    </div>
+  </div>
+) : (
+  <!-- Real project card — clickable, hover effects -->
+  <div
+    class="project-card group bg-surface rounded-lg overflow-hidden cursor-pointer border border-surface2 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_8px_30px_rgba(255,111,97,0.12)] relative"
+    data-project-id={project.id}
+    role="button"
+    tabindex="0"
+    aria-label={`View details for ${project.name}`}
+  >
+    <!-- Project image (16:9 aspect ratio) -->
+    <div class="w-full aspect-video overflow-hidden bg-surface2 relative">
+      <img
+        src={project.image}
+        alt={`Screenshot of ${project.name}`}
+        loading="lazy"
+        class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <!-- Fallback if image doesn't load yet -->
+      <div
+        class="absolute inset-0 bg-surface2 items-center justify-center hidden"
+        aria-hidden="true"
+      >
+        <span class="font-display font-bold text-xs tracking-[0.2em] text-muted uppercase">
+          Image coming
+        </span>
+      </div>
+    </div>
+
+    <!-- Left accent border on hover (via pseudo element workaround using box-shadow) -->
+    <div class="p-6">
+      <h3 class="font-display font-bold text-lg text-text mb-2 group-hover:text-coral transition-colors duration-300">
+        {project.name}
+      </h3>
+      <p class="font-body text-sm text-muted leading-relaxed mb-5">
+        {project.blurb}
+      </p>
+
+      <!-- View site button — stops click propagation so it doesn't open modal -->
+      <a
+        href={project.url ?? '#'}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="view-site-btn inline-flex items-center gap-2 font-body text-sm font-medium text-coral border border-coral rounded px-4 py-2 hover:bg-coral hover:text-base transition-all duration-200"
+        aria-label={`Visit ${project.name} live site (opens in new tab)`}
+      >
+        View site live
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+)}
+
+<style>
+  /* Coral left-border accent on hover via box-shadow trick */
+  .project-card:hover {
+    box-shadow:
+      inset 2px 0 0 var(--color-coral),
+      0 8px 30px rgba(255, 111, 97, 0.12);
+  }
+</style>
+
+<script>
+  // Prevent "View site live" clicks from triggering the modal open
+  document.querySelectorAll('.view-site-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+
+  // Keyboard accessibility: allow Enter/Space to trigger card click
+  document.querySelectorAll('.project-card').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault();
+        (card as HTMLElement).click();
+      }
+    });
+  });
+</script>

@@ -1,0 +1,409 @@
+---
+// Portfolio + Services — combined page
+import Layout from '../layouts/Layout.astro';
+import AnimateIn from '../components/AnimateIn.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await import('../data/projects.json')).default;
+---
+
+<Layout
+  title="Portfolio & Services — Alexandria Braniff"
+  description="Custom websites built for small businesses, plus services offered by Vancouver-based web developer Alexandria Braniff."
+>
+
+  <!-- ============================================
+       PAGE HEADER
+  ============================================ -->
+  <section class="px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <div class="max-w-7xl mx-auto">
+      <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
+        Portfolio & Services
+      </p>
+      <h1
+        class="font-display font-bold text-text leading-[1.1] mb-6"
+        style="font-size: clamp(2.5rem, 6vw, 5rem);"
+      >
+        Work that speaks.
+      </h1>
+      <p class="font-body text-lg max-w-xl" style="color: var(--color-muted);">
+        A growing collection of custom websites, plus everything I offer to get your business online properly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROJECT GRID — All 6 projects
+  ============================================ -->
+  <section class="px-6 lg:px-8 py-12 lg:py-16 border-t border-surface2">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, i) => (
+          <AnimateIn delay={i * 80}>
+            <ProjectCard project={project} />
+          </AnimateIn>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICES — Editorial numbered list
+  ============================================ -->
+  <section class="px-6 lg:px-8 border-t border-surface2">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section label -->
+      <div class="pt-16 lg:pt-24 pb-12 lg:pb-16">
+        <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-4">
+          Services
+        </p>
+        <h2
+          class="font-display font-bold text-text leading-[1.1] mb-4"
+          style="font-size: clamp(2rem, 4vw, 3.5rem);"
+        >
+          What I do for small businesses.
+        </h2>
+        <p class="font-body text-lg max-w-xl" style="color: var(--color-muted);">
+          Every project is built from scratch. No templates, no shortcuts, no handoffs to someone else.
+        </p>
+      </div>
+
+      <!-- Service 1 -->
+      <AnimateIn>
+        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
+          <div>
+            <span
+              class="font-display font-bold leading-none select-none block mb-4"
+              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
+              aria-hidden="true"
+            >01</span>
+            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
+              Website Design<br />&amp; Build
+            </h3>
+          </div>
+          <div class="lg:pt-4">
+            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
+              A complete custom website, designed and built around your business. From the first
+              conversation to launch day, I handle everything: design, development, copywriting
+              guidance, domain setup, and deployment. You get a site that looks like yours, not a
+              template everyone else is using.
+            </p>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
+                What's included
+              </p>
+              <ul class="space-y-2">
+                {['Custom design tailored to your brand', 'Responsive across all devices', 'SEO foundations built in', 'Fast performance and clean code', 'Full launch support'].map((item) => (
+                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimateIn>
+
+      <!-- Service 2 -->
+      <AnimateIn>
+        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
+          <div>
+            <span
+              class="font-display font-bold leading-none select-none block mb-4"
+              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
+              aria-hidden="true"
+            >02</span>
+            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
+              Custom<br />Development
+            </h3>
+          </div>
+          <div class="lg:pt-4">
+            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
+              Already have a design direction? Or need something specific that off-the-shelf tools
+              can't handle? I build custom functionality to spec - booking systems, contact
+              workflows, dynamic content, integrations. Whatever your business needs to actually
+              work online.
+            </p>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
+                What's included
+              </p>
+              <ul class="space-y-2">
+                {['Feature development to your spec', 'Third-party integrations', 'API connections', 'Performance optimisation'].map((item) => (
+                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimateIn>
+
+      <!-- Service 3 -->
+      <AnimateIn>
+        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
+          <div>
+            <span
+              class="font-display font-bold leading-none select-none block mb-4"
+              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
+              aria-hidden="true"
+            >03</span>
+            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
+              Ongoing<br />Maintenance
+            </h3>
+          </div>
+          <div class="lg:pt-4">
+            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
+              Websites need care. I offer monthly maintenance plans so your site stays updated,
+              secure, and running well after launch. No more chasing someone for a content update
+              or worrying about broken plugins. I handle it so you don't have to think about it.
+            </p>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
+                What's included
+              </p>
+              <ul class="space-y-2">
+                {['Content updates', 'Security patches', 'Performance monitoring', 'Monthly reporting'].map((item) => (
+                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimateIn>
+
+      <!-- Service 4 -->
+      <AnimateIn>
+        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
+          <div>
+            <span
+              class="font-display font-bold leading-none select-none block mb-4"
+              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
+              aria-hidden="true"
+            >04</span>
+            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
+              Digital Setup<br />&amp; Tech
+            </h3>
+          </div>
+          <div class="lg:pt-4">
+            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
+              Setting up a business online involves more than a website. I help with the surrounding
+              tech: domain and hosting, business email, Google Business Profile, analytics, and
+              anything else that gets your digital presence working properly from day one.
+            </p>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
+                What's included
+              </p>
+              <ul class="space-y-2">
+                {['Domain and hosting setup', 'Business email', 'Google Business Profile', 'Analytics setup'].map((item) => (
+                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimateIn>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       CLOSING CTA
+  ============================================ -->
+  <section class="relative px-6 lg:px-8 py-32 lg:py-40 overflow-hidden border-t border-surface2">
+    <div
+      class="absolute rounded-full pointer-events-none"
+      aria-hidden="true"
+      style="width:600px;height:600px;background:var(--color-coral);opacity:0.06;filter:blur(120px);top:50%;left:50%;transform:translate(-50%,-50%);"
+    ></div>
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+      <AnimateIn>
+        <h2
+          class="font-display font-bold text-text mb-6"
+          style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1;"
+        >
+          Got a project in mind?
+        </h2>
+        <p class="font-body text-lg mb-10" style="color: var(--color-muted);">
+          Let's talk about it.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 font-body font-bold text-sm bg-coral text-[#0E0E10] rounded px-8 py-4 hover:bg-coral-dark transition-colors duration-200"
+        >
+          Get in touch
+          <span aria-hidden="true">&#8594;</span>
+        </a>
+      </AnimateIn>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROJECT DETAIL MODAL
+  ============================================ -->
+  <dialog
+    id="project-modal"
+    class="fixed inset-0 w-full h-full bg-transparent p-0 m-0 max-w-none max-h-none"
+    aria-label="Project details"
+    aria-modal="true"
+  >
+    <div
+      id="modal-backdrop"
+      class="fixed inset-0 flex items-center justify-center p-4 md:p-8"
+      style="background: rgba(14,14,16,0.92); backdrop-filter: blur(8px);"
+    >
+      <div
+        id="modal-panel"
+        class="relative bg-surface rounded-lg w-full max-w-[860px] max-h-[90vh] overflow-y-auto shadow-2xl border border-surface2"
+        role="document"
+      >
+        <button
+          id="modal-close"
+          class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-surface2 text-muted hover:text-text hover:bg-surface transition-colors duration-200"
+          aria-label="Close modal"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="w-full aspect-video bg-surface2 overflow-hidden rounded-t-lg relative">
+          <img id="modal-image" src="" alt="" class="w-full h-full object-cover" />
+          <div id="modal-image-fallback" class="absolute inset-0 bg-surface2 items-center justify-center hidden" aria-hidden="true">
+            <span class="font-display font-bold text-xs tracking-[0.2em] text-muted uppercase">Image coming</span>
+          </div>
+        </div>
+
+        <div class="p-8 lg:p-10">
+          <h2 id="modal-title" class="font-display font-bold text-text mb-8" style="font-size: clamp(1.5rem, 3vw, 2.25rem);"></h2>
+          <div class="space-y-8">
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">The Business</p>
+              <p id="modal-business" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">What I Built</p>
+              <p id="modal-built" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">Notable</p>
+              <p id="modal-notable" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+          </div>
+          <div class="mt-10 pt-8 border-t border-surface2">
+            <a
+              id="modal-url"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-body font-semibold text-sm bg-coral text-[#0E0E10] rounded px-6 py-3 hover:bg-coral-dark transition-colors duration-200"
+            >
+              View site live
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+</Layout>
+
+<script define:vars={{ projectsData: projects }}>
+  window.__PROJECTS__ = projectsData;
+</script>
+
+<script>
+  const modal = document.getElementById('project-modal');
+  const modalPanel = document.getElementById('modal-panel');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+  const modalImage = document.getElementById('modal-image');
+  const modalImageFallback = document.getElementById('modal-image-fallback');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBusiness = document.getElementById('modal-business');
+  const modalBuilt = document.getElementById('modal-built');
+  const modalNotable = document.getElementById('modal-notable');
+  const modalUrl = document.getElementById('modal-url');
+
+  function openModal(projectId) {
+    const project = window.__PROJECTS__?.find((p) => p.id === projectId);
+    if (!project || project.comingSoon || !project.detail) return;
+
+    if (modalImage) {
+      modalImage.src = project.image;
+      modalImage.alt = `Screenshot of ${project.name}`;
+      modalImage.style.display = '';
+      modalImageFallback?.classList.add('hidden');
+      modalImageFallback?.classList.remove('flex');
+      modalImage.onerror = () => {
+        modalImage.style.display = 'none';
+        modalImageFallback?.classList.remove('hidden');
+        modalImageFallback?.classList.add('flex');
+      };
+    }
+
+    if (modalTitle) modalTitle.textContent = project.name;
+    if (modalBusiness) modalBusiness.textContent = project.detail.business;
+    if (modalBuilt) modalBuilt.textContent = project.detail.built;
+    if (modalNotable) modalNotable.textContent = project.detail.notable;
+    if (modalUrl) modalUrl.href = project.url ?? '#';
+
+    document.documentElement.style.overflow = 'hidden';
+    modal?.showModal();
+    setTimeout(() => modalClose?.focus(), 50);
+  }
+
+  function closeModal() {
+    modal?.close();
+    document.documentElement.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-project-id]');
+    if (card) {
+      if (e.target.closest('a')) return;
+      const projectId = card.getAttribute('data-project-id');
+      if (projectId) openModal(projectId);
+    }
+  });
+
+  modalClose?.addEventListener('click', closeModal);
+  modalBackdrop?.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
+  modalPanel?.addEventListener('click', (e) => e.stopPropagation());
+  modal?.addEventListener('close', () => { document.documentElement.style.overflow = ''; });
+
+  modal?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(modal.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'))
+      .filter((el) => !el.closest('[aria-hidden="true"]'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+</script>
+
+<style>
+  #project-modal { border: none; outline: none; padding: 0; background: transparent; overflow: visible; }
+  #project-modal::backdrop { display: none; }
+  #modal-panel { animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+// About page — editorial layout, real copy, "Why me?" section
+import Layout from '../layouts/Layout.astro';
+import AnimateIn from '../components/AnimateIn.astro';
+---
+
+<Layout
+  title="About — Alexandria Braniff"
+  description="Web developer based in Vancouver, BC. I build custom websites for small businesses, tradies, cafes, gyms, and creatives."
+>
+
+  <!-- ============================================
+       HERO — Heading only, no body text
+  ============================================ -->
+  <section class="px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <div class="max-w-7xl mx-auto">
+      <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
+        About
+      </p>
+      <h1
+        class="font-display font-bold text-text leading-[1.1] max-w-4xl"
+        style="font-size: clamp(2.5rem, 5vw, 4.5rem);"
+      >
+        I build websites that actually work for your business.
+      </h1>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MAIN CONTENT — Two-column: facts + body copy
+  ============================================ -->
+  <section class="px-6 lg:px-8 py-12 lg:py-20 border-t border-surface2">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl">
+
+        <!-- About copy -->
+        <AnimateIn>
+          <div class="space-y-10">
+
+            <!-- Paragraph 1: Who you are -->
+            <div>
+              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
+                I'm a web developer based in Vancouver, British Columbia, working solo as a sole trader.
+              </p>
+              <p class="font-body text-muted leading-relaxed">
+                I build websites for small businesses from the ground up - no page builders, no
+                recycled templates, no handing things off to someone else halfway through. When you
+                work with me, you deal with one person from the first conversation to launch day and
+                beyond. That's the whole point.
+              </p>
+            </div>
+
+            <!-- Paragraph 2: Who you work with -->
+            <div>
+              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
+                My clients are small business owners who need something real built, not just ticked off a list.
+              </p>
+              <p class="font-body text-muted leading-relaxed">
+                Cafes, gyms, boutiques, tradies, studios, health practitioners, creatives. People who
+                are serious about what they do and want their site to actually reflect that. If you've
+                outgrown your DIY website or you're starting from scratch and want to do it properly,
+                that's where I come in.
+              </p>
+            </div>
+
+            <!-- Paragraph 3: Why you -->
+            <div>
+              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
+                You get direct access. Not a project manager, not a junior dev - me.
+              </p>
+              <p class="font-body text-muted leading-relaxed">
+                Working with a solo developer means faster communication, sharper decisions, and no
+                game of telephone between you and the person actually doing the work. I know my
+                clients by name. I understand the pressure of running a small business, and I build
+                with that in mind - fast turnarounds, plain language, no bloated retainers.
+              </p>
+            </div>
+
+            <!-- Paragraph 4: What you love -->
+            <div>
+              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
+                The best part of the job is watching a site go live for someone who genuinely needed it.
+              </p>
+              <p class="font-body text-muted leading-relaxed">
+                I love the problem-solving side - turning a messy brief into something clean and
+                clear, figuring out what a site actually needs to do versus what the client thinks
+                they need. And I love the craft of it. Building something that looks right, loads
+                fast, and works the way it should. That satisfaction doesn't get old.
+              </p>
+            </div>
+
+          </div>
+        </AnimateIn>
+
+      </div>
+    </div>
+  </section>
+
+
+</Layout>

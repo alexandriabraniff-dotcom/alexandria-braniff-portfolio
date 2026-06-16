@@ -1,0 +1,60 @@
+[
+  {
+    "id": "beachside-jiujitsu",
+    "name": "Beachside Jiujitsu",
+    "blurb": "Clean, no-nonsense gym site for a BJJ club in Hove, SA.",
+    "image": "/images/projects/beachside-jiujitsu.jpg",
+    "url": "https://beachside-jiujitsu.vercel.app",
+    "comingSoon": false,
+    "detail": {
+      "business": "Beachside Jiujitsu is a Brazilian jiu-jitsu gym in Hove, South Australia. They needed a site that matched the discipline and directness of the sport - no fluff, just clear info and a strong first impression.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. The design keeps things bold and dark with fast load times and a mobile-first layout so new members can find class times and get in touch on any device.",
+      "notable": "The whole site was designed and built from scratch with zero templates. Every section is purpose-built to convert gym-curious visitors into members who show up to class."
+    }
+  },
+  {
+    "id": "local-bakery",
+    "name": "Local Bakery",
+    "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
+    "image": "/images/projects/local-bakery.jpg",
+    "url": null,
+    "comingSoon": true,
+    "detail": null
+  },
+  {
+    "id": "independent-boutique",
+    "name": "Independent Boutique",
+    "blurb": "Editorial fashion site for a curated independent clothing store.",
+    "image": "/images/projects/independent-boutique.jpg",
+    "url": null,
+    "comingSoon": true,
+    "detail": null
+  },
+  {
+    "id": "trades-business",
+    "name": "Trades Business",
+    "blurb": "Trust-first site for a local tradie with a growing client base.",
+    "image": "/images/projects/trades-business.jpg",
+    "url": null,
+    "comingSoon": true,
+    "detail": null
+  },
+  {
+    "id": "restaurant-bar",
+    "name": "Restaurant & Bar",
+    "blurb": "Atmospheric, menu-forward site for a venue in Adelaide CBD.",
+    "image": "/images/projects/restaurant-bar.jpg",
+    "url": null,
+    "comingSoon": true,
+    "detail": null
+  },
+  {
+    "id": "health-wellness-studio",
+    "name": "Health & Wellness Studio",
+    "blurb": "Calm, clean site for a yoga and wellness studio.",
+    "image": "/images/projects/health-wellness-studio.jpg",
+    "url": null,
+    "comingSoon": true,
+    "detail": null
+  }
+]
