@@ -174,7 +174,7 @@ const projects = (await import('../data/projects.json')).default;
         <AnimateIn>
           <h2 class="font-serif text-text mb-6" style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; font-style: italic; font-weight: 300;">Got a project in mind?</h2>
           <p class="font-body text-lg mb-10" style="color: var(--color-muted);">Let's talk about it.</p>
-          <a href="/contact" data-magnetic class="inline-flex items-center gap-2 font-body text-sm bg-text text-[#F7F6F2] px-8 py-4 hover:bg-coral-dark transition-colors duration-200" style="font-weight: 500;">
+          <a href="/contact" data-magnetic class="inline-flex items-center gap-2 font-body text-sm bg-text text-[#F7F6F2] px-8 py-4 hover:bg-muted transition-colors duration-200" style="font-weight: 500;">
             Get in touch <span aria-hidden="true">&#8594;</span>
           </a>
         </AnimateIn>
@@ -317,7 +317,7 @@ const projects = (await import('../data/projects.json')).default;
           </div>
           <div class="mt-10 pt-8 border-t border-surface2">
             <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 hover:bg-coral-dark transition-colors duration-200">
+              class="inline-flex items-center gap-2 font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 hover:bg-muted transition-colors duration-200">
               View site live
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -700,7 +700,7 @@ const projects = (await import('../data/projects.json')).default;
     text-transform: uppercase;
     color: #FFFFFF;
     background: #050505;
-    padding: 1rem 2rem;
+    padding: 1rem 2.25rem;
     text-decoration: none;
     transition: background 0.2s;
   }
