@@ -3,7 +3,7 @@
     "id": "beachside-jiujitsu",
     "name": "Beachside Jiujitsu",
     "blurb": "Clean, no-nonsense gym site for a BJJ club in Hove, SA.",
-    "image": "/images/projects/beachside-jiujitsu.jpg",
+    "image": "https://picsum.photos/seed/bjj-gym/1280/720",
     "url": "https://beachside-jiujitsu.vercel.app",
     "comingSoon": false,
     "detail": {
@@ -16,7 +16,7 @@
     "id": "local-bakery",
     "name": "Local Bakery",
     "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
-    "image": "/images/projects/local-bakery.jpg",
+    "image": "https://picsum.photos/seed/bakery-cafe/1280/720",
     "url": null,
     "comingSoon": true,
     "detail": null
@@ -25,7 +25,7 @@
     "id": "independent-boutique",
     "name": "Independent Boutique",
     "blurb": "Editorial fashion site for a curated independent clothing store.",
-    "image": "/images/projects/independent-boutique.jpg",
+    "image": "https://picsum.photos/seed/boutique-fashion/1280/720",
     "url": null,
     "comingSoon": true,
     "detail": null
@@ -34,7 +34,7 @@
     "id": "trades-business",
     "name": "Trades Business",
     "blurb": "Trust-first site for a local tradie with a growing client base.",
-    "image": "/images/projects/trades-business.jpg",
+    "image": "https://picsum.photos/seed/trades-build/1280/720",
     "url": null,
     "comingSoon": true,
     "detail": null
@@ -43,7 +43,7 @@
     "id": "restaurant-bar",
     "name": "Restaurant & Bar",
     "blurb": "Atmospheric, menu-forward site for a venue in Adelaide CBD.",
-    "image": "/images/projects/restaurant-bar.jpg",
+    "image": "https://picsum.photos/seed/restaurant-dining/1280/720",
     "url": null,
     "comingSoon": true,
     "detail": null
@@ -52,7 +52,7 @@
     "id": "health-wellness-studio",
     "name": "Health & Wellness Studio",
     "blurb": "Calm, clean site for a yoga and wellness studio.",
-    "image": "/images/projects/health-wellness-studio.jpg",
+    "image": "https://picsum.photos/seed/yoga-wellness/1280/720",
     "url": null,
     "comingSoon": true,
     "detail": null

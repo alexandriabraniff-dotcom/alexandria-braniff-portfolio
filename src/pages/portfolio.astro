@@ -1,5 +1,5 @@
 ---
-// Portfolio + Services — combined page
+// Portfolio + Services — dual layout: "selling flowers" (light) / "expensive perfume bottle" (dark)
 import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -13,244 +13,260 @@ const projects = (await import('../data/projects.json')).default;
 >
 
   <!-- ============================================
-       PAGE HEADER
+       LIGHT LAYOUT — Delicate, warm, editorial
   ============================================ -->
-  <section class="px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
-    <div class="max-w-7xl mx-auto">
-      <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
-        Portfolio & Services
-      </p>
-      <h1
-        class="font-display font-bold text-text leading-[1.1] mb-6"
-        style="font-size: clamp(2.5rem, 6vw, 5rem);"
-      >
-        Work that speaks.
-      </h1>
-      <p class="font-body text-lg max-w-xl" style="color: var(--color-muted);">
-        A growing collection of custom websites, plus everything I offer to get your business online properly.
-      </p>
-    </div>
-  </section>
+  <div class="light-layout">
 
-  <!-- ============================================
-       PROJECT GRID — All 6 projects
-  ============================================ -->
-  <section class="px-6 lg:px-8 py-12 lg:py-16 border-t border-surface2">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, i) => (
-          <AnimateIn delay={i * 80}>
-            <ProjectCard project={project} />
-          </AnimateIn>
-        ))}
+    <!-- PAGE HEADER -->
+    <section class="border-b border-surface2">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-[1fr_320px] items-stretch">
+          <div class="py-16 lg:py-24 pr-0 lg:pr-16 border-r border-surface2">
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-6">Portfolio</p>
+            <h1
+              class="font-serif text-text leading-[0.95] mb-6"
+              style="font-size: clamp(2.8rem, 6vw, 6rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;"
+            >
+              Work that speaks.
+            </h1>
+            <p class="font-body text-sm text-muted max-w-md" style="animation: fadeUp 0.7s ease-out both 0.3s;">
+              A growing collection of custom websites built from scratch for small businesses across Australia and Canada.
+            </p>
+          </div>
+          <div class="placeholder-img deep hidden lg:flex" style="min-height: 360px; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;" data-cursor="view">
+            <img src="https://picsum.photos/seed/alexa-portfolio/640/720" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
-       SERVICES — Editorial numbered list
-  ============================================ -->
-  <section class="px-6 lg:px-8 border-t border-surface2">
-    <div class="max-w-7xl mx-auto">
-
-      <!-- Section label -->
-      <div class="pt-16 lg:pt-24 pb-12 lg:pb-16">
-        <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-4">
-          Services
-        </p>
-        <h2
-          class="font-display font-bold text-text leading-[1.1] mb-4"
-          style="font-size: clamp(2rem, 4vw, 3.5rem);"
-        >
-          What I do for small businesses.
-        </h2>
-        <p class="font-body text-lg max-w-xl" style="color: var(--color-muted);">
-          Every project is built from scratch. No templates, no shortcuts, no handoffs to someone else.
-        </p>
+    <!-- PROJECT GRID -->
+    <section class="px-6 lg:px-12 py-12 lg:py-16 border-t border-surface2">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <AnimateIn delay={i * 80}>
+              <ProjectCard project={project} />
+            </AnimateIn>
+          ))}
+        </div>
       </div>
+    </section>
 
-      <!-- Service 1 -->
-      <AnimateIn>
-        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
-          <div>
-            <span
-              class="font-display font-bold leading-none select-none block mb-4"
-              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
-              aria-hidden="true"
-            >01</span>
-            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
-              Website Design<br />&amp; Build
-            </h3>
+    <!-- SERVICES -->
+    <section class="px-6 lg:px-12 border-t border-surface2">
+      <div class="max-w-7xl mx-auto">
+
+        <div class="pt-16 lg:pt-24 pb-12 lg:pb-16">
+          <div class="flex items-center gap-6 mb-10">
+            <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted flex-shrink-0">Services</span>
+            <div class="h-px bg-surface2 flex-1"></div>
           </div>
-          <div class="lg:pt-4">
-            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
-              A complete custom website, designed and built around your business. From the first
-              conversation to launch day, I handle everything: design, development, copywriting
-              guidance, domain setup, and deployment. You get a site that looks like yours, not a
-              template everyone else is using.
-            </p>
+          <h2
+            class="font-serif text-text leading-[0.95] mb-6"
+            style="font-size: clamp(2rem, 4vw, 4rem); font-style: italic; font-weight: 300;"
+          >
+            What I do for small business.
+          </h2>
+          <p class="font-body text-sm text-muted max-w-xl">
+            Every project is built from scratch. No templates, no shortcuts, no handoffs to someone else.
+          </p>
+        </div>
+
+        <AnimateIn>
+          <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
             <div>
-              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
-                What's included
-              </p>
-              <ul class="space-y-2">
-                {['Custom design tailored to your brand', 'Responsive across all devices', 'SEO foundations built in', 'Fast performance and clean code', 'Full launch support'].map((item) => (
-                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span class="font-serif leading-none select-none block mb-4" style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1; font-style: italic; font-weight: 300;" aria-hidden="true">01</span>
+              <h3 class="font-serif text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; font-style: italic; font-weight: 400;">Website Design<br />&amp; Build</h3>
+            </div>
+            <div class="lg:pt-4">
+              <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">A complete custom website, designed and built around your business. From the first conversation to launch day, I handle everything: design, development, copywriting guidance, domain setup, and deployment. You get a site that looks like yours, not a template everyone else is using.</p>
+              <div>
+                <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">What's included</p>
+                <ul class="space-y-2">
+                  {['Custom design tailored to your brand', 'Responsive across all devices', 'SEO foundations built in', 'Fast performance and clean code', 'Full launch support'].map((item) => (
+                    <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                      <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </AnimateIn>
+        </AnimateIn>
 
-      <!-- Service 2 -->
-      <AnimateIn>
-        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
-          <div>
-            <span
-              class="font-display font-bold leading-none select-none block mb-4"
-              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
-              aria-hidden="true"
-            >02</span>
-            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
-              Custom<br />Development
-            </h3>
-          </div>
-          <div class="lg:pt-4">
-            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
-              Already have a design direction? Or need something specific that off-the-shelf tools
-              can't handle? I build custom functionality to spec - booking systems, contact
-              workflows, dynamic content, integrations. Whatever your business needs to actually
-              work online.
-            </p>
+        <AnimateIn>
+          <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
             <div>
-              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
-                What's included
-              </p>
-              <ul class="space-y-2">
-                {['Feature development to your spec', 'Third-party integrations', 'API connections', 'Performance optimisation'].map((item) => (
-                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span class="font-serif leading-none select-none block mb-4" style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1; font-style: italic; font-weight: 300;" aria-hidden="true">02</span>
+              <h3 class="font-serif text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; font-style: italic; font-weight: 400;">Custom<br />Development</h3>
+            </div>
+            <div class="lg:pt-4">
+              <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">Already have a design direction? Or need something specific that off-the-shelf tools can't handle? I build custom functionality to spec - booking systems, contact workflows, dynamic content, integrations. Whatever your business needs to actually work online.</p>
+              <div>
+                <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">What's included</p>
+                <ul class="space-y-2">
+                  {['Feature development to your spec', 'Third-party integrations', 'API connections', 'Performance optimisation'].map((item) => (
+                    <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                      <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </AnimateIn>
+        </AnimateIn>
 
-      <!-- Service 3 -->
-      <AnimateIn>
-        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
-          <div>
-            <span
-              class="font-display font-bold leading-none select-none block mb-4"
-              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
-              aria-hidden="true"
-            >03</span>
-            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
-              Ongoing<br />Maintenance
-            </h3>
-          </div>
-          <div class="lg:pt-4">
-            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
-              Websites need care. I offer monthly maintenance plans so your site stays updated,
-              secure, and running well after launch. No more chasing someone for a content update
-              or worrying about broken plugins. I handle it so you don't have to think about it.
-            </p>
+        <AnimateIn>
+          <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
             <div>
-              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
-                What's included
-              </p>
-              <ul class="space-y-2">
-                {['Content updates', 'Security patches', 'Performance monitoring', 'Monthly reporting'].map((item) => (
-                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span class="font-serif leading-none select-none block mb-4" style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1; font-style: italic; font-weight: 300;" aria-hidden="true">03</span>
+              <h3 class="font-serif text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; font-style: italic; font-weight: 400;">Ongoing<br />Maintenance</h3>
+            </div>
+            <div class="lg:pt-4">
+              <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">Websites need care. I offer monthly maintenance plans so your site stays updated, secure, and running well after launch. No more chasing someone for a content update or worrying about broken plugins. I handle it so you don't have to think about it.</p>
+              <div>
+                <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">What's included</p>
+                <ul class="space-y-2">
+                  {['Content updates', 'Security patches', 'Performance monitoring', 'Monthly reporting'].map((item) => (
+                    <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                      <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </AnimateIn>
+        </AnimateIn>
 
-      <!-- Service 4 -->
-      <AnimateIn>
-        <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
-          <div>
-            <span
-              class="font-display font-bold leading-none select-none block mb-4"
-              style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1;"
-              aria-hidden="true"
-            >04</span>
-            <h3 class="font-display font-bold text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2;">
-              Digital Setup<br />&amp; Tech
-            </h3>
-          </div>
-          <div class="lg:pt-4">
-            <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">
-              Setting up a business online involves more than a website. I help with the surrounding
-              tech: domain and hosting, business email, Google Business Profile, analytics, and
-              anything else that gets your digital presence working properly from day one.
-            </p>
+        <AnimateIn>
+          <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 py-16 lg:py-24 border-t border-surface2">
             <div>
-              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">
-                What's included
-              </p>
-              <ul class="space-y-2">
-                {['Domain and hosting setup', 'Business email', 'Google Business Profile', 'Analytics setup'].map((item) => (
-                  <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span class="font-serif leading-none select-none block mb-4" style="font-size: clamp(5rem, 12vw, 9rem); color: var(--color-muted); opacity: 0.1; line-height: 1; font-style: italic; font-weight: 300;" aria-hidden="true">04</span>
+              <h3 class="font-serif text-text" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; font-style: italic; font-weight: 400;">Digital Setup<br />&amp; Tech</h3>
+            </div>
+            <div class="lg:pt-4">
+              <p class="font-body leading-relaxed text-base mb-8 max-w-2xl" style="color: var(--color-muted);">Setting up a business online involves more than a website. I help with the surrounding tech: domain and hosting, business email, Google Business Profile, analytics, and anything else that gets your digital presence working properly from day one.</p>
+              <div>
+                <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-4">What's included</p>
+                <ul class="space-y-2">
+                  {['Domain and hosting setup', 'Business email', 'Google Business Profile', 'Analytics setup'].map((item) => (
+                    <li class="flex items-center gap-3 font-body text-sm" style="color: var(--color-muted);">
+                      <span class="w-1.5 h-1.5 rounded-full bg-teal shrink-0" aria-hidden="true"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </AnimateIn>
+        </AnimateIn>
 
-    </div>
-  </section>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="relative px-6 lg:px-8 py-32 lg:py-40 overflow-hidden border-t border-surface2">
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <AnimateIn>
+          <h2 class="font-serif text-text mb-6" style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; font-style: italic; font-weight: 300;">Got a project in mind?</h2>
+          <p class="font-body text-lg mb-10" style="color: var(--color-muted);">Let's talk about it.</p>
+          <a href="/contact" data-magnetic class="inline-flex items-center gap-2 font-body text-sm bg-text text-[#F7F6F2] px-8 py-4 hover:bg-coral-dark transition-colors duration-200" style="font-weight: 500;">
+            Get in touch <span aria-hidden="true">&#8594;</span>
+          </a>
+        </AnimateIn>
+      </div>
+    </section>
+
+  </div><!-- end .light-layout -->
+
 
   <!-- ============================================
-       CLOSING CTA
+       DARK LAYOUT — Perfume bottle minimal
   ============================================ -->
-  <section class="relative px-6 lg:px-8 py-32 lg:py-40 overflow-hidden border-t border-surface2">
-    <div
-      class="absolute rounded-full pointer-events-none"
-      aria-hidden="true"
-      style="width:600px;height:600px;background:var(--color-coral);opacity:0.06;filter:blur(120px);top:50%;left:50%;transform:translate(-50%,-50%);"
-    ></div>
-    <div class="max-w-3xl mx-auto text-center relative z-10">
-      <AnimateIn>
-        <h2
-          class="font-display font-bold text-text mb-6"
-          style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1;"
-        >
-          Got a project in mind?
-        </h2>
-        <p class="font-body text-lg mb-10" style="color: var(--color-muted);">
-          Let's talk about it.
-        </p>
-        <a
-          href="/contact"
-          class="inline-flex items-center gap-2 font-body font-bold text-sm bg-coral text-[#0E0E10] rounded px-8 py-4 hover:bg-coral-dark transition-colors duration-200"
-        >
-          Get in touch
-          <span aria-hidden="true">&#8594;</span>
-        </a>
-      </AnimateIn>
-    </div>
-  </section>
+  <div class="dark-layout">
+
+    <!-- DK WORK HEADER -->
+    <section class="dk-port-hero">
+      <div class="dk-port-hero-text">
+        <span class="dk-port-label">Selected work</span>
+        <h1 class="dk-port-heading">
+          Work that<br /><span class="dk-port-h-muted">speaks.</span>
+        </h1>
+        <p class="dk-port-sub">Custom websites for businesses that mean business. Every project starts from zero.</p>
+      </div>
+      <div class="dk-port-hero-img">
+        <img src="https://picsum.photos/seed/alexa-portfolio/640/720" alt="" />
+      </div>
+    </section>
+
+    <!-- DK PROJECT TABLE — Editorial luxury list -->
+    <section class="dk-project-table-section">
+      <div class="dk-pt-header">
+        <span class="dk-pt-col dk-pt-col-num">No.</span>
+        <span class="dk-pt-col dk-pt-col-name">Project</span>
+        <span class="dk-pt-col dk-pt-col-type">Type</span>
+        <span class="dk-pt-col dk-pt-col-status">Status</span>
+      </div>
+      {projects.map((project, i) => (
+        <div class="dk-pt-row" data-project-id={project.id}>
+          <span class="dk-pt-col dk-pt-col-num dk-pt-num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="dk-pt-col dk-pt-col-name">
+            <span class="dk-pt-name">{project.name}</span>
+            <span class="dk-pt-loc">{project.location}</span>
+          </span>
+          <span class="dk-pt-col dk-pt-col-type dk-pt-type">{project.tags?.[0] ?? 'Website'}</span>
+          <span class="dk-pt-col dk-pt-col-status">
+            {project.comingSoon
+              ? <span class="dk-pt-status dk-pt-status-soon">Coming soon</span>
+              : <span class="dk-pt-status dk-pt-status-live">Live</span>
+            }
+          </span>
+        </div>
+      ))}
+    </section>
+
+    <!-- DK SERVICES — Elegant vertical list -->
+    <section class="dk-svc-section">
+      <div class="dk-svc-section-header">
+        <span class="dk-tiny-label">Services</span>
+        <div class="dk-rule"></div>
+      </div>
+      {[
+        { n: '01', title: 'Design & Build', body: 'End-to-end. Design, code, copy direction, launch. One person. No surprises.', items: ['Custom layout', 'Mobile-first', 'SEO foundations', 'Fast code'] },
+        { n: '02', title: 'Development', body: 'Custom functionality when off-the-shelf tools don\'t cut it.', items: ['Booking systems', 'API integrations', 'Dynamic content', 'Performance'] },
+        { n: '03', title: 'Maintenance', body: 'Monthly plans so your site keeps working long after launch day.', items: ['Content updates', 'Security patches', 'Monitoring', 'Reports'] },
+        { n: '04', title: 'Digital Setup', body: 'Domain, email, analytics, Google Business — everything sorted from day one.', items: ['Domain + hosting', 'Business email', 'Google profile', 'Analytics'] },
+      ].map((svc) => (
+        <div class="dk-svc-row">
+          <span class="dk-svc-row-num">{svc.n}</span>
+          <div class="dk-svc-row-main">
+            <h3 class="dk-svc-row-title">{svc.title}</h3>
+            <p class="dk-svc-row-body">{svc.body}</p>
+          </div>
+          <ul class="dk-svc-row-list">
+            {svc.items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <!-- DK CTA — white reversal -->
+    <section class="dk-port-cta">
+      <div class="dk-port-cta-inner">
+        <span class="dk-port-cta-label">Next step</span>
+        <h2 class="dk-port-cta-heading">Got a project?</h2>
+        <a href="/contact" class="dk-port-cta-btn">Let's talk &#8594;</a>
+      </div>
+    </section>
+
+  </div><!-- end .dark-layout -->
 
   <!-- ============================================
-       PROJECT DETAIL MODAL
+       PROJECT DETAIL MODAL (shared between layouts)
   ============================================ -->
   <dialog
     id="project-modal"
@@ -261,7 +277,7 @@ const projects = (await import('../data/projects.json')).default;
     <div
       id="modal-backdrop"
       class="fixed inset-0 flex items-center justify-center p-4 md:p-8"
-      style="background: rgba(14,14,16,0.92); backdrop-filter: blur(8px);"
+      style="background: rgba(17,17,17,0.6); backdrop-filter: blur(6px);"
     >
       <div
         id="modal-panel"
@@ -277,16 +293,14 @@ const projects = (await import('../data/projects.json')).default;
             <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
-
         <div class="w-full aspect-video bg-surface2 overflow-hidden rounded-t-lg relative">
           <img id="modal-image" src="" alt="" class="w-full h-full object-cover" />
           <div id="modal-image-fallback" class="absolute inset-0 bg-surface2 items-center justify-center hidden" aria-hidden="true">
             <span class="font-display font-bold text-xs tracking-[0.2em] text-muted uppercase">Image coming</span>
           </div>
         </div>
-
         <div class="p-8 lg:p-10">
-          <h2 id="modal-title" class="font-display font-bold text-text mb-8" style="font-size: clamp(1.5rem, 3vw, 2.25rem);"></h2>
+          <h2 id="modal-title" class="font-serif text-text mb-8" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 400;"></h2>
           <div class="space-y-8">
             <div>
               <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">The Business</p>
@@ -302,13 +316,8 @@ const projects = (await import('../data/projects.json')).default;
             </div>
           </div>
           <div class="mt-10 pt-8 border-t border-surface2">
-            <a
-              id="modal-url"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 font-body font-semibold text-sm bg-coral text-[#0E0E10] rounded px-6 py-3 hover:bg-coral-dark transition-colors duration-200"
-            >
+            <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 hover:bg-coral-dark transition-colors duration-200">
               View site live
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -327,20 +336,33 @@ const projects = (await import('../data/projects.json')).default;
 </script>
 
 <script>
+  // Sync layouts on theme toggle
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) light.style.display = isDark ? 'none' : 'block';
+    if (dark)  dark.style.display  = isDark ? 'block' : 'none';
+  }
+  syncLayouts();
+  const layoutObserver = new MutationObserver(syncLayouts);
+  layoutObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Modal logic
   const modal = document.getElementById('project-modal');
   const modalPanel = document.getElementById('modal-panel');
   const modalBackdrop = document.getElementById('modal-backdrop');
   const modalClose = document.getElementById('modal-close');
-  const modalImage = document.getElementById('modal-image');
+  const modalImage = document.getElementById('modal-image') as HTMLImageElement | null;
   const modalImageFallback = document.getElementById('modal-image-fallback');
   const modalTitle = document.getElementById('modal-title');
   const modalBusiness = document.getElementById('modal-business');
   const modalBuilt = document.getElementById('modal-built');
   const modalNotable = document.getElementById('modal-notable');
-  const modalUrl = document.getElementById('modal-url');
+  const modalUrl = document.getElementById('modal-url') as HTMLAnchorElement | null;
 
-  function openModal(projectId) {
-    const project = window.__PROJECTS__?.find((p) => p.id === projectId);
+  function openModal(projectId: string) {
+    const project = (window as any).__PROJECTS__?.find((p: any) => p.id === projectId);
     if (!project || project.comingSoon || !project.detail) return;
 
     if (modalImage) {
@@ -350,7 +372,7 @@ const projects = (await import('../data/projects.json')).default;
       modalImageFallback?.classList.add('hidden');
       modalImageFallback?.classList.remove('flex');
       modalImage.onerror = () => {
-        modalImage.style.display = 'none';
+        if (modalImage) modalImage.style.display = 'none';
         modalImageFallback?.classList.remove('hidden');
         modalImageFallback?.classList.add('flex');
       };
@@ -363,19 +385,19 @@ const projects = (await import('../data/projects.json')).default;
     if (modalUrl) modalUrl.href = project.url ?? '#';
 
     document.documentElement.style.overflow = 'hidden';
-    modal?.showModal();
+    (modal as HTMLDialogElement)?.showModal();
     setTimeout(() => modalClose?.focus(), 50);
   }
 
   function closeModal() {
-    modal?.close();
+    (modal as HTMLDialogElement)?.close();
     document.documentElement.style.overflow = '';
   }
 
   document.addEventListener('click', (e) => {
-    const card = e.target.closest('[data-project-id]');
+    const card = (e.target as HTMLElement).closest('[data-project-id]');
     if (card) {
-      if (e.target.closest('a')) return;
+      if ((e.target as HTMLElement).closest('a')) return;
       const projectId = card.getAttribute('data-project-id');
       if (projectId) openModal(projectId);
     }
@@ -391,14 +413,19 @@ const projects = (await import('../data/projects.json')).default;
     const focusable = Array.from(modal.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'))
       .filter((el) => !el.closest('[aria-hidden="true"]'));
     if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+    const first = focusable[0] as HTMLElement;
+    const last = focusable[focusable.length - 1] as HTMLElement;
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 </script>
 
 <style>
+  /* ── Light layout defaults ── */
+  .light-layout { display: block; }
+  .dark-layout  { display: none; }
+
+  /* ── Modal ── */
   #project-modal { border: none; outline: none; padding: 0; background: transparent; overflow: visible; }
   #project-modal::backdrop { display: none; }
   #modal-panel { animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -406,4 +433,276 @@ const projects = (await import('../data/projects.json')).default;
     from { opacity: 0; transform: translateY(12px) scale(0.98); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
+
+  /* ════════════════════════════════════
+     DARK LAYOUT — Perfume bottle luxury
+  ════════════════════════════════════ */
+
+  /* PORT HERO */
+  .dk-port-hero {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    min-height: 85vh;
+    border-bottom: 1px solid #1A1A1A;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) {
+    .dk-port-hero { grid-template-columns: 1fr; }
+    .dk-port-hero-img { display: none; }
+  }
+  .dk-port-hero-text {
+    padding: 6rem 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+    border-right: 1px solid #1A1A1A;
+  }
+  .dk-port-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .dk-port-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 1.0;
+    color: #FFFFFF;
+  }
+  .dk-port-h-muted { color: rgba(255,255,255,0.35); }
+  .dk-port-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.28);
+    max-width: 420px;
+  }
+  .dk-port-hero-img {
+    position: relative;
+    overflow: hidden;
+  }
+  .dk-port-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.22;
+    filter: grayscale(15%);
+    display: block;
+  }
+
+  /* PROJECT TABLE — editorial luxury list with generous padding */
+  .dk-project-table-section {
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-pt-header {
+    display: grid;
+    grid-template-columns: 70px 1fr 180px 140px;
+    padding: 1.25rem 3rem;
+    border-bottom: 1px solid #1A1A1A;
+    background: #080808;
+  }
+  @media (max-width: 700px) {
+    .dk-pt-header { grid-template-columns: 50px 1fr 110px; }
+    .dk-pt-col-status { display: none; }
+  }
+  .dk-pt-col {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.15);
+    text-transform: uppercase;
+    align-self: center;
+  }
+  .dk-pt-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 180px 140px;
+    padding: 2.5rem 3rem;
+    border-bottom: 1px solid #111;
+    cursor: pointer;
+    transition: background 0.15s;
+    align-items: center;
+  }
+  .dk-pt-row:hover { background: #0A0A0A; }
+  .dk-pt-row:hover .dk-pt-name { color: #FFFFFF; }
+  @media (max-width: 700px) {
+    .dk-pt-row { grid-template-columns: 50px 1fr 110px; }
+  }
+  .dk-pt-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.12);
+    letter-spacing: 0.1em;
+  }
+  .dk-pt-col-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .dk-pt-name {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .dk-pt-loc {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .dk-pt-type {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.22);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .dk-pt-status {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .dk-pt-status-live { color: rgba(255,255,255,0.45); }
+  .dk-pt-status-soon { color: rgba(255,255,255,0.12); }
+
+  /* SERVICES — elegant vertical list */
+  .dk-svc-section { border-bottom: 1px solid #1A1A1A; }
+  .dk-svc-section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem 3rem 2rem;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-tiny-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    flex-shrink: 0;
+  }
+  .dk-rule {
+    height: 1px;
+    background: #1A1A1A;
+    flex: 1;
+  }
+  .dk-svc-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 220px;
+    gap: 3rem;
+    padding: 4rem 3rem;
+    border-bottom: 1px solid #111;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .dk-svc-row:last-child { border-bottom: none; }
+  .dk-svc-row:hover { background: #060606; }
+  @media (max-width: 900px) {
+    .dk-svc-row { grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 3rem 2rem; }
+    .dk-svc-row-list { display: none; }
+  }
+  .dk-svc-row-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.15);
+    text-transform: uppercase;
+    padding-top: 0.35rem;
+  }
+  .dk-svc-row-main { display: flex; flex-direction: column; gap: 1.25rem; }
+  .dk-svc-row-title {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+  .dk-svc-row-body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.28);
+    max-width: 420px;
+  }
+  .dk-svc-row-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.25rem;
+  }
+  .dk-svc-row-list li {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .dk-svc-row-list li::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  /* PORT CTA — white reversal */
+  .dk-port-cta {
+    background: #FFFFFF;
+    padding: 8rem 3rem;
+  }
+  .dk-port-cta-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  .dk-port-cta-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(5,5,5,0.28);
+    text-transform: uppercase;
+  }
+  .dk-port-cta-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 8vw, 7.5rem);
+    color: #050505;
+    line-height: 1.0;
+  }
+  .dk-port-cta-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #050505;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .dk-port-cta-btn:hover { background: #1A1A1A; }
 </style>

@@ -1,5 +1,5 @@
 ---
-// Contact page — form (left) + info (right), AJAX submission, validation
+// Contact page — dual layout: "selling flowers" (light) / "expensive perfume bottle" (dark)
 import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 ---
@@ -9,223 +9,233 @@ import AnimateIn from '../components/AnimateIn.astro';
   description="Get in touch to discuss your project. I typically respond within one business day."
 >
 
-  <section class="px-6 lg:px-8 pt-16 pb-32 lg:pt-24 lg:pb-40">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start">
+  <!-- ============================================
+       LIGHT LAYOUT — Delicate, warm, elegant
+  ============================================ -->
+  <div class="light-layout">
 
-        <!-- ============================================
-             LEFT COLUMN — Contact form
-        ============================================ -->
-        <AnimateIn>
-          <div>
-            <!-- Section label -->
-            <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
-              Contact
-            </p>
+    <section class="px-6 lg:px-8 pt-16 pb-32 lg:pt-24 lg:pb-40">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start">
 
-            <!-- Heading -->
-            <h1
-              class="font-display font-bold text-text leading-[1.1] mb-4"
-              style="font-size: clamp(2rem, 5vw, 4rem);"
-            >
-              Let's build something.
-            </h1>
-
-            <!-- Subline -->
-            <p class="font-body text-muted text-base mb-12 max-w-md">
-              Tell me about your project and I'll get back to you within one business day.
-            </p>
-
-            <!-- Error banner (hidden by default) -->
-            <div
-              id="form-error-banner"
-              class="hidden mb-8 p-4 rounded border border-coral/30 bg-coral/5"
-              role="alert"
-            >
-              <p class="font-body text-sm text-coral">
-                Something went wrong - please try again.
+          <!-- LEFT COLUMN — Form -->
+          <AnimateIn>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">Contact</p>
+              <h1 class="font-serif text-text leading-[1.05] mb-4" style="font-size: clamp(2rem, 5vw, 4rem); font-style: italic; font-weight: 300;">
+                Let's build something.
+              </h1>
+              <p class="font-body text-muted text-base mb-12 max-w-md">
+                Tell me about your project and I'll get back to you within one business day.
               </p>
-            </div>
 
-            <!-- Contact form -->
-            <!-- ACTION PLACEHOLDER: Replace YOUR_FORM_ID with your Formspree form ID -->
-            <!-- See README for setup instructions -->
-            <form
-              id="contact-form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
-              method="POST"
-              novalidate
-              class="space-y-6"
-            >
-
-              <!-- Name field -->
-              <div class="form-field">
-                <label
-                  for="field-name"
-                  class="block font-body text-sm font-medium text-text mb-2"
-                >
-                  Your name <span class="text-coral" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="field-name"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  placeholder="Jane Smith"
-                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
-                  aria-required="true"
-                  aria-describedby="name-error"
-                />
-                <p
-                  id="name-error"
-                  class="field-error hidden mt-2 font-body text-xs text-coral"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  Please enter your name.
-                </p>
+              <div id="form-error-banner" class="hidden mb-8 p-4 rounded border border-coral/30 bg-coral/5" role="alert">
+                <p class="font-body text-sm text-coral">Something went wrong - please try again.</p>
               </div>
 
-              <!-- Email field -->
-              <div class="form-field">
-                <label
-                  for="field-email"
-                  class="block font-body text-sm font-medium text-text mb-2"
-                >
-                  Email address <span class="text-coral" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="field-email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  placeholder="jane@yourbusiness.com"
-                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
-                  aria-required="true"
-                  aria-describedby="email-error"
-                />
-                <p
-                  id="email-error"
-                  class="field-error hidden mt-2 font-body text-xs text-coral"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  Please enter a valid email address.
-                </p>
-              </div>
+              <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate class="space-y-6">
 
-              <!-- Message field -->
-              <div class="form-field">
-                <label
-                  for="field-message"
-                  class="block font-body text-sm font-medium text-text mb-2"
-                >
-                  Tell me about your project <span class="text-coral" aria-hidden="true">*</span>
-                </label>
-                <textarea
-                  id="field-message"
-                  name="message"
-                  required
-                  rows="5"
-                  placeholder="What kind of site do you need? What does your business do? Any details you can share are helpful..."
-                  class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200 resize-y min-h-[140px]"
-                  aria-required="true"
-                  aria-describedby="message-error"
-                ></textarea>
-                <p
-                  id="message-error"
-                  class="field-error hidden mt-2 font-body text-xs text-coral"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  Please enter your message.
-                </p>
-              </div>
+                <div class="form-field">
+                  <label for="field-name" class="block font-body text-sm font-medium text-text mb-2">
+                    Your name <span class="text-coral" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="field-name" name="name" required autocomplete="name" placeholder="Jane Smith"
+                    class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
+                    aria-required="true" aria-describedby="name-error" />
+                  <p id="name-error" class="field-error hidden mt-2 font-body text-xs text-coral" role="alert" aria-live="polite">Please enter your name.</p>
+                </div>
 
-              <!-- Submit button -->
-              <button
-                type="submit"
-                id="submit-btn"
-                class="w-full flex items-center justify-center gap-2 font-body font-semibold text-sm bg-coral text-base rounded px-6 py-4 hover:bg-coral-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                <span id="submit-text">Send message</span>
-                <span id="submit-arrow" aria-hidden="true">&#8594;</span>
-                <!-- Loading spinner (hidden by default) -->
-                <svg
-                  id="submit-spinner"
-                  class="hidden animate-spin w-4 h-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <circle
-                    cx="12" cy="12" r="10"
-                    stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-dasharray="31.4"
-                    stroke-dashoffset="10"
-                  />
-                </svg>
-              </button>
+                <div class="form-field">
+                  <label for="field-email" class="block font-body text-sm font-medium text-text mb-2">
+                    Email address <span class="text-coral" aria-hidden="true">*</span>
+                  </label>
+                  <input type="email" id="field-email" name="email" required autocomplete="email" placeholder="jane@yourbusiness.com"
+                    class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200"
+                    aria-required="true" aria-describedby="email-error" />
+                  <p id="email-error" class="field-error hidden mt-2 font-body text-xs text-coral" role="alert" aria-live="polite">Please enter a valid email address.</p>
+                </div>
 
-            </form>
+                <div class="form-field">
+                  <label for="field-message" class="block font-body text-sm font-medium text-text mb-2">
+                    Tell me about your project <span class="text-coral" aria-hidden="true">*</span>
+                  </label>
+                  <textarea id="field-message" name="message" required rows="5"
+                    placeholder="What kind of site do you need? What does your business do? Any details you can share are helpful..."
+                    class="w-full bg-surface border border-surface2 rounded px-4 py-3 font-body text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-teal transition-colors duration-200 resize-y min-h-[140px]"
+                    aria-required="true" aria-describedby="message-error"></textarea>
+                  <p id="message-error" class="field-error hidden mt-2 font-body text-xs text-coral" role="alert" aria-live="polite">Please enter your message.</p>
+                </div>
 
-            <!-- Success state (hidden by default, shown after successful submission) -->
-            <div
-              id="form-success"
-              class="hidden text-center py-12"
-              role="status"
-              aria-live="polite"
-            >
-              <!-- Checkmark SVG -->
-              <div class="flex justify-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-teal/10 flex items-center justify-center">
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 28 28"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M5 14L11 20L23 8"
-                      stroke="#2DD4BF"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
+                <button type="submit" id="submit-btn" data-magnetic
+                  class="w-full flex items-center justify-center gap-2 font-body text-sm bg-text text-[#F7F6F2] px-6 py-4 hover:bg-coral-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed" style="font-weight: 500;">
+                  <span id="submit-text">Send message</span>
+                  <span id="submit-arrow" aria-hidden="true">&#8594;</span>
+                  <svg id="submit-spinner" class="hidden animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="31.4" stroke-dashoffset="10" />
                   </svg>
+                </button>
+
+              </form>
+
+              <div id="form-success" class="hidden text-center py-12" role="status" aria-live="polite">
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 rounded-full bg-surface2 flex items-center justify-center">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                      <path d="M5 14L11 20L23 8" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+                <h2 class="font-serif text-text mb-4" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 300;">Thanks — I'll be in touch soon.</h2>
+                <p class="font-body text-muted text-sm">I typically respond within one business day.</p>
+              </div>
+            </div>
+          </AnimateIn>
+
+          <!-- RIGHT COLUMN — Image + info -->
+          <AnimateIn delay={200}>
+            <div class="space-y-10 lg:pt-24">
+              <div class="placeholder-img warm" style="aspect-ratio: 4/5; animation: floatSlow 8s ease-in-out infinite;" data-cursor="view">
+                <img src="https://picsum.photos/seed/alexa-contact/640/800" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div class="space-y-6 pt-4">
+                <div>
+                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Response Time</span>
+                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Within 1 business day</p>
+                </div>
+                <div class="h-px bg-surface2"></div>
+                <div>
+                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Based In</span>
+                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Vancouver, BC</p>
+                </div>
+                <div class="h-px bg-surface2"></div>
+                <div>
+                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Serving</span>
+                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Clients Worldwide</p>
                 </div>
               </div>
-
-              <h2
-                class="font-display font-bold text-text mb-4"
-                style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
-              >
-                Thanks - I'll be in touch soon.
-              </h2>
-              <p class="font-body text-muted text-sm">
-                I typically respond within one business day.
-              </p>
             </div>
+          </AnimateIn>
 
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end .light-layout -->
+
+
+  <!-- ============================================
+       DARK LAYOUT — Perfume bottle minimal
+  ============================================ -->
+  <div class="dark-layout">
+
+    <!-- DK CONTACT HERO -->
+    <section class="dk-ct-hero">
+      <div class="dk-ct-hero-text">
+        <span class="dk-ct-label">Get in touch</span>
+        <h1 class="dk-ct-heading">Let's build<br />something.</h1>
+      </div>
+      <!-- Meta panel — luxury hotel check-in -->
+      <div class="dk-ct-hero-meta">
+        <div class="dk-ct-meta-item">
+          <span class="dk-ct-meta-key">Response time</span>
+          <span class="dk-ct-meta-val">Within one business day</span>
+        </div>
+        <div class="dk-ct-meta-item">
+          <span class="dk-ct-meta-key">Location</span>
+          <span class="dk-ct-meta-val">Vancouver, BC</span>
+        </div>
+        <div class="dk-ct-meta-item">
+          <span class="dk-ct-meta-key">Serving</span>
+          <span class="dk-ct-meta-val">Clients worldwide</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DK FORM — Clean minimal, no terminal UI -->
+    <section class="dk-ct-form-section">
+      <div class="dk-ct-form-col">
+
+        <div class="dk-form-header">
+          <h2 class="dk-form-heading">Send an enquiry</h2>
+        </div>
+
+        <!-- Error banner -->
+        <div id="dk-form-error-banner" class="dk-form-error-banner hidden" role="alert">
+          Something went wrong. Please try again.
+        </div>
+
+        <form id="dk-contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate class="dk-form-body">
+
+          <div class="dk-form-field">
+            <label for="dk-field-name" class="dk-form-label">Your name</label>
+            <input type="text" id="dk-field-name" name="name" required autocomplete="name"
+              placeholder="Jane Smith"
+              class="dk-form-input" aria-required="true" aria-describedby="dk-name-error" />
+            <p id="dk-name-error" class="dk-field-error hidden" role="alert" aria-live="polite">Please enter your name.</p>
           </div>
-        </AnimateIn>
 
+          <div class="dk-form-field">
+            <label for="dk-field-email" class="dk-form-label">Email address</label>
+            <input type="email" id="dk-field-email" name="email" required autocomplete="email"
+              placeholder="jane@yourbusiness.com"
+              class="dk-form-input" aria-required="true" aria-describedby="dk-email-error" />
+            <p id="dk-email-error" class="dk-field-error hidden" role="alert" aria-live="polite">Please enter a valid email address.</p>
+          </div>
+
+          <div class="dk-form-field">
+            <label for="dk-field-message" class="dk-form-label">About your project</label>
+            <textarea id="dk-field-message" name="message" required rows="6"
+              placeholder="What are you building? Tell me about your business and what you need..."
+              class="dk-form-input dk-form-textarea" aria-required="true" aria-describedby="dk-message-error"></textarea>
+            <p id="dk-message-error" class="dk-field-error hidden" role="alert" aria-live="polite">Please enter your message.</p>
+          </div>
+
+          <button type="submit" id="dk-submit-btn" class="dk-submit-btn">
+            <span id="dk-submit-text">Send message</span>
+            <span id="dk-submit-arrow" aria-hidden="true"> &#8594;</span>
+            <svg id="dk-submit-spinner" class="hidden dk-spin w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="31.4" stroke-dashoffset="10" />
+            </svg>
+          </button>
+
+        </form>
+
+        <!-- Success -->
+        <div id="dk-form-success" class="hidden dk-form-success" role="status" aria-live="polite">
+          <div class="dk-success-check" aria-hidden="true">&#10003;</div>
+          <h2 class="dk-success-heading">Message sent.</h2>
+          <p class="dk-success-sub">I'll be in touch within one business day.</p>
+        </div>
 
       </div>
-    </div>
-  </section>
+
+      <!-- Right image panel -->
+      <div class="dk-ct-img-panel">
+        <img src="https://picsum.photos/seed/alexa-contact/640/800" alt="" />
+        <div class="dk-ct-img-overlay">
+          <div class="dk-ct-img-available">Available for projects</div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end .dark-layout -->
 
 </Layout>
 
 <script>
-  // ============================================
-  // Contact form: client-side validation + AJAX submit
-  // ============================================
+  // ── Sync layouts on theme toggle ──
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) light.style.display = isDark ? 'none' : 'block';
+    if (dark)  dark.style.display  = isDark ? 'block' : 'none';
+  }
+  syncLayouts();
+  const layoutObserver = new MutationObserver(syncLayouts);
+  layoutObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
+  // ── Light form ──
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const submitText = document.getElementById('submit-text');
@@ -233,21 +243,17 @@ import AnimateIn from '../components/AnimateIn.astro';
   const submitSpinner = document.getElementById('submit-spinner');
   const formSuccess = document.getElementById('form-success');
   const formErrorBanner = document.getElementById('form-error-banner');
-
   const nameField = document.getElementById('field-name') as HTMLInputElement | null;
   const emailField = document.getElementById('field-email') as HTMLInputElement | null;
   const messageField = document.getElementById('field-message') as HTMLTextAreaElement | null;
-
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
   const messageError = document.getElementById('message-error');
 
-  // Email validation regex
   function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
-  // Show/hide error for a field
   function setFieldError(errorEl: HTMLElement | null, fieldEl: HTMLElement | null, show: boolean) {
     if (!errorEl || !fieldEl) return;
     if (show) {
@@ -263,120 +269,377 @@ import AnimateIn from '../components/AnimateIn.astro';
     }
   }
 
-  // Validate all fields, returns true if valid
   function validateForm(): boolean {
     let valid = true;
-
     const nameVal = nameField?.value.trim() ?? '';
     const emailVal = emailField?.value.trim() ?? '';
     const messageVal = messageField?.value.trim() ?? '';
-
-    if (!nameVal) {
-      setFieldError(nameError, nameField, true);
-      valid = false;
-    } else {
-      setFieldError(nameError, nameField, false);
-    }
-
-    if (!emailVal || !isValidEmail(emailVal)) {
-      setFieldError(emailError, emailField, true);
-      valid = false;
-    } else {
-      setFieldError(emailError, emailField, false);
-    }
-
-    if (!messageVal) {
-      setFieldError(messageError, messageField, true);
-      valid = false;
-    } else {
-      setFieldError(messageError, messageField, false);
-    }
-
+    if (!nameVal) { setFieldError(nameError, nameField, true); valid = false; } else { setFieldError(nameError, nameField, false); }
+    if (!emailVal || !isValidEmail(emailVal)) { setFieldError(emailError, emailField, true); valid = false; } else { setFieldError(emailError, emailField, false); }
+    if (!messageVal) { setFieldError(messageError, messageField, true); valid = false; } else { setFieldError(messageError, messageField, false); }
     return valid;
   }
 
-  // Clear errors on input
   nameField?.addEventListener('input', () => setFieldError(nameError, nameField, false));
   emailField?.addEventListener('input', () => setFieldError(emailError, emailField, false));
   messageField?.addEventListener('input', () => setFieldError(messageError, messageField, false));
 
-  // Set loading state on submit button
   function setLoading(loading: boolean) {
     if (!submitBtn || !submitText || !submitArrow || !submitSpinner) return;
-    if (loading) {
-      submitBtn.disabled = true;
-      submitText.textContent = 'Sending...';
-      submitArrow.classList.add('hidden');
-      submitSpinner.classList.remove('hidden');
-    } else {
-      submitBtn.disabled = false;
-      submitText.textContent = 'Send message';
-      submitArrow.classList.remove('hidden');
-      submitSpinner.classList.add('hidden');
-    }
+    submitBtn.disabled = loading;
+    submitText.textContent = loading ? 'Sending...' : 'Send message';
+    submitArrow.classList.toggle('hidden', loading);
+    submitSpinner.classList.toggle('hidden', !loading);
   }
 
-  // Form submit handler
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Hide previous banners
     formErrorBanner?.classList.add('hidden');
-
-    // Validate
     if (!validateForm()) {
-      // Focus first errored field
       const firstError = form.querySelector('[aria-invalid="true"]') as HTMLElement | null;
       firstError?.focus();
       return;
     }
-
     setLoading(true);
-
     try {
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
       if (response.ok) {
-        // Show success state
         form.classList.add('hidden');
         formSuccess?.classList.remove('hidden');
         formSuccess?.focus();
       } else {
-        // Show error banner
         formErrorBanner?.classList.remove('hidden');
         formErrorBanner?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setLoading(false);
       }
     } catch {
-      // Network error
       formErrorBanner?.classList.remove('hidden');
       formErrorBanner?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setLoading(false);
     }
   });
+
+  // ── Dark form ──
+  const dkForm = document.getElementById('dk-contact-form') as HTMLFormElement | null;
+  const dkSubmitBtn = document.getElementById('dk-submit-btn') as HTMLButtonElement | null;
+  const dkSubmitText = document.getElementById('dk-submit-text');
+  const dkSubmitArrow = document.getElementById('dk-submit-arrow');
+  const dkSubmitSpinner = document.getElementById('dk-submit-spinner');
+  const dkFormSuccess = document.getElementById('dk-form-success');
+  const dkFormError = document.getElementById('dk-form-error-banner');
+  const dkNameField = document.getElementById('dk-field-name') as HTMLInputElement | null;
+  const dkEmailField = document.getElementById('dk-field-email') as HTMLInputElement | null;
+  const dkMessageField = document.getElementById('dk-field-message') as HTMLTextAreaElement | null;
+  const dkNameError = document.getElementById('dk-name-error');
+  const dkEmailError = document.getElementById('dk-email-error');
+  const dkMessageError = document.getElementById('dk-message-error');
+
+  function dkSetFieldError(errorEl: HTMLElement | null, fieldEl: HTMLElement | null, show: boolean) {
+    if (!errorEl || !fieldEl) return;
+    if (show) {
+      errorEl.classList.remove('hidden');
+      fieldEl.classList.add('dk-input-error');
+      fieldEl.setAttribute('aria-invalid', 'true');
+    } else {
+      errorEl.classList.add('hidden');
+      fieldEl.classList.remove('dk-input-error');
+      fieldEl.setAttribute('aria-invalid', 'false');
+    }
+  }
+
+  function dkValidateForm(): boolean {
+    let valid = true;
+    const nameVal = dkNameField?.value.trim() ?? '';
+    const emailVal = dkEmailField?.value.trim() ?? '';
+    const messageVal = dkMessageField?.value.trim() ?? '';
+    if (!nameVal) { dkSetFieldError(dkNameError, dkNameField, true); valid = false; } else { dkSetFieldError(dkNameError, dkNameField, false); }
+    if (!emailVal || !isValidEmail(emailVal)) { dkSetFieldError(dkEmailError, dkEmailField, true); valid = false; } else { dkSetFieldError(dkEmailError, dkEmailField, false); }
+    if (!messageVal) { dkSetFieldError(dkMessageError, dkMessageField, true); valid = false; } else { dkSetFieldError(dkMessageError, dkMessageField, false); }
+    return valid;
+  }
+
+  dkNameField?.addEventListener('input', () => dkSetFieldError(dkNameError, dkNameField, false));
+  dkEmailField?.addEventListener('input', () => dkSetFieldError(dkEmailError, dkEmailField, false));
+  dkMessageField?.addEventListener('input', () => dkSetFieldError(dkMessageError, dkMessageField, false));
+
+  function dkSetLoading(loading: boolean) {
+    if (!dkSubmitBtn || !dkSubmitText || !dkSubmitArrow || !dkSubmitSpinner) return;
+    dkSubmitBtn.disabled = loading;
+    dkSubmitText.textContent = loading ? 'Sending...' : 'Send message';
+    dkSubmitArrow.classList.toggle('hidden', loading);
+    dkSubmitSpinner.classList.toggle('hidden', !loading);
+  }
+
+  dkForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    dkFormError?.classList.add('hidden');
+    if (!dkValidateForm()) {
+      const firstError = dkForm.querySelector('[aria-invalid="true"]') as HTMLElement | null;
+      firstError?.focus();
+      return;
+    }
+    dkSetLoading(true);
+    try {
+      const response = await fetch(dkForm.action, { method: 'POST', body: new FormData(dkForm), headers: { Accept: 'application/json' } });
+      if (response.ok) {
+        dkForm.classList.add('hidden');
+        dkFormSuccess?.classList.remove('hidden');
+        dkFormSuccess?.focus();
+      } else {
+        dkFormError?.classList.remove('hidden');
+        dkSetLoading(false);
+      }
+    } catch {
+      dkFormError?.classList.remove('hidden');
+      dkSetLoading(false);
+    }
+  });
 </script>
 
 <style>
-  /* Focus ring on form inputs */
-  input:focus,
-  textarea:focus {
-    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+  /* ── Light layout defaults ── */
+  .light-layout { display: block; }
+  .dark-layout  { display: none; }
+
+  /* Light focus ring */
+  input:focus, textarea:focus {
+    box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.12);
   }
 
-  /* Spin animation for loading spinner */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  /* ════════════════════════════════════
+     DARK LAYOUT — Perfume bottle luxury
+  ════════════════════════════════════ */
+
+  /* CT HERO */
+  .dk-ct-hero {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    border-bottom: 1px solid #1A1A1A;
+    min-height: 65vh;
+  }
+  @media (max-width: 800px) {
+    .dk-ct-hero { grid-template-columns: 1fr; }
+    .dk-ct-hero-meta { border-left: none; border-top: 1px solid #1A1A1A; }
+  }
+  .dk-ct-hero-text {
+    padding: 6rem 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+    border-right: 1px solid #1A1A1A;
+  }
+  .dk-ct-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .dk-ct-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3rem, 9vw, 8rem);
+    color: #FFFFFF;
+    line-height: 1.0;
   }
 
-  .animate-spin {
-    animation: spin 0.8s linear infinite;
+  /* Meta panel — luxury hotel check-in feel */
+  .dk-ct-hero-meta {
+    padding: 4rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0;
   }
+  .dk-ct-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-ct-meta-item:first-child { padding-top: 0; }
+  .dk-ct-meta-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .dk-ct-meta-key {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.18);
+    text-transform: uppercase;
+  }
+  .dk-ct-meta-val {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.01em;
+  }
+
+  /* FORM SECTION */
+  .dk-ct-form-section {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  @media (max-width: 900px) {
+    .dk-ct-form-section { grid-template-columns: 1fr; }
+    .dk-ct-img-panel { display: none; }
+  }
+  .dk-ct-form-col {
+    padding: 4rem 3rem;
+    border-right: 1px solid #1A1A1A;
+  }
+
+  /* Form header — elegant, no terminal */
+  .dk-form-header {
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-form-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.01em;
+  }
+
+  .dk-form-error-banner {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255,100,100,0.75);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,100,100,0.15);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .dk-form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .dk-form-field { display: flex; flex-direction: column; gap: 0.75rem; }
+  .dk-form-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+
+  /* Inputs: thin border-bottom only — no box */
+  .dk-form-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    outline: none;
+    transition: border-bottom-color 0.2s;
+    width: 100%;
+  }
+  .dk-form-input::placeholder { color: rgba(255,255,255,0.1); }
+  .dk-form-input:focus { border-bottom-color: rgba(255,255,255,0.4); }
+  .dk-input-error { border-bottom-color: rgba(255,100,100,0.5) !important; }
+  .dk-form-textarea { resize: vertical; min-height: 140px; }
+  .dk-field-error {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.62rem;
+    color: rgba(255,100,100,0.65);
+    letter-spacing: 0.05em;
+  }
+
+  /* Submit button — elegant white */
+  .dk-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #050505;
+    background: #FFFFFF;
+    padding: 1.1rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .dk-submit-btn:hover { background: rgba(255,255,255,0.88); }
+  .dk-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Success state */
+  .dk-form-success {
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .dk-success-check {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .dk-success-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+  .dk-success-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.28);
+    line-height: 1.7;
+  }
+
+  .dk-spin { animation: dkSpin 0.8s linear infinite; }
+  @keyframes dkSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* IMAGE PANEL */
+  .dk-ct-img-panel {
+    position: relative;
+    overflow: hidden;
+  }
+  .dk-ct-img-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+    filter: grayscale(10%);
+    display: block;
+  }
+  .dk-ct-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 2rem;
+    background: linear-gradient(to top, #050505 0%, transparent 100%);
+  }
+  .dk-ct-img-available {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.28);
+    text-transform: uppercase;
+  }
+
+  /* Shared light mode spinner */
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .animate-spin { animation: spin 0.8s linear infinite; }
 </style>

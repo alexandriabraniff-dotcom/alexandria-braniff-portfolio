@@ -29,11 +29,22 @@ const {
 
     <title>{title}</title>
 
-    <!-- Google Fonts: Syne (display) + Plus Jakarta Sans (body) -->
+    <!-- Dark mode: apply class before render to prevent flash -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts: Cormorant Garant (serif) + Syne (display) + Plus Jakarta Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;1,400;1,600&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -42,16 +53,259 @@ const {
          CSS Custom Properties — color tokens
       ---------------------------------------- */
       :root {
-        --color-base: #0e0e10;
-        --color-surface: #1a1a1e;
-        --color-surface2: #252529;
-        --color-text: #f5f5f3;
-        --color-muted: #a1a1aa;
-        --color-coral: #ff6f61;
-        --color-coral-dark: #e85a4c;
-        --color-teal: #2dd4bf;
-        --color-teal-dark: #1bb8a5;
+        --color-base: #F7F6F2;
+        --color-surface: #EDECEA;
+        --color-surface2: #D5D3CB;
+        --color-text: #111111;
+        --color-muted: #88877F;
+        --color-coral: #C8553D;
+        --color-coral-dark: #A83728;
+        --color-teal: #555550;
+        --color-teal-dark: #3A3A37;
+        --color-gold: #B8935A;
+        --color-gold-light: #D4B483;
       }
+
+      /* ============================================
+         DARK MODE — LUXURY NOIR
+         Deep black, pure white, restrained gold.
+         The opposite of the light mode's warmth.
+         Think: high-end perfume, Chanel, Tom Ford.
+      ============================================ */
+
+      /* Smooth theme switch */
+      *, *::before, *::after {
+        transition:
+          background-color 0.35s ease,
+          border-color 0.35s ease,
+          color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      /* Don't transition transforms (breaks animations) */
+      [style*="animation"], [data-animate], [data-parallax] {
+        transition:
+          background-color 0.35s ease,
+          border-color 0.35s ease,
+          color 0.35s ease !important;
+      }
+
+      /* ---- Body: deep black ---- */
+      html.dark body {
+        background-color: #050505;
+        color: #FFFFFF;
+      }
+
+      /* ---- Utility class overrides ---- */
+      html.dark .bg-base    { background-color: #050505; }
+      html.dark .bg-surface { background-color: #0D0D0D; }
+      html.dark .bg-surface2{ background-color: #1A1A1A; }
+      html.dark .bg-text    { background-color: #FFFFFF; }
+      html.dark .text-text  { color: #FFFFFF; }
+      html.dark .text-muted { color: rgba(255,255,255,0.38); }
+      html.dark .text-surface2 { color: #222222; }
+      html.dark .text-teal  { color: rgba(255,255,255,0.5); }
+      html.dark .border-surface2 { border-color: #1A1A1A; }
+      html.dark .border-text     { border-color: #FFFFFF; }
+      html.dark .divide-surface2 > * + * { border-color: #1A1A1A; }
+
+      /* Hover overrides */
+      html.dark .hover\:bg-surface:hover   { background-color: #0D0D0D; }
+      html.dark .hover\:border-text:hover  { border-color: #FFFFFF; }
+      html.dark .hover\:text-text:hover    { color: #FFFFFF; }
+      html.dark .hover\:bg-muted:hover     { background-color: rgba(255,255,255,0.08); }
+      html.dark .hover\:text-muted:hover   { color: rgba(255,255,255,0.7); }
+      html.dark .hover\:border-muted:hover { border-color: rgba(255,255,255,0.3); }
+      html.dark .group:hover .group-hover\:text-muted { color: rgba(255,255,255,0.7); }
+      html.dark .group:hover .group-hover\:text-text  { color: #FFFFFF; }
+
+      /* ---- Header ---- */
+      html.dark #site-header {
+        background-color: #050505;
+        border-bottom-color: #1A1A1A;
+      }
+      html.dark #mobile-nav nav {
+        background-color: #050505;
+        border-top-color: #1A1A1A;
+      }
+      html.dark .hamburger-line { background-color: #FFFFFF; }
+
+      /* Wordmark in dark */
+      html.dark #site-header > div > div > a {
+        color: #FFFFFF;
+        letter-spacing: 0.04em;
+      }
+
+      /* Nav links — refined in dark */
+      html.dark .nav-link {
+        color: rgba(255,255,255,0.38);
+        letter-spacing: 0.08em;
+      }
+      html.dark .nav-link:hover,
+      html.dark .nav-link.active-link { color: #FFFFFF; }
+      html.dark .nav-link::after { background-color: #FFFFFF; }
+
+      /* Theme toggle */
+      html.dark #theme-toggle { color: rgba(255,255,255,0.38); }
+      html.dark #theme-toggle:hover { color: #FFFFFF; }
+
+      /* ---- Small label text — quiet white ---- */
+      html.dark span.font-body.text-\[10px\],
+      html.dark p.font-body.text-\[10px\],
+      html.dark span.font-body.text-xs.tracking-\[0\.2em\],
+      html.dark p.font-body.text-xs.tracking-\[0\.2em\],
+      html.dark p.font-body.text-xs.tracking-\[0\.25em\] {
+        color: rgba(255,255,255,0.3);
+      }
+
+      /* ---- Hero ---- */
+      html.dark #hero {
+        border-bottom-color: #1A1A1A;
+      }
+      html.dark #hero h1 span { color: #FFFFFF; }
+
+      /* Monogram badge */
+      html.dark #hero .w-8.h-8.bg-text {
+        background-color: #FFFFFF;
+      }
+      html.dark #hero .w-8.h-8.bg-text span {
+        color: #050505 !important;
+      }
+
+      /* "+" decorators */
+      html.dark #hero span[aria-hidden="true"].text-surface2 {
+        color: rgba(255,255,255,0.12) !important;
+      }
+
+      /* Pulsing dot */
+      html.dark #hero .rounded-full.bg-text {
+        background-color: #FFFFFF;
+      }
+
+      /* Featured work badge */
+      html.dark #hero .bg-base.border {
+        background-color: rgba(5,5,5,0.9);
+        border-color: rgba(255,255,255,0.15);
+      }
+
+      /* Accent line in hero */
+      html.dark #hero .h-px.bg-surface2 {
+        background-color: #1A1A1A;
+      }
+
+      /* Hero CTA buttons */
+      html.dark #hero a[href="/portfolio"] {
+        border-color: #2A2A2A;
+        color: #FFFFFF;
+      }
+      html.dark #hero a[href="/portfolio"]:hover {
+        border-color: rgba(255,255,255,0.5);
+        color: #FFFFFF;
+      }
+      html.dark #hero a[href="/contact"] {
+        background-color: #FFFFFF !important;
+        color: #050505 !important;
+      }
+      html.dark #hero a[href="/contact"]:hover {
+        background-color: rgba(255,255,255,0.88) !important;
+      }
+
+      /* ---- Section borders ---- */
+      html.dark section { border-color: #1A1A1A; }
+      html.dark .h-px.bg-surface2 { background-color: #1A1A1A; }
+      html.dark .border-t.border-surface2 { border-color: #1A1A1A; }
+      html.dark .border-b.border-surface2 { border-color: #1A1A1A; }
+      html.dark .border-r.border-surface2 { border-color: #1A1A1A; }
+
+      /* ---- Serif pull quote in dark ---- */
+      html.dark .serif-accent { color: rgba(255,255,255,0.55); }
+
+      /* ---- Gold accent line ---- */
+      html.dark .bg-gold { background-color: #C8A96E; }
+
+      /* ---- Service rows ---- */
+      html.dark .service-row { border-color: #1A1A1A; }
+      html.dark .service-row:hover { background-color: #0A0A0A; }
+      html.dark .service-row .text-3xl.text-surface2 { color: #1E1E1E; }
+      html.dark .service-row .group:hover .text-3xl { color: rgba(255,255,255,0.6); }
+
+      /* ---- Project cards ---- */
+      html.dark .project-card {
+        background-color: #0A0A0A;
+        border-color: #1A1A1A;
+      }
+      html.dark .project-card:hover {
+        border-color: rgba(255,255,255,0.18);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      }
+      html.dark .project-card h3 { color: #FFFFFF; }
+      html.dark .view-site-btn {
+        border-color: #2A2A2A;
+        color: #FFFFFF;
+      }
+      html.dark .view-site-btn:hover {
+        border-color: rgba(255,255,255,0.4);
+        color: #FFFFFF;
+      }
+
+      /* Coming-soon card */
+      html.dark .opacity-60.bg-surface {
+        background-color: #0A0A0A;
+        border-color: #1A1A1A;
+      }
+
+      /* ---- CTA buttons (global) ---- */
+      html.dark a.bg-text,
+      html.dark button.bg-text {
+        background-color: #FFFFFF !important;
+        color: #050505 !important;
+      }
+      html.dark a.bg-text:hover,
+      html.dark button.bg-text:hover {
+        background-color: rgba(255,255,255,0.88) !important;
+      }
+
+      /* ---- Form ---- */
+      html.dark input,
+      html.dark textarea {
+        background-color: #0D0D0D !important;
+        border-color: #1A1A1A !important;
+        color: #FFFFFF !important;
+      }
+      html.dark input::placeholder,
+      html.dark textarea::placeholder { color: #333333 !important; }
+      html.dark input:focus,
+      html.dark textarea:focus {
+        border-color: rgba(255,255,255,0.35) !important;
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.05) !important;
+      }
+      html.dark label { color: #FFFFFF; }
+      html.dark button#submit-btn {
+        background-color: #FFFFFF !important;
+        color: #050505 !important;
+      }
+      html.dark button#submit-btn:hover {
+        background-color: rgba(255,255,255,0.88) !important;
+      }
+
+      /* ---- About stats ---- */
+      html.dark [data-count] { color: #FFFFFF !important; }
+
+      /* ---- Placeholder images in dark ---- */
+      html.dark .placeholder-img        { background: linear-gradient(135deg,#0A0A0A 0%,#141414 100%); }
+      html.dark .placeholder-img.warm   { background: linear-gradient(135deg,#0D0D0A 0%,#161610 100%); }
+      html.dark .placeholder-img.gold-tone { background: linear-gradient(135deg,#0E0D09 0%,#181507 100%); }
+      html.dark .placeholder-img.deep   { background: linear-gradient(135deg,#030303 0%,#080808 100%); }
+      html.dark .placeholder-img span   { color: #222222; }
+      html.dark .placeholder-img::before { opacity: 0.4; }
+
+      /* ---- Footer ---- */
+      html.dark footer {
+        background-color: #050505;
+        border-top-color: #1A1A1A;
+      }
+      html.dark footer a,
+      html.dark footer p { color: rgba(255,255,255,0.3); }
+      html.dark footer a:hover { color: #FFFFFF; }
 
       /* ----------------------------------------
          Global reset + base styles
@@ -66,7 +320,7 @@ const {
 
       html {
         scroll-behavior: smooth;
-        color-scheme: dark;
+        color-scheme: light;
         font-size: 16px;
       }
 
@@ -115,7 +369,7 @@ const {
       }
 
       /* Firefox scrollbar */
-      * {
+      html {
         scrollbar-width: thin;
         scrollbar-color: var(--color-surface2) var(--color-base);
       }
@@ -132,6 +386,75 @@ const {
           opacity: 1;
           transform: translateY(0);
         }
+      }
+
+      /* ----------------------------------------
+         Float animation (decorative elements)
+      ---------------------------------------- */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-6px) rotate(1deg); }
+        66% { transform: translateY(-3px) rotate(-1deg); }
+      }
+      @keyframes drawLineX {
+        from { transform: scaleX(0); transform-origin: left; }
+        to   { transform: scaleX(1); transform-origin: left; }
+      }
+      @keyframes revealUp {
+        from { clip-path: inset(100% 0 0 0); }
+        to   { clip-path: inset(0% 0 0 0); }
+      }
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      /* ----------------------------------------
+         Page load fade in
+      ---------------------------------------- */
+      @keyframes pageIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      main {
+        animation: pageIn 0.4s ease-out both;
+      }
+
+      /* ----------------------------------------
+         Placeholder image base style
+      ---------------------------------------- */
+      .placeholder-img {
+        background: linear-gradient(135deg, #EDECEA 0%, #D5D3CB 100%);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .placeholder-img::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 18px,
+          rgba(0,0,0,0.025) 18px,
+          rgba(0,0,0,0.025) 19px
+        );
+      }
+      .placeholder-img span {
+        position: relative;
+        z-index: 1;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #88877F;
       }
 
       /* ----------------------------------------
@@ -162,6 +485,85 @@ const {
         white-space: nowrap;
         border-width: 0;
       }
+
+      /* ----------------------------------------
+         Magnetic button base
+      ---------------------------------------- */
+      [data-magnetic] {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: inline-flex;
+      }
+
+      /* ----------------------------------------
+         Clip-path text line reveal (for .reveal-line usage)
+      ---------------------------------------- */
+      .reveal-parent {
+        overflow: hidden;
+      }
+      .reveal-line {
+        display: block;
+        transform: translateY(110%);
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-line.visible {
+        transform: translateY(0);
+      }
+
+      /* ----------------------------------------
+         Gold accent underline on serif text
+      ---------------------------------------- */
+      .serif-accent {
+        font-family: 'Cormorant Garant', serif;
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      /* ----------------------------------------
+         Placeholder image — warm gradient variants
+      ---------------------------------------- */
+      .placeholder-img.warm {
+        background: linear-gradient(135deg, #E8E0D0 0%, #CFC4B0 100%);
+      }
+      .placeholder-img.deep {
+        background: linear-gradient(135deg, #2A2A26 0%, #1A1A18 100%);
+      }
+      .placeholder-img.deep span { color: #555550; }
+      .placeholder-img.gold-tone {
+        background: linear-gradient(135deg, #E8DCC8 0%, #C9B08A 100%);
+      }
+      .placeholder-img.gold-tone span { color: #8B7355; }
+
+      /* ----------------------------------------
+         Elegant border animation
+      ---------------------------------------- */
+      .border-draw {
+        position: relative;
+      }
+      .border-draw::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 1px;
+        width: 0;
+        background: var(--color-text);
+        transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .border-draw:hover::after { width: 100%; }
+
+      /* ----------------------------------------
+         Improved animate-wrapper (smoother)
+      ---------------------------------------- */
+      .animate-wrapper {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .animate-wrapper.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
 
@@ -176,5 +578,22 @@ const {
 
     <!-- Site footer -->
     <Footer />
+
+    <script>
+      // Magnetic buttons
+      document.querySelectorAll('[data-magnetic]').forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = (e.clientX - rect.left - rect.width / 2) * 0.28;
+          const y = (e.clientY - rect.top - rect.height / 2) * 0.28;
+          el.style.transform = `translate(${x}px, ${y}px)`;
+          el.style.transition = 'transform 0.1s linear';
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'translate(0, 0)';
+          el.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+      });
+    </script>
   </body>
 </html>

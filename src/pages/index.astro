@@ -1,11 +1,10 @@
 ---
-// Homepage — hero, intro, portfolio teaser, services summary, CTA
+// Homepage — dual layout: light "selling flowers" / dark "expensive perfume bottle"
 import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projects from '../data/projects.json';
 
-// Show first 3 projects in teaser
 const featuredProjects = projects.slice(0, 3);
 ---
 
@@ -14,362 +13,501 @@ const featuredProjects = projects.slice(0, 3);
   description="Custom websites for small businesses. Designed and built from scratch by Alexandria Braniff, web developer in Vancouver, BC."
 >
 
-  <!-- ============================================
-       HERO SECTION — Full viewport, editorial
-       Nav lives here; sticky header drops in on scroll
-  ============================================ -->
-  <section id="hero" class="relative min-h-screen flex flex-col overflow-hidden">
+<!-- ================================================
+     LIGHT LAYOUT — Selling flowers. Delicate, romantic, elegant.
+================================================ -->
+<div class="light-layout">
 
-    <!-- Atmospheric background glows -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute rounded-full" style="width:500px;height:500px;background:var(--color-coral);opacity:0.07;filter:blur(120px);top:-10%;right:-5%;"></div>
-      <div class="absolute rounded-full" style="width:400px;height:400px;background:var(--color-teal);opacity:0.06;filter:blur(140px);bottom:-10%;left:-5%;"></div>
-    </div>
-
-    <!-- In-hero navigation -->
-    <div class="relative z-20 flex items-center justify-between px-6 lg:px-12 pt-8 lg:pt-10">
-
-      <!-- Wordmark visible on mobile since no sticky header yet -->
-      <span
-        class="font-display font-bold text-text tracking-tight text-base md:hidden"
-        style="animation: fadeUp 0.6s ease-out both; animation-delay: 0ms;"
-      >
-        Alexandria Braniff
-      </span>
-
-      <!-- Desktop nav links -->
-      <nav class="hidden md:flex items-center gap-8 ml-auto" aria-label="Hero navigation">
-        {[
-          { href: '/about', label: 'About' },
-          { href: '/portfolio', label: 'Portfolio & Services' },
-          { href: '/contact', label: 'Get in touch' },
-        ].map((link, i) => (
-          link.label === 'Get in touch' ? (
-            <a
-              href={link.href}
-              class="font-body text-sm font-bold bg-coral text-[#0E0E10] px-4 py-2 rounded hover:bg-coral-dark transition-colors duration-200"
-              style={`animation: fadeUp 0.6s ease-out both; animation-delay: ${i * 60}ms;`}
-            >
-              {link.label}
-            </a>
-          ) : (
-            <a
-              href={link.href}
-              class="hero-nav-link font-body text-sm text-muted hover:text-text transition-colors duration-200 relative py-1"
-              style={`animation: fadeUp 0.6s ease-out both; animation-delay: ${i * 60}ms;`}
-            >
-              {link.label}
-            </a>
-          )
-        ))}
-      </nav>
-
-      <!-- Mobile hamburger -->
-      <button
-        id="hero-mobile-btn"
-        class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none"
-        aria-label="Open navigation"
-      >
-        <span class="block w-6 h-0.5 bg-text"></span>
-        <span class="block w-6 h-0.5 bg-text"></span>
-        <span class="block w-6 h-0.5 bg-text"></span>
-      </button>
-    </div>
-
-    <!-- Hero main content — centered on mobile, bottom-anchored on desktop -->
-    <div class="relative z-10 flex-1 flex flex-col justify-center lg:justify-end px-6 lg:px-12 pb-0 lg:pb-16 pt-8 lg:pt-0">
-
-      <!-- The name — scales safely across all screen sizes -->
-      <h1
-        class="font-display font-bold text-text tracking-[-0.03em] mb-4 lg:mb-6"
-        style="font-size: clamp(3rem, 10vw, 13rem); line-height: 0.92; animation: fadeUp 0.8s ease-out both; animation-delay: 180ms;"
-      >
-        Alexandria<br />Braniff
-      </h1>
-
-      <!-- Sub-name blurb -->
-      <p
-        class="font-body text-sm lg:text-base leading-relaxed max-w-sm mb-8"
-        style="color: var(--color-muted); animation: fadeUp 0.7s ease-out both; animation-delay: 260ms;"
-      >
-        Creating functional tech and web designs for small businesses.
-      </p>
-
-      <!-- CTA buttons -->
-      <div
-        class="flex flex-col sm:flex-row gap-3 sm:gap-4"
-        style="animation: fadeUp 0.7s ease-out both; animation-delay: 340ms;"
-      >
-        <a
-          href="/portfolio"
-          class="flex justify-center font-body font-bold text-sm border border-text text-text rounded px-6 py-3 hover:border-teal hover:text-teal transition-colors duration-200"
-        >
-          View my work
-        </a>
-        <a
-          href="/contact"
-          class="flex justify-center font-body font-bold text-sm bg-coral text-[#0E0E10] rounded px-6 py-3 hover:bg-coral-dark transition-colors duration-200"
-        >
-          Get in touch
-        </a>
+  <!-- HERO -->
+  <section id="hero" class="relative overflow-hidden border-b border-surface2">
+    <div class="flex items-center justify-between px-6 lg:px-12 py-4 border-b border-surface2">
+      <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Est. 2023</span>
+      <div class="flex items-center gap-3">
+        <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Vancouver, BC</span>
+        <span class="w-1 h-1 rounded-full bg-surface2 inline-block" aria-hidden="true"></span>
+        <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">AU · CA</span>
       </div>
-
     </div>
-
-    <!-- Decorative rotating outlines (desktop only) -->
-    <div class="hidden lg:block absolute pointer-events-none" aria-hidden="true" style="right:8%;top:20%;width:280px;height:280px;">
-      <div class="absolute inset-0 border border-coral/20 rounded-sm" style="animation: slowRotate 24s linear infinite;"></div>
-      <div class="absolute inset-8 border border-teal/20 rounded-sm" style="animation: slowRotate 16s linear infinite reverse;"></div>
+    <div class="grid lg:grid-cols-[1fr_440px]" style="min-height: calc(100vh - 64px - 45px);">
+      <div class="flex flex-col px-6 lg:px-12 py-12 lg:py-16 border-r border-surface2 relative">
+        <div class="flex items-center gap-3 mb-6" style="animation: fadeUp 0.5s ease-out both;">
+          <div class="w-8 h-8 bg-text flex items-center justify-center flex-shrink-0">
+            <span class="font-display font-bold" style="color: #F7F6F2; font-size: 9px; letter-spacing: 0.08em;">AB</span>
+          </div>
+          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Web Developer</span>
+        </div>
+        <div class="overflow-hidden mb-10">
+          <div class="h-px bg-surface2" style="animation: drawLineX 1s ease-out both 0.6s; transform-origin: left;"></div>
+        </div>
+        <div class="flex-1 flex flex-col justify-center">
+          <h1 class="font-serif text-text leading-[0.92] mb-10" style="font-size: clamp(3.5rem, 7vw, 7.5rem); font-style: italic; font-weight: 300;">
+            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Websites built</span>
+            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">to last.</span>
+          </h1>
+          <p class="font-body text-sm text-muted leading-relaxed max-w-[280px] mb-12" style="animation: fadeUp 0.7s ease-out both 0.5s;">
+            Custom sites for small businesses that want to look like they mean it online. Designed and built from scratch. No templates.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3" style="animation: fadeUp 0.7s ease-out both 0.6s;">
+            <a href="/portfolio" data-magnetic class="flex justify-center font-body text-sm text-text border border-surface2 px-6 py-3 hover:border-text transition-colors duration-200">View my work</a>
+            <a href="/contact" data-magnetic class="flex justify-center font-body text-sm bg-text px-6 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
+          </div>
+        </div>
+        <span class="absolute top-6 right-6 text-surface2 text-lg font-light select-none hidden lg:block" aria-hidden="true" style="animation: float 3s ease-in-out infinite;">+</span>
+        <span class="absolute bottom-6 right-6 text-surface2 text-lg font-light select-none hidden lg:block" aria-hidden="true" style="animation: float 3.5s ease-in-out infinite 0.5s;">+</span>
+      </div>
+      <div class="relative hidden lg:block bg-surface overflow-hidden" data-cursor="view">
+        <img src="https://picsum.photos/seed/alexa-hero/880/1080" alt="Featured project" class="absolute inset-0 w-full h-full object-cover" data-parallax="0.15" />
+        <div class="absolute bottom-6 left-6 z-10">
+          <div class="inline-flex items-center gap-2 bg-base border border-surface2 px-3 py-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-text flex-shrink-0"></span>
+            <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted">Featured Work</span>
+          </div>
+        </div>
+        <div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10" aria-hidden="true">
+          <span class="w-1.5 h-1.5 rounded-full bg-text block" style="animation: pulse-dot 2s ease-in-out infinite;"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-surface2 block"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-surface2 block"></span>
+        </div>
+      </div>
     </div>
-
   </section>
 
-  <!-- ============================================
-       INTRO SECTION — Who Alexandria is
-  ============================================ -->
-  <section class="px-6 lg:px-8 py-24 lg:py-32 relative overflow-hidden">
+  <!-- INTRO -->
+  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-
-        <!-- Decorative column with number -->
-        <div class="relative" aria-hidden="true">
-          <span
-            class="font-display font-bold select-none pointer-events-none"
-            style="
-              font-size: clamp(8rem, 18vw, 16rem);
-              color: var(--color-muted);
-              opacity: 0.08;
-              line-height: 1;
-              display: block;
-            "
-          >
-            01
-          </span>
+      <div class="grid lg:grid-cols-[120px_1fr_280px] gap-10 lg:gap-16 items-start">
+        <div class="hidden lg:block pt-1" aria-hidden="true">
+          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">01</span>
         </div>
-
-        <!-- Content column -->
         <AnimateIn>
-          <div class="lg:pt-4">
-            <h2 class="font-display font-bold text-text mb-8" style="font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1.15;">
-              Small business websites,<br />done properly.
-            </h2>
-
-            <div class="space-y-5 font-body text-base text-muted leading-relaxed">
-              <p>
-                I'm Alexandria - a web developer based in Vancouver, British Columbia. I build custom
-                websites for small businesses that want to look like they mean it online. Not a
-                template, not a drag-and-drop builder, not a site that looks like everyone else's.
-              </p>
-              <p>
-                Every project starts with a real conversation. I find out what you do, who your
-                customers are, and what you actually need the site to achieve. Then I build it from
-                scratch, handle the tech, and hand you something you're proud to share.
-              </p>
-              <p>
-                I work with cafes, gyms, tradies, boutiques, and anyone else who needs a proper
-                web presence but doesn't want to deal with a big agency or figure it all out
-                themselves.
-              </p>
-            </div>
-
-            <a
-              href="/about"
-              class="inline-flex items-center gap-2 font-body text-sm font-semibold text-coral hover:text-coral-dark transition-colors duration-200 mt-8"
-            >
-              <span aria-hidden="true">&#8594;</span>
-              About me
-            </a>
+          <h2 class="font-serif text-text mb-3" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Small business websites, done properly.</h2>
+          <p class="font-serif text-muted mt-4" style="font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.5; font-style: italic;">"The kind of site that makes people stop and say — where did you get that made?"</p>
+        </AnimateIn>
+        <AnimateIn delay={100}>
+          <div class="space-y-4 font-body text-sm text-muted leading-relaxed">
+            <p>I'm Alexandria. I build custom websites for small businesses that want to look like they mean it online. Not a template. Not a drag-and-drop builder.</p>
+            <p>Every project starts with a real conversation. I find out what you do, who your customers are, and what you need the site to achieve. Then I build it from scratch.</p>
+            <a href="/about" class="inline-flex items-center gap-2 font-body text-xs font-semibold tracking-[0.15em] uppercase text-text border-b border-text pb-0.5 mt-2 hover:text-muted hover:border-muted transition-colors duration-200">About me &#8594;</a>
           </div>
         </AnimateIn>
-
+        <AnimateIn delay={200}>
+          <div class="placeholder-img warm rounded-none hidden lg:flex" style="aspect-ratio: 3/4;">
+            <img src="https://picsum.photos/seed/alexa-portrait/560/750" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          </div>
+        </AnimateIn>
       </div>
     </div>
   </section>
 
-  <!-- ============================================
-       PORTFOLIO TEASER — First 3 projects
-  ============================================ -->
-  <section class="px-6 lg:px-8 py-24 lg:py-32 border-t border-surface2">
+  <!-- SELECTED WORK -->
+  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
-
-      <!-- Section header -->
       <AnimateIn>
-        <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-4">
-          02 / Selected Work
-        </p>
-        <h2 class="font-display font-bold text-text mb-16" style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);">
-          Recent projects.
-        </h2>
+        <div class="flex items-center gap-6 mb-8">
+          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted flex-shrink-0">02</span>
+          <div class="h-px bg-surface2 flex-1"></div>
+          <span class="font-serif text-text flex-shrink-0" style="font-size: 1rem; font-style: italic; font-weight: 400;">Selected Work</span>
+        </div>
       </AnimateIn>
-
-      <!-- Project cards grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <AnimateIn>
+        <div class="placeholder-img gold-tone w-full mb-8 hidden lg:flex" style="height: 120px;">
+          <img src="https://picsum.photos/seed/alexa-strip/1400/240" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+      </AnimateIn>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
         {featuredProjects.map((project, i) => (
-          <AnimateIn delay={i * 100}>
-            <ProjectCard project={project} />
+          <AnimateIn delay={i * 100}><ProjectCard project={project} /></AnimateIn>
+        ))}
+      </div>
+      <AnimateIn>
+        <a href="/portfolio" class="inline-flex items-center gap-3 font-body text-sm font-medium text-text hover:text-muted transition-colors duration-200">
+          <span class="h-px w-6 bg-text inline-block"></span>View all work
+        </a>
+      </AnimateIn>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
+    <div class="max-w-7xl mx-auto">
+      <AnimateIn>
+        <div class="flex items-center gap-6 mb-14">
+          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted flex-shrink-0">03</span>
+          <div class="h-px bg-surface2 flex-1"></div>
+          <span class="font-serif text-text flex-shrink-0" style="font-size: 1rem; font-style: italic; font-weight: 400;">What I Do</span>
+        </div>
+      </AnimateIn>
+      <div class="divide-y divide-surface2 -mx-6 lg:-mx-12">
+        {[
+          { n: '01', title: 'Website Design & Build', body: 'A complete custom website designed and built around your business. From first conversation to launch day, I handle everything.' },
+          { n: '02', title: 'Custom Development', body: "Need something specific that off-the-shelf tools can't handle? I build custom functionality to spec — booking flows, integrations, and more." },
+          { n: '03', title: 'Site Maintenance', body: 'Monthly plans keep your site updated, secure, and running well. No more chasing someone for a simple content change.' },
+          { n: '04', title: 'Digital Setup & Tech', body: 'Domain, hosting, business email, Google Business Profile, analytics. I handle the full digital setup so your presence actually works.' },
+        ].map((svc, i) => (
+          <AnimateIn delay={i * 60}>
+            <div class="service-row grid lg:grid-cols-[80px_1fr_1fr] gap-4 lg:gap-12 py-7 px-6 lg:px-12 group hover:bg-surface transition-colors duration-200">
+              <span class="font-serif text-3xl text-surface2 leading-none group-hover:text-muted transition-colors duration-300" style="font-weight: 300; font-style: italic;">{svc.n}</span>
+              <h3 class="font-serif text-text self-center" style="font-size: 1.05rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
+              <p class="font-body text-sm text-muted leading-relaxed self-center">{svc.body}</p>
+            </div>
           </AnimateIn>
         ))}
       </div>
-
-      <!-- View all link -->
-      <AnimateIn>
-        <a
-          href="/portfolio"
-          class="inline-flex items-center gap-2 font-body text-sm font-semibold text-coral hover:text-coral-dark transition-colors duration-200"
-        >
-          View all work
-          <span aria-hidden="true">&#8594;</span>
-        </a>
-      </AnimateIn>
-
+      <div class="mt-12 hidden lg:block">
+        <div class="placeholder-img warm" style="height: 200px;">
+          <img src="https://picsum.photos/seed/alexa-process/1400/400" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================
-       SERVICES SUMMARY — 4 services, 2x2 grid
-  ============================================ -->
-  <section class="px-6 lg:px-8 py-24 lg:py-32 border-t border-surface2">
+  <!-- CTA -->
+  <section class="px-6 lg:px-12 py-32 lg:py-44">
     <div class="max-w-7xl mx-auto">
-
-      <!-- Section header -->
       <AnimateIn>
-        <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-4">
-          03 / What I Do
-        </p>
-        <h2 class="font-display font-bold text-text mb-16" style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);">
-          Everything your business<br />needs online.
-        </h2>
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+          <div class="mb-8 hidden lg:block">
+            <div class="placeholder-img deep inline-block" style="width: 80px; height: 80px; animation: floatSlow 5s ease-in-out infinite;"><span></span></div>
+          </div>
+          <div>
+            <div class="h-px bg-gold mb-10 hidden lg:block" style="width: 48px;"></div>
+            <h2 class="font-serif text-text leading-[0.92]" style="font-size: clamp(2.8rem, 7.5vw, 8rem); font-style: italic; font-weight: 300;">
+              Ready to build<br />something<br />beautiful.
+            </h2>
+          </div>
+          <div class="flex flex-col items-start lg:items-end gap-5">
+            <p class="font-body text-sm text-muted">Let's talk about your project.</p>
+            <a href="/contact" data-magnetic class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch <span aria-hidden="true">&#8594;</span></a>
+          </div>
+        </div>
       </AnimateIn>
+    </div>
+  </section>
 
-      <!-- Services 2x2 grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+</div><!-- end .light-layout -->
 
-        <!-- Service 1 -->
-        <AnimateIn delay={0}>
-          <div>
-            <span class="font-display font-bold text-4xl text-teal mb-4 block">01</span>
-            <h3 class="font-display font-bold text-xl text-text mb-3">Website Design & Build</h3>
-            <p class="font-body text-sm text-muted leading-relaxed">
-              A complete custom website, designed and built around your business. From first
-              conversation to launch day, I handle everything so you don't have to.
-            </p>
-          </div>
-        </AnimateIn>
 
-        <!-- Service 2 -->
-        <AnimateIn delay={100}>
-          <div>
-            <span class="font-display font-bold text-4xl text-teal mb-4 block">02</span>
-            <h3 class="font-display font-bold text-xl text-text mb-3">Custom Development</h3>
-            <p class="font-body text-sm text-muted leading-relaxed">
-              Need something specific that off-the-shelf tools can't handle? I build custom
-              functionality to spec - booking flows, integrations, dynamic content and more.
-            </p>
-          </div>
-        </AnimateIn>
+<!-- ================================================
+     DARK LAYOUT — Expensive perfume bottle.
+     Byredo. Le Labo. Maison Margiela. Almost nothing.
+================================================ -->
+<div class="dark-layout" aria-hidden="true">
 
-        <!-- Service 3 -->
-        <AnimateIn delay={200}>
-          <div>
-            <span class="font-display font-bold text-4xl text-teal mb-4 block">03</span>
-            <h3 class="font-display font-bold text-xl text-text mb-3">Site Maintenance</h3>
-            <p class="font-body text-sm text-muted leading-relaxed">
-              Websites need care after launch. Monthly maintenance plans keep your site updated,
-              secure, and running well. No more chasing someone for a content change.
-            </p>
-          </div>
-        </AnimateIn>
-
-        <!-- Service 4 -->
-        <AnimateIn delay={300}>
-          <div>
-            <span class="font-display font-bold text-4xl text-teal mb-4 block">04</span>
-            <h3 class="font-display font-bold text-xl text-text mb-3">Digital Setup & Tech</h3>
-            <p class="font-body text-sm text-muted leading-relaxed">
-              Domain, hosting, business email, Google Business Profile, analytics. I handle the
-              full digital setup so your entire online presence actually works.
-            </p>
-          </div>
-        </AnimateIn>
-
+  <!-- Section 1: HERO — cinematic split -->
+  <section class="dk2-hero">
+    <!-- Left 62% -->
+    <div class="dk2-hero-left">
+      <div class="dk2-hero-top-label">
+        <span class="dk2-whisper">Alexandria Braniff</span>
+        <span class="dk2-whisper-dot" aria-hidden="true">·</span>
+        <span class="dk2-whisper">Web Developer</span>
+        <span class="dk2-whisper-dot" aria-hidden="true">·</span>
+        <span class="dk2-whisper">Vancouver BC</span>
       </div>
 
+      <div class="dk2-hero-headline-wrap">
+        <h1 class="dk2-hero-headline">
+          <span class="dk2-hl-line" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Built for</span>
+          <span class="dk2-hl-line" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.25s;">businesses</span>
+          <span class="dk2-hl-line dk2-hl-muted" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.4s;">that mean it.</span>
+        </h1>
+      </div>
+
+      <div class="dk2-hero-bottom">
+        <p class="dk2-hero-body-text">Custom sites for small businesses. No templates. No handoffs.</p>
+        <a href="/contact" class="dk2-hero-cta">Start a project</a>
+      </div>
+    </div>
+
+    <!-- Right 38%: image -->
+    <div class="dk2-hero-right">
+      <img src="https://picsum.photos/seed/alexa-hero/880/1080" alt="" loading="lazy" class="dk2-hero-img" />
     </div>
   </section>
 
-  <!-- ============================================
-       CLOSING CTA — Full-width dark section
-  ============================================ -->
-  <section class="relative px-6 lg:px-8 py-32 lg:py-40 overflow-hidden border-t border-surface2">
+  <!-- Section 2: STATEMENT — one sentence, vast space -->
+  <section class="dk2-statement">
+    <p class="dk2-statement-text">
+      The kind of site that makes people stop and ask — where did you get that made?
+    </p>
+  </section>
 
-    <!-- Background coral blob -->
-    <div
-      class="absolute rounded-full pointer-events-none"
-      aria-hidden="true"
-      style="
-        width: 600px;
-        height: 600px;
-        background: var(--color-coral);
-        opacity: 0.06;
-        filter: blur(120px);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      "
-    ></div>
-
-    <div class="max-w-3xl mx-auto text-center relative z-10">
-      <AnimateIn>
-        <h2
-          class="font-display font-bold text-text mb-6"
-          style="font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05;"
-        >
-          Ready to build something?
-        </h2>
-        <p class="font-body text-muted text-lg mb-10">
-          Let's talk about your project.
-        </p>
-        <a
-          href="/contact"
-          class="inline-flex items-center gap-2 font-body font-bold text-sm bg-coral text-[#0E0E10] rounded px-8 py-4 hover:bg-coral-dark transition-colors duration-200"
-        >
-          Get in touch
-          <span aria-hidden="true">&#8594;</span>
-        </a>
-      </AnimateIn>
+  <!-- Section 3: SELECTED WORK -->
+  <section class="dk2-work">
+    <div class="dk2-work-label-row">
+      <span class="dk2-tiny-label">Selected Work</span>
+      <div class="dk2-rule"></div>
+    </div>
+    <div class="dk2-work-grid">
+      {featuredProjects.map((project, i) => (
+        <AnimateIn delay={i * 100}>
+          <ProjectCard project={project} />
+        </AnimateIn>
+      ))}
+    </div>
+    <div class="dk2-work-footer">
+      <a href="/portfolio" class="dk2-view-all">View all projects &#8594;</a>
     </div>
   </section>
+
+  <!-- Section 4: CTA — white reversal -->
+  <section class="dk2-cta">
+    <div class="dk2-cta-inner">
+      <span class="dk2-cta-label">Ready when you are</span>
+      <h2 class="dk2-cta-heading">
+        Let's build<br />something<br />worth finding.
+      </h2>
+      <a href="/contact" class="dk2-cta-btn">Get in touch</a>
+    </div>
+  </section>
+
+</div><!-- end .dark-layout -->
 
 </Layout>
 
 <style>
-  /* Decorative outline rotation */
-  @keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  /* ---- Layout visibility toggle ---- */
+  .light-layout { display: block; }
+  .dark-layout  { display: none;  }
+
+  /* ════════════════════════════════════
+     DARK LAYOUT — Perfume bottle luxury
+  ════════════════════════════════════ */
+
+  /* HERO */
+  .dk2-hero {
+    display: grid;
+    grid-template-columns: 62fr 38fr;
+    min-height: 100vh;
+    border-bottom: 1px solid #1A1A1A;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) {
+    .dk2-hero { grid-template-columns: 1fr; }
+    .dk2-hero-right { display: none; }
   }
 
-  /* Hero nav link hover underline */
-  .hero-nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 1.5px;
-    background: var(--color-teal);
-    transition: width 0.25s ease-out;
+  .dk2-hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 3rem 0;
+    border-right: 1px solid #1A1A1A;
   }
-  .hero-nav-link:hover::after { width: 100%; }
+
+  .dk2-hero-top-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk2-whisper {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+  }
+  .dk2-whisper-dot {
+    color: rgba(255,255,255,0.1);
+    font-size: 8px;
+  }
+
+  .dk2-hero-headline-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+  }
+  .dk2-hero-headline {
+    font-family: 'Cormorant Garant', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(4rem, 9vw, 9rem);
+    line-height: 1.0;
+    color: #FFFFFF;
+  }
+  .dk2-hl-line { display: block; }
+  .dk2-hl-muted { color: rgba(255,255,255,0.32); }
+
+  .dk2-hero-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid #1A1A1A;
+    flex-wrap: wrap;
+  }
+  .dk2-hero-body-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.7;
+    max-width: 300px;
+  }
+  .dk2-hero-cta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #050505;
+    background: #FFFFFF;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .dk2-hero-cta:hover { background: rgba(255,255,255,0.88); }
+
+  .dk2-hero-right { position: relative; overflow: hidden; }
+  .dk2-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    display: block;
+  }
+
+  /* STATEMENT */
+  .dk2-statement {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk2-statement-text {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+    max-width: 820px;
+    text-align: center;
+  }
+
+  /* WORK */
+  .dk2-work {
+    padding: 6rem 3rem 5rem;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk2-work-label-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .dk2-tiny-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+  .dk2-rule {
+    height: 1px;
+    background: #1A1A1A;
+    flex: 1;
+  }
+  .dk2-work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 900px) { .dk2-work-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 600px) and (max-width: 900px) { .dk2-work-grid { grid-template-columns: 1fr 1fr; } }
+  .dk2-work-footer {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #1A1A1A;
+  }
+  .dk2-view-all {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .dk2-view-all:hover { color: rgba(255,255,255,0.7); }
+
+  /* CTA — white reversal */
+  .dk2-cta {
+    background: #FFFFFF;
+    padding: 8rem 3rem;
+  }
+  .dk2-cta-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .dk2-cta-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(5,5,5,0.3);
+    display: block;
+  }
+  .dk2-cta-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 7.5rem);
+    color: #050505;
+    line-height: 1.0;
+  }
+  .dk2-cta-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #050505;
+    padding: 1rem 2.25rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .dk2-cta-btn:hover { background: #1A1A1A; }
 </style>
 
 <script>
-  // Mobile hero button: force-reveal the sticky header and open its mobile menu
-  const heroBtn = document.getElementById('hero-mobile-btn');
-  heroBtn?.addEventListener('click', () => {
-    const header = document.getElementById('site-header');
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    header?.classList.add('revealed');
-    hamburgerBtn?.click();
-    // Scroll slightly so the header stays revealed
-    window.scrollTo({ top: 1, behavior: 'instant' });
-  });
+  // Parallax for light layout hero image
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    parallaxEls.forEach((el) => {
+      const rate = parseFloat((el as HTMLElement).dataset.parallax || '0.15');
+      (el as HTMLElement).style.transform = `translateY(${scrollY * rate}px)`;
+    });
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+
+  // Toggle layout visibility when theme changes
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) { light.style.display = isDark ? 'none' : 'block'; light.setAttribute('aria-hidden', isDark ? 'true' : 'false'); }
+    if (dark)  { dark.style.display  = isDark ? 'block' : 'none'; dark.setAttribute('aria-hidden',  isDark ? 'false' : 'true'); }
+  }
+
+  syncLayouts();
+
+  // Watch for theme changes triggered by the toggle button
+  const observer = new MutationObserver(syncLayouts);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 </script>

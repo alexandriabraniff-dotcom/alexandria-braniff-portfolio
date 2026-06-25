@@ -1,5 +1,5 @@
 ---
-// About page — editorial layout, real copy, "Why me?" section
+// About page — dual layout: "selling flowers" (light) / "expensive perfume bottle" (dark)
 import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 ---
@@ -10,91 +10,535 @@ import AnimateIn from '../components/AnimateIn.astro';
 >
 
   <!-- ============================================
-       HERO — Heading only, no body text
+       LIGHT LAYOUT — Delicate, romantic, warm
   ============================================ -->
-  <section class="px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
-    <div class="max-w-7xl mx-auto">
-      <p class="font-body text-xs font-semibold tracking-[0.2em] uppercase text-teal mb-6">
-        About
-      </p>
-      <h1
-        class="font-display font-bold text-text leading-[1.1] max-w-4xl"
-        style="font-size: clamp(2.5rem, 5vw, 4.5rem);"
-      >
-        I build websites that actually work for your business.
-      </h1>
-    </div>
-  </section>
+  <div class="light-layout">
 
-  <!-- ============================================
-       MAIN CONTENT — Two-column: facts + body copy
-  ============================================ -->
-  <section class="px-6 lg:px-8 py-12 lg:py-20 border-t border-surface2">
-    <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl">
+    <!-- HERO -->
+    <section class="border-b border-surface2 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-[1fr_360px] gap-0 items-stretch">
 
-        <!-- About copy -->
+          <div class="py-16 lg:py-24 pr-0 lg:pr-16 border-r border-surface2 flex flex-col justify-between">
+            <div>
+              <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-6">About</p>
+              <h1
+                class="font-serif text-text leading-[0.95]"
+                style="font-size: clamp(2.8rem, 6vw, 6rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;"
+              >
+                I build websites<br />that work.
+              </h1>
+            </div>
+            <div class="flex gap-10 mt-16 pt-8 border-t border-surface2">
+              <div>
+                <span class="font-serif text-text block leading-none" style="font-size: clamp(2rem, 4vw, 3rem); font-style: italic; font-weight: 300;" data-count="20" data-suffix="+">0+</span>
+                <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted mt-2 block">Sites Built</span>
+              </div>
+              <div>
+                <span class="font-serif text-text block leading-none" style="font-size: clamp(2rem, 4vw, 3rem); font-style: italic; font-weight: 300;" data-count="3" data-suffix="">0</span>
+                <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted mt-2 block">Years Building</span>
+              </div>
+              <div>
+                <span class="font-serif text-text block leading-none" style="font-size: clamp(2rem, 4vw, 3rem); font-style: italic; font-weight: 300;" data-count="100" data-suffix="%">0%</span>
+                <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted mt-2 block">From Scratch</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="placeholder-img warm hidden lg:flex" style="min-height: 480px; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;" data-cursor="view">
+            <img src="https://picsum.photos/seed/alexa-about-hero/720/960" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-24">
+
+          <AnimateIn>
+            <div class="space-y-12">
+              <div>
+                <p class="font-serif text-text mb-4" style="font-size: 1.25rem; line-height: 1.4; font-style: italic; font-weight: 300;">
+                  I'm a web developer based in Vancouver, BC, working solo as a sole trader.
+                </p>
+                <p class="font-body text-sm text-muted leading-relaxed">
+                  I build websites for small businesses from the ground up — no page builders, no recycled templates, no handing things off to someone else. When you work with me, you deal with one person from first conversation to launch day and beyond.
+                </p>
+              </div>
+              <div class="placeholder-img warm" style="height: 280px; animation: floatSlow 7s ease-in-out infinite;">
+                <img src="https://picsum.photos/seed/alexa-atwork/800/560" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div>
+                <p class="font-serif text-text mb-4" style="font-size: 1.25rem; line-height: 1.4; font-style: italic; font-weight: 300;">
+                  You get direct access. Not a project manager — me.
+                </p>
+                <p class="font-body text-sm text-muted leading-relaxed">
+                  Working with a solo developer means faster communication, sharper decisions, and no game of telephone. I know my clients by name and I build with the pressure of running a small business in mind — fast turnarounds, plain language, no bloated retainers.
+                </p>
+              </div>
+            </div>
+          </AnimateIn>
+
+          <AnimateIn delay={150}>
+            <div class="space-y-12">
+              <div class="placeholder-img gold-tone" style="height: 320px; animation: floatSlow 8s ease-in-out infinite 1s;">
+                <img src="https://picsum.photos/seed/alexa-studio/800/640" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div>
+                <p class="font-serif text-text mb-4" style="font-size: 1.25rem; line-height: 1.4; font-style: italic; font-weight: 300;">
+                  My clients are small business owners who need something real.
+                </p>
+                <p class="font-body text-sm text-muted leading-relaxed">
+                  Cafes, gyms, boutiques, tradies, studios, health practitioners, creatives. People who are serious about what they do and want their site to actually reflect that. If you've outgrown your DIY website or want to do it properly from scratch — that's where I come in.
+                </p>
+              </div>
+              <div>
+                <p class="font-serif text-text mb-4" style="font-size: 1.25rem; line-height: 1.4; font-style: italic; font-weight: 300;">
+                  The best part of the job is watching a site go live.
+                </p>
+                <p class="font-body text-sm text-muted leading-relaxed">
+                  I love turning a messy brief into something clean and clear, figuring out what a site actually needs to do versus what the client thinks they need. And I love the craft of it — building something that looks right, loads fast, and works the way it should.
+                </p>
+              </div>
+            </div>
+          </AnimateIn>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="px-6 lg:px-12 py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto">
         <AnimateIn>
-          <div class="space-y-10">
-
-            <!-- Paragraph 1: Who you are -->
-            <div>
-              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
-                I'm a web developer based in Vancouver, British Columbia, working solo as a sole trader.
-              </p>
-              <p class="font-body text-muted leading-relaxed">
-                I build websites for small businesses from the ground up - no page builders, no
-                recycled templates, no handing things off to someone else halfway through. When you
-                work with me, you deal with one person from the first conversation to launch day and
-                beyond. That's the whole point.
-              </p>
-            </div>
-
-            <!-- Paragraph 2: Who you work with -->
-            <div>
-              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
-                My clients are small business owners who need something real built, not just ticked off a list.
-              </p>
-              <p class="font-body text-muted leading-relaxed">
-                Cafes, gyms, boutiques, tradies, studios, health practitioners, creatives. People who
-                are serious about what they do and want their site to actually reflect that. If you've
-                outgrown your DIY website or you're starting from scratch and want to do it properly,
-                that's where I come in.
-              </p>
-            </div>
-
-            <!-- Paragraph 3: Why you -->
-            <div>
-              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
-                You get direct access. Not a project manager, not a junior dev - me.
-              </p>
-              <p class="font-body text-muted leading-relaxed">
-                Working with a solo developer means faster communication, sharper decisions, and no
-                game of telephone between you and the person actually doing the work. I know my
-                clients by name. I understand the pressure of running a small business, and I build
-                with that in mind - fast turnarounds, plain language, no bloated retainers.
-              </p>
-            </div>
-
-            <!-- Paragraph 4: What you love -->
-            <div>
-              <p class="font-body font-semibold text-text leading-relaxed mb-3" style="font-size: 1.125rem;">
-                The best part of the job is watching a site go live for someone who genuinely needed it.
-              </p>
-              <p class="font-body text-muted leading-relaxed">
-                I love the problem-solving side - turning a messy brief into something clean and
-                clear, figuring out what a site actually needs to do versus what the client thinks
-                they need. And I love the craft of it. Building something that looks right, loads
-                fast, and works the way it should. That satisfaction doesn't get old.
-              </p>
-            </div>
-
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 py-12 border-t border-surface2">
+            <h2 class="font-serif text-text" style="font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.2; font-style: italic; font-weight: 300;">
+              Ready to work together?
+            </h2>
+            <a href="/contact" data-magnetic class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">
+              Get in touch <span aria-hidden="true">&#8594;</span>
+            </a>
           </div>
         </AnimateIn>
-
       </div>
-    </div>
-  </section>
+    </section>
 
+  </div><!-- end .light-layout -->
+
+
+  <!-- ============================================
+       DARK LAYOUT — Perfume bottle minimal
+  ============================================ -->
+  <div class="dark-layout">
+
+    <!-- DK HERO — Cinematic identity block -->
+    <section class="dk-ab-hero">
+      <div class="dk-ab-hero-inner">
+        <div class="dk-ab-label">About</div>
+        <h1 class="dk-ab-name">ALEXANDRIA<br />BRANIFF</h1>
+        <div class="dk-ab-tagline">
+          Web Developer
+          <span class="dk-ab-separator" aria-hidden="true">·</span>
+          Vancouver, BC
+        </div>
+        <div class="dk-ab-stats-row">
+          <div class="dk-ab-stat">
+            <span class="dk-ab-stat-num" data-count-dk="20" data-suffix-dk="+">0+</span>
+            <span class="dk-ab-stat-label">Sites built</span>
+          </div>
+          <div class="dk-ab-stat">
+            <span class="dk-ab-stat-num" data-count-dk="3" data-suffix-dk="">0</span>
+            <span class="dk-ab-stat-label">Years building</span>
+          </div>
+          <div class="dk-ab-stat">
+            <span class="dk-ab-stat-num" data-count-dk="100" data-suffix-dk="%">0%</span>
+            <span class="dk-ab-stat-label">From scratch</span>
+          </div>
+        </div>
+      </div>
+      <div class="dk-ab-hero-img">
+        <img src="https://picsum.photos/seed/alexa-about-hero/720/960" alt="" />
+      </div>
+    </section>
+
+    <!-- DK MANIFESTO — Sparse, one idea per breath -->
+    <section class="dk-manifesto">
+      <div class="dk-manifesto-item">
+        <span class="dk-manifesto-num">01</span>
+        <div class="dk-manifesto-body">
+          <h2 class="dk-manifesto-title">One person.<br />End to end.</h2>
+          <p class="dk-manifesto-text">No project managers. No handoffs. No telephone game. You talk to the person building your site from day one to launch and beyond.</p>
+        </div>
+      </div>
+      <div class="dk-manifesto-item">
+        <span class="dk-manifesto-num">02</span>
+        <div class="dk-manifesto-body">
+          <h2 class="dk-manifesto-title">Built for real<br />businesses.</h2>
+          <p class="dk-manifesto-text">Cafes, gyms, boutiques, tradies, studios. People who are serious about what they do and want their site to match.</p>
+        </div>
+      </div>
+      <div class="dk-manifesto-item">
+        <span class="dk-manifesto-num">03</span>
+        <div class="dk-manifesto-body">
+          <h2 class="dk-manifesto-title">Templates<br />are a shortcut.</h2>
+          <p class="dk-manifesto-text">Every client gets something built for them. The result is a site that actually fits — not one that looks like twelve other businesses.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DK STACK — Luxury datasheet -->
+    <section class="dk-stack">
+      <div class="dk-stack-sheet">
+        <div class="dk-stack-sheet-header">
+          <span class="dk-stack-sheet-title">Technical profile</span>
+        </div>
+        <div class="dk-stack-entry">
+          <span class="dk-stack-key">Frontend</span>
+          <span class="dk-stack-val">Next.js · Astro · React · Tailwind CSS · TypeScript</span>
+        </div>
+        <div class="dk-stack-entry">
+          <span class="dk-stack-key">Backend</span>
+          <span class="dk-stack-val">Node.js · Vercel · GitHub · REST APIs · Formspree</span>
+        </div>
+        <div class="dk-stack-entry">
+          <span class="dk-stack-key">Specialties</span>
+          <span class="dk-stack-val">Small business websites · Branding-first design · Fast launches · Ongoing care</span>
+        </div>
+        <div class="dk-stack-entry">
+          <span class="dk-stack-key">Location</span>
+          <span class="dk-stack-val">Vancouver, BC — serving clients worldwide</span>
+        </div>
+      </div>
+      <div class="dk-stack-img">
+        <img src="https://picsum.photos/seed/alexa-studio/800/640" alt="" />
+      </div>
+    </section>
+
+    <!-- DK CTA — White reversal -->
+    <section class="dk-ab-cta">
+      <div class="dk-ab-cta-inner">
+        <span class="dk-ab-cta-label">Ready</span>
+        <h2 class="dk-ab-cta-heading">
+          Let's build<br />something.
+        </h2>
+        <a href="/contact" class="dk-ab-cta-btn">Start a project &#8594;</a>
+      </div>
+    </section>
+
+  </div><!-- end .dark-layout -->
 
 </Layout>
+
+<script>
+  // Sync layouts on theme toggle
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) light.style.display = isDark ? 'none' : 'block';
+    if (dark)  dark.style.display  = isDark ? 'block' : 'none';
+  }
+  syncLayouts();
+  const layoutObserver = new MutationObserver(syncLayouts);
+  layoutObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Count-up animation — light layout
+  const countEls = document.querySelectorAll('[data-count]');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt(el.dataset.count || '0');
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const startTime = performance.now();
+      function tick(now: number) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  countEls.forEach((el) => countObserver.observe(el));
+
+  // Count-up animation — dark layout
+  const countElsDk = document.querySelectorAll('[data-count-dk]');
+  const countObserverDk = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt((el as HTMLElement).dataset.countDk || '0');
+      const suffix = (el as HTMLElement).dataset.suffixDk || '';
+      const duration = 1200;
+      const startTime = performance.now();
+      function tick(now: number) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+      countObserverDk.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  countElsDk.forEach((el) => countObserverDk.observe(el));
+</script>
+
+<style>
+  /* ── Light layout defaults ── */
+  .light-layout { display: block; }
+  .dark-layout  { display: none; }
+
+  /* ════════════════════════════════════
+     DARK LAYOUT — Perfume bottle luxury
+  ════════════════════════════════════ */
+
+  /* HERO */
+  .dk-ab-hero {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    min-height: 90vh;
+    border-bottom: 1px solid #1A1A1A;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) {
+    .dk-ab-hero { grid-template-columns: 1fr; }
+    .dk-ab-hero-img { display: none; }
+  }
+  .dk-ab-hero-inner {
+    padding: 6rem 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1.75rem;
+    border-right: 1px solid #1A1A1A;
+  }
+  .dk-ab-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .dk-ab-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  .dk-ab-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .dk-ab-separator { color: rgba(255,255,255,0.1); }
+  .dk-ab-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #1A1A1A;
+    margin-top: 1.5rem;
+  }
+  .dk-ab-stat {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-right: 1px solid #1A1A1A;
+  }
+  .dk-ab-stat:last-child { border-right: none; }
+  .dk-ab-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+  .dk-ab-stat-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .dk-ab-hero-img {
+    position: relative;
+    overflow: hidden;
+  }
+  .dk-ab-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    filter: grayscale(15%);
+    display: block;
+  }
+
+  /* MANIFESTO — one item per screen worth of space */
+  .dk-manifesto {
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-manifesto-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 3rem;
+    padding: 7rem 3rem;
+    border-bottom: 1px solid #1A1A1A;
+    align-items: start;
+  }
+  .dk-manifesto-item:last-child { border-bottom: none; }
+  @media (max-width: 700px) {
+    .dk-manifesto-item { grid-template-columns: 1fr; gap: 1.5rem; padding: 4rem 2rem; }
+  }
+  .dk-manifesto-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.18);
+    text-transform: uppercase;
+    padding-top: 0.5rem;
+  }
+  .dk-manifesto-body { display: flex; flex-direction: column; gap: 2rem; }
+  .dk-manifesto-title {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+  .dk-manifesto-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.3);
+    max-width: 560px;
+  }
+
+  /* STACK — Luxury datasheet */
+  .dk-stack {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    border-bottom: 1px solid #1A1A1A;
+    min-height: 420px;
+  }
+  @media (max-width: 900px) {
+    .dk-stack { grid-template-columns: 1fr; }
+    .dk-stack-img { display: none; }
+  }
+  .dk-stack-sheet {
+    padding: 4rem 3rem;
+    border-right: 1px solid #1A1A1A;
+  }
+  .dk-stack-sheet-header {
+    padding-bottom: 2.5rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .dk-stack-sheet-title {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.02em;
+  }
+  .dk-stack-entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid #111;
+    align-items: baseline;
+  }
+  .dk-stack-entry:last-child { border-bottom: none; }
+  .dk-stack-key {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .dk-stack-val {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+  .dk-stack-img {
+    position: relative;
+    overflow: hidden;
+  }
+  .dk-stack-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    display: block;
+  }
+
+  /* DK CTA — white reversal */
+  .dk-ab-cta {
+    background: #FFFFFF;
+    padding: 8rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dk-ab-cta-inner {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .dk-ab-cta-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(5,5,5,0.28);
+    text-transform: uppercase;
+  }
+  .dk-ab-cta-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 7vw, 6.5rem);
+    color: #050505;
+    line-height: 1.0;
+  }
+  .dk-ab-cta-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #050505;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .dk-ab-cta-btn:hover { background: #1A1A1A; }
+</style>

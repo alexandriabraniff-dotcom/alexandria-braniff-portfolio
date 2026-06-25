@@ -23,15 +23,22 @@ const { project } = Astro.props;
 {project.comingSoon ? (
   <!-- Coming soon card — styled but not interactive -->
   <div
-    class="group bg-surface rounded-lg overflow-hidden opacity-70 cursor-default border border-surface2"
+    class="group bg-surface overflow-hidden opacity-60 cursor-default border border-surface2"
     aria-label={`${project.name} — coming soon`}
   >
-    <!-- Placeholder image area with COMING SOON label -->
-    <div class="w-full aspect-video bg-surface2 flex items-center justify-center relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-surface2 to-base opacity-80"></div>
-      <span class="relative z-10 font-display font-bold text-xs tracking-[0.25em] text-teal uppercase">
-        Coming Soon
-      </span>
+    <!-- Image with coming soon overlay -->
+    <div class="w-full aspect-video relative overflow-hidden">
+      <img
+        src={project.image}
+        alt={project.name}
+        loading="lazy"
+        class="w-full h-full object-cover scale-[1.03]"
+      />
+      <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(17,17,17,0.5); backdrop-filter: blur(2px);">
+        <span class="font-body font-semibold text-xs tracking-[0.3em] uppercase" style="color: rgba(247,246,242,0.8);">
+          Coming Soon
+        </span>
+      </div>
     </div>
 
     <!-- Card content -->
@@ -47,7 +54,7 @@ const { project } = Astro.props;
 ) : (
   <!-- Real project card — clickable, hover effects -->
   <div
-    class="project-card group bg-surface rounded-lg overflow-hidden cursor-pointer border border-surface2 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_8px_30px_rgba(255,111,97,0.12)] relative"
+    class="project-card group bg-surface overflow-hidden cursor-pointer border border-surface2 transition-all duration-300 ease-out hover:border-text relative"
     data-project-id={project.id}
     role="button"
     tabindex="0"
@@ -67,7 +74,7 @@ const { project } = Astro.props;
         class="absolute inset-0 bg-surface2 items-center justify-center hidden"
         aria-hidden="true"
       >
-        <span class="font-display font-bold text-xs tracking-[0.2em] text-muted uppercase">
+        <span class="font-body font-semibold text-xs tracking-[0.2em] text-muted uppercase">
           Image coming
         </span>
       </div>
@@ -75,7 +82,7 @@ const { project } = Astro.props;
 
     <!-- Left accent border on hover (via pseudo element workaround using box-shadow) -->
     <div class="p-6">
-      <h3 class="font-display font-bold text-lg text-text mb-2 group-hover:text-coral transition-colors duration-300">
+      <h3 class="font-display font-bold text-lg text-text mb-2 group-hover:text-muted transition-colors duration-300">
         {project.name}
       </h3>
       <p class="font-body text-sm text-muted leading-relaxed mb-5">
@@ -87,7 +94,7 @@ const { project } = Astro.props;
         href={project.url ?? '#'}
         target="_blank"
         rel="noopener noreferrer"
-        class="view-site-btn inline-flex items-center gap-2 font-body text-sm font-medium text-coral border border-coral rounded px-4 py-2 hover:bg-coral hover:text-base transition-all duration-200"
+        class="view-site-btn inline-flex items-center gap-2 font-body text-sm font-medium text-text border border-surface2 px-4 py-2 hover:border-text transition-all duration-200"
         aria-label={`Visit ${project.name} live site (opens in new tab)`}
       >
         View site live
@@ -100,11 +107,9 @@ const { project } = Astro.props;
 )}
 
 <style>
-  /* Coral left-border accent on hover via box-shadow trick */
+  /* Subtle lift on hover */
   .project-card:hover {
-    box-shadow:
-      inset 2px 0 0 var(--color-coral),
-      0 8px 30px rgba(255, 111, 97, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
   }
 </style>
 
