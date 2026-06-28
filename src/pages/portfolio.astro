@@ -4,7 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const projects = (await import('../data/projects.json')).default;
+const allProjects = (await import('../data/projects.json')).default;
+const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoon);
 ---
 
 <Layout
@@ -331,7 +332,7 @@ const projects = (await import('../data/projects.json')).default;
 
 </Layout>
 
-<script define:vars={{ projectsData: projects }}>
+<script define:vars={{ projectsData: allProjects }}>
   window.__PROJECTS__ = projectsData;
 </script>
 
@@ -673,6 +674,7 @@ const projects = (await import('../data/projects.json')).default;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1.75rem;
   }
   .dk-port-cta-label {
@@ -692,6 +694,7 @@ const projects = (await import('../data/projects.json')).default;
   }
   .dk-port-cta-btn {
     display: inline-block;
+    align-self: flex-start;
     margin-top: 1rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.72rem;

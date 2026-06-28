@@ -5,12 +5,14 @@ import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projects from '../data/projects.json';
 
-const featuredProjects = projects.slice(0, 3);
+// Only show real (non-coming-soon) projects on the homepage
+const featuredProjects = projects.filter(p => !p.comingSoon);
 ---
 
 <Layout
   title="Alexandria Braniff — Web Developer for Small Businesses"
   description="Custom websites for small businesses. Designed and built from scratch by Alexandria Braniff, web developer in Vancouver, BC."
+  heroNav={true}
 >
 
 <!-- ================================================
@@ -20,15 +22,56 @@ const featuredProjects = projects.slice(0, 3);
 
   <!-- HERO -->
   <section id="hero" class="relative overflow-hidden border-b border-surface2">
-    <div class="flex items-center justify-between px-6 lg:px-12 py-4 border-b border-surface2">
-      <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Est. 2023</span>
-      <div class="flex items-center gap-3">
-        <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Vancouver, BC</span>
-        <span class="w-1 h-1 rounded-full bg-surface2 inline-block" aria-hidden="true"></span>
-        <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">AU · CA</span>
+    <!-- Integrated hero nav bar (replaces old top-bar) -->
+    <nav class="hero-nav-bar flex items-center justify-between px-6 lg:px-12 h-16 lg:h-[4.5rem] border-b border-surface2">
+      <a href="/" class="font-display font-bold text-text text-sm tracking-[-0.02em] hover:text-muted transition-colors duration-200">Alexandria Braniff</a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="/about" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">About</a>
+        <a href="/portfolio" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Portfolio</a>
+        <a href="/contact" class="font-body text-[11px] font-semibold tracking-[0.12em] uppercase text-text hover:text-muted transition-colors duration-200">Get in touch</a>
+      </div>
+      <div class="flex items-center gap-1">
+        <button class="theme-toggle-btn w-9 h-9 flex items-center justify-center text-muted hover:text-text transition-colors duration-200" aria-label="Toggle dark mode">
+          <svg class="icon-moon-hero" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="icon-sun-hero hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="hero-hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Open menu" aria-expanded="false" aria-controls="hero-mobile-menu">
+          <span class="hero-ham-line block w-5 h-0.5 bg-text transition-all duration-300 origin-center"></span>
+          <span class="hero-ham-line block w-5 h-0.5 bg-text transition-all duration-300 origin-center"></span>
+          <span class="hero-ham-line block w-5 h-0.5 bg-text transition-all duration-300 origin-center"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero mobile menu overlay -->
+    <div id="hero-mobile-menu" class="fixed inset-0 z-40 bg-base flex-col hidden" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+      <div class="flex items-center justify-between px-6 h-16 border-b border-surface2">
+        <a href="/" class="font-display font-bold text-text text-sm tracking-[-0.02em]">Alexandria Braniff</a>
+        <button class="hero-menu-close w-10 h-10 flex items-center justify-center text-muted hover:text-text" aria-label="Close menu">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 py-8 gap-1">
+        <a href="/about" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">About</a>
+        <a href="/portfolio" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">Portfolio</a>
+        <a href="/contact" class="font-body text-sm font-semibold tracking-[0.1em] uppercase text-text border-b border-text pb-0.5 mt-4 inline-block hover:text-muted hover:border-muted transition-colors">Get in touch</a>
+      </nav>
+      <div class="px-6 pt-4 border-t border-surface2 mt-auto">
+        <button class="theme-toggle-btn flex items-center gap-3 font-body text-sm text-muted hover:text-text transition-colors py-2" aria-label="Toggle dark mode">
+          <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span>Toggle theme</span>
+        </button>
       </div>
     </div>
-    <div class="grid lg:grid-cols-[1fr_440px]" style="min-height: calc(100vh - 64px - 45px);">
+
+    <!-- Hero content grid -->
+    <div class="grid lg:grid-cols-[1fr_440px]" style="min-height: calc(100vh - 4.5rem);">
       <div class="flex flex-col px-6 lg:px-12 py-12 lg:py-16 border-r border-surface2 relative">
         <div class="flex items-center gap-3 mb-6" style="animation: fadeUp 0.5s ease-out both;">
           <div class="w-8 h-8 bg-text flex items-center justify-center flex-shrink-0">
@@ -41,19 +84,17 @@ const featuredProjects = projects.slice(0, 3);
         </div>
         <div class="flex-1 flex flex-col justify-center">
           <h1 class="font-serif text-text leading-[0.92] mb-10" style="font-size: clamp(3.5rem, 7vw, 7.5rem); font-style: italic; font-weight: 300;">
-            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Websites built</span>
-            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">to last.</span>
+            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Websites that</span>
+            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">never stand still.</span>
           </h1>
           <p class="font-body text-sm text-muted leading-relaxed max-w-[280px] mb-12" style="animation: fadeUp 0.7s ease-out both 0.5s;">
             Custom sites for small businesses that want to look like they mean it online. Designed and built from scratch. No templates.
           </p>
           <div class="flex flex-col sm:flex-row gap-3" style="animation: fadeUp 0.7s ease-out both 0.6s;">
-            <a href="/portfolio" data-magnetic class="flex justify-center font-body text-sm text-text border border-surface2 px-6 py-3 hover:border-text transition-colors duration-200">View my work</a>
+            <a href="/portfolio" data-magnetic class="flex justify-center font-body text-sm text-text border border-surface2 px-6 py-3 hover:border-text transition-colors duration-200">View all work</a>
             <a href="/contact" data-magnetic class="flex justify-center font-body text-sm bg-text px-6 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
           </div>
         </div>
-        <span class="absolute top-6 right-6 text-surface2 text-lg font-light select-none hidden lg:block" aria-hidden="true" style="animation: float 3s ease-in-out infinite;">+</span>
-        <span class="absolute bottom-6 right-6 text-surface2 text-lg font-light select-none hidden lg:block" aria-hidden="true" style="animation: float 3.5s ease-in-out infinite 0.5s;">+</span>
       </div>
       <div class="relative hidden lg:block bg-surface overflow-hidden" data-cursor="view">
         <img src="https://picsum.photos/seed/alexa-hero/880/1080" alt="Featured project" class="absolute inset-0 w-full h-full object-cover" data-parallax="0.15" />
@@ -63,44 +104,43 @@ const featuredProjects = projects.slice(0, 3);
             <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted">Featured Work</span>
           </div>
         </div>
-        <div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10" aria-hidden="true">
-          <span class="w-1.5 h-1.5 rounded-full bg-text block" style="animation: pulse-dot 2s ease-in-out infinite;"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-surface2 block"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-surface2 block"></span>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
+  <!-- INTRO — restructured 2-column with large portrait -->
+  <section class="px-6 lg:px-12 py-20 lg:py-28 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-[120px_1fr_280px] gap-10 lg:gap-16 items-start">
-        <div class="hidden lg:block pt-1" aria-hidden="true">
+      <div class="grid lg:grid-cols-[1fr_400px] gap-12 lg:gap-16 items-stretch">
+
+        <!-- Text column -->
+        <div class="flex flex-col justify-center gap-8 py-4">
           <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">01</span>
+          <AnimateIn>
+            <h2 class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Small business websites,<br>done properly.</h2>
+          </AnimateIn>
+          <AnimateIn delay={100}>
+            <div class="space-y-4 font-body text-sm text-muted leading-relaxed max-w-md">
+              <p>I'm Alexandria. I build custom websites for small businesses that want to look like they mean it online. Not a template. Not a drag-and-drop builder.</p>
+              <p>Every project starts with a real conversation. I find out what you do, who your customers are, and what you need the site to achieve. Then I build it from scratch.</p>
+              <a href="/about" class="inline-flex items-center gap-2 font-body text-xs font-semibold tracking-[0.15em] uppercase text-text border-b border-text pb-0.5 mt-2 hover:text-muted hover:border-muted transition-colors duration-200">About me &#8594;</a>
+            </div>
+          </AnimateIn>
         </div>
-        <AnimateIn>
-          <h2 class="font-serif text-text mb-3" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Small business websites, done properly.</h2>
-          <p class="font-serif text-muted mt-4" style="font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.5; font-style: italic;">"The kind of site that makes people stop and say — where did you get that made?"</p>
-        </AnimateIn>
-        <AnimateIn delay={100}>
-          <div class="space-y-4 font-body text-sm text-muted leading-relaxed">
-            <p>I'm Alexandria. I build custom websites for small businesses that want to look like they mean it online. Not a template. Not a drag-and-drop builder.</p>
-            <p>Every project starts with a real conversation. I find out what you do, who your customers are, and what you need the site to achieve. Then I build it from scratch.</p>
-            <a href="/about" class="inline-flex items-center gap-2 font-body text-xs font-semibold tracking-[0.15em] uppercase text-text border-b border-text pb-0.5 mt-2 hover:text-muted hover:border-muted transition-colors duration-200">About me &#8594;</a>
+
+        <!-- Portrait column — large, prominent -->
+        <AnimateIn delay={150}>
+          <div class="placeholder-img warm lg:min-h-[520px] min-h-[300px]">
+            <img src="https://picsum.photos/seed/alexa-portrait/800/1040" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
           </div>
         </AnimateIn>
-        <AnimateIn delay={200}>
-          <div class="placeholder-img warm rounded-none hidden lg:flex" style="aspect-ratio: 3/4;">
-            <img src="https://picsum.photos/seed/alexa-portrait/560/750" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-          </div>
-        </AnimateIn>
+
       </div>
     </div>
   </section>
 
   <!-- SELECTED WORK -->
-  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
+  <section class="px-6 lg:px-12 py-16 lg:py-24 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
         <div class="flex items-center gap-6 mb-8">
@@ -120,15 +160,17 @@ const featuredProjects = projects.slice(0, 3);
         ))}
       </div>
       <AnimateIn>
-        <a href="/portfolio" class="inline-flex items-center gap-3 font-body text-sm font-medium text-text hover:text-muted transition-colors duration-200">
-          <span class="h-px w-6 bg-text inline-block"></span>View all work
-        </a>
+        <div class="mt-6">
+          <a href="/portfolio" class="inline-flex items-center gap-3 font-body text-sm font-medium text-text hover:text-muted transition-colors duration-200">
+            <span class="h-px w-6 bg-text inline-block"></span>View all work
+          </a>
+        </div>
       </AnimateIn>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-surface2">
+  <section class="px-6 lg:px-12 py-16 lg:py-24 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
         <div class="flex items-center gap-6 mb-14">
@@ -162,13 +204,10 @@ const featuredProjects = projects.slice(0, 3);
   </section>
 
   <!-- CTA -->
-  <section class="px-6 lg:px-12 py-32 lg:py-44">
+  <section class="px-6 lg:px-12 py-24 lg:py-36">
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-          <div class="mb-8 hidden lg:block">
-            <div class="placeholder-img deep inline-block" style="width: 80px; height: 80px; animation: floatSlow 5s ease-in-out infinite;"><span></span></div>
-          </div>
           <div>
             <div class="h-px bg-gold mb-10 hidden lg:block" style="width: 48px;"></div>
             <h2 class="font-serif text-text leading-[0.92]" style="font-size: clamp(2.8rem, 7.5vw, 8rem); font-style: italic; font-weight: 300;">
@@ -197,12 +236,51 @@ const featuredProjects = projects.slice(0, 3);
   <section class="dk2-hero">
     <!-- Left 62% -->
     <div class="dk2-hero-left">
-      <div class="dk2-hero-top-label">
-        <span class="dk2-whisper">Alexandria Braniff</span>
-        <span class="dk2-whisper-dot" aria-hidden="true">·</span>
-        <span class="dk2-whisper">Web Developer</span>
-        <span class="dk2-whisper-dot" aria-hidden="true">·</span>
-        <span class="dk2-whisper">Vancouver BC</span>
+
+      <!-- Integrated dark hero nav -->
+      <div class="dk2-hero-nav">
+        <a href="/" class="dk2-hero-wordmark">Alexandria Braniff</a>
+        <nav class="dk2-hero-nav-links">
+          <a href="/about">About</a>
+          <a href="/portfolio">Portfolio</a>
+          <a href="/contact">Get in touch</a>
+        </nav>
+        <div class="dk2-hero-nav-right">
+          <button class="theme-toggle-btn dk2-theme-btn" aria-label="Toggle dark mode">
+            <svg class="icon-moon-hero" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="icon-sun-hero hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="dk2-hero-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="dk2-mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dark hero mobile menu -->
+      <div id="dk2-mobile-menu" class="fixed inset-0 z-40 flex-col hidden" style="background:#050505;" aria-hidden="true">
+        <div class="flex items-center justify-between px-6 h-16" style="border-bottom:1px solid #1A1A1A;">
+          <span style="font-family:'Cormorant Garant',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,0.7);font-size:1rem;">Alexandria Braniff</span>
+          <button class="dk2-menu-close" aria-label="Close menu" style="color:rgba(255,255,255,0.4);width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <nav style="display:flex;flex-direction:column;padding:2rem 1.5rem;gap:0.25rem;">
+          <a href="/about" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">About</a>
+          <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Portfolio</a>
+          <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Get in touch</a>
+        </nav>
+        <div style="padding:1rem 1.5rem;border-top:1px solid #1A1A1A;margin-top:auto;">
+          <button class="theme-toggle-btn" style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.3);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;background:none;border:none;cursor:pointer;" aria-label="Toggle dark mode">
+            <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Toggle theme
+          </button>
+        </div>
       </div>
 
       <div class="dk2-hero-headline-wrap">
@@ -246,7 +324,7 @@ const featuredProjects = projects.slice(0, 3);
       ))}
     </div>
     <div class="dk2-work-footer">
-      <a href="/portfolio" class="dk2-view-all">View all projects &#8594;</a>
+      <a href="/portfolio" class="dk2-view-all">View all work &#8594;</a>
     </div>
   </section>
 
@@ -290,35 +368,97 @@ const featuredProjects = projects.slice(0, 3);
   .dk2-hero-left {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 3rem 0;
+    padding: 0;
     border-right: 1px solid #1A1A1A;
   }
 
-  .dk2-hero-top-label {
+  /* Dark hero nav */
+  .dk2-hero-nav {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1.5rem 0;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 4.5rem;
     border-bottom: 1px solid #1A1A1A;
+    gap: 2rem;
+    flex-shrink: 0;
   }
-  .dk2-whisper {
+  @media (max-width: 768px) {
+    .dk2-hero-nav { padding: 0 1.5rem; }
+  }
+  .dk2-hero-wordmark {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .dk2-hero-nav-links {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  @media (min-width: 768px) { .dk2-hero-nav-links { display: flex; } }
+  .dk2-hero-nav-links a {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 9px;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.28);
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  .dk2-whisper-dot {
-    color: rgba(255,255,255,0.1);
-    font-size: 8px;
+  .dk2-hero-nav-links a:hover { color: rgba(255,255,255,0.7); }
+  .dk2-hero-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .dk2-theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.28);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+  }
+  .dk2-theme-btn:hover { color: rgba(255,255,255,0.7); }
+  .dk2-hero-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  @media (max-width: 767px) { .dk2-hero-hamburger { display: flex; } }
+  .dk2-hero-hamburger span {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
   }
 
   .dk2-hero-headline-wrap {
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 4rem 0;
+    padding: 3rem 3rem;
+  }
+  @media (max-width: 768px) {
+    .dk2-hero-headline-wrap { padding: 3rem 1.5rem; }
   }
   .dk2-hero-headline {
     font-family: 'Cormorant Garant', serif;
@@ -336,14 +476,17 @@ const featuredProjects = projects.slice(0, 3);
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    padding: 2rem 0 3rem;
+    padding: 2rem 3rem 3rem;
     border-top: 1px solid #1A1A1A;
     flex-wrap: wrap;
+  }
+  @media (max-width: 768px) {
+    .dk2-hero-bottom { padding: 2rem 1.5rem 3rem; }
   }
   .dk2-hero-body-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.58);
     line-height: 1.7;
     max-width: 300px;
   }
@@ -380,12 +523,15 @@ const featuredProjects = projects.slice(0, 3);
     padding: 6rem 3rem;
     border-bottom: 1px solid #1A1A1A;
   }
+  @media (max-width: 768px) {
+    .dk2-statement { min-height: 40vh; padding: 4rem 1.5rem; }
+  }
   .dk2-statement-text {
     font-family: 'Cormorant Garant', serif;
     font-style: italic;
     font-weight: 300;
     font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.65);
     line-height: 1.4;
     max-width: 820px;
     text-align: center;
@@ -395,6 +541,9 @@ const featuredProjects = projects.slice(0, 3);
   .dk2-work {
     padding: 6rem 3rem 5rem;
     border-bottom: 1px solid #1A1A1A;
+  }
+  @media (max-width: 768px) {
+    .dk2-work { padding: 4rem 1.5rem; }
   }
   .dk2-work-label-row {
     display: flex;
@@ -433,7 +582,7 @@ const featuredProjects = projects.slice(0, 3);
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
     transition: color 0.2s;
   }
@@ -444,11 +593,15 @@ const featuredProjects = projects.slice(0, 3);
     background: #FFFFFF;
     padding: 8rem 3rem;
   }
+  @media (max-width: 768px) {
+    .dk2-cta { padding: 4rem 1.5rem; }
+  }
   .dk2-cta-inner {
     max-width: 860px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 2rem;
   }
   .dk2-cta-label {
@@ -510,4 +663,106 @@ const featuredProjects = projects.slice(0, 3);
   // Watch for theme changes triggered by the toggle button
   const observer = new MutationObserver(syncLayouts);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // ── Theme toggle — handle all .theme-toggle-btn buttons ──
+  function applyTheme(dark: boolean) {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    // Update header toggle icons (sticky header)
+    const iconMoon = document.getElementById('icon-moon');
+    const iconSun = document.getElementById('icon-sun');
+    if (iconMoon) iconMoon.style.display = dark ? 'none' : '';
+    if (iconSun) iconSun.style.display = dark ? '' : 'none';
+    // Update all hero toggle icons (light and dark layouts)
+    document.querySelectorAll('.icon-moon-hero').forEach(el => (el as HTMLElement).style.display = dark ? 'none' : 'block');
+    document.querySelectorAll('.icon-sun-hero').forEach(el => (el as HTMLElement).style.display = dark ? 'block' : 'none');
+  }
+
+  // Sync icons on load
+  applyTheme(document.documentElement.classList.contains('dark'));
+
+  // Wire up all theme toggle buttons on this page
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyTheme(!document.documentElement.classList.contains('dark')));
+  });
+
+  // ── Scroll-triggered sticky header ──
+  const siteHeader = document.getElementById('site-header');
+  const lightHeroEl = document.getElementById('hero');
+  const darkHeroEl = document.querySelector('.dk2-hero') as HTMLElement | null;
+
+  function updateHeaderOnScroll() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const activeHero = isDark ? darkHeroEl : lightHeroEl;
+    if (!siteHeader || !activeHero) return;
+    const rect = activeHero.getBoundingClientRect();
+    const heroGone = rect.bottom <= 0;
+    if (heroGone) {
+      siteHeader.style.transform = 'translateY(0)';
+      siteHeader.style.opacity = '1';
+    } else {
+      siteHeader.style.transform = 'translateY(-100%)';
+      siteHeader.style.opacity = '0';
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  // Re-check when theme changes (different hero element is active)
+  const themeChangeObserver = new MutationObserver(() => updateHeaderOnScroll());
+  themeChangeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  updateHeaderOnScroll();
+
+  // ── Light hero mobile menu ──
+  const heroHamburger = document.querySelector('.hero-hamburger') as HTMLButtonElement | null;
+  const heroMobileMenu = document.getElementById('hero-mobile-menu');
+  const heroMenuClose = document.querySelector('.hero-menu-close') as HTMLButtonElement | null;
+
+  function openHeroMenu() {
+    if (!heroMobileMenu) return;
+    heroMobileMenu.classList.remove('hidden');
+    heroMobileMenu.style.display = 'flex';
+    heroMobileMenu.setAttribute('aria-hidden', 'false');
+    heroHamburger?.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeHeroMenu() {
+    if (!heroMobileMenu) return;
+    heroMobileMenu.classList.add('hidden');
+    heroMobileMenu.style.display = '';
+    heroMobileMenu.setAttribute('aria-hidden', 'true');
+    heroHamburger?.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+  }
+
+  heroHamburger?.addEventListener('click', openHeroMenu);
+  heroMenuClose?.addEventListener('click', closeHeroMenu);
+  heroMobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeHeroMenu));
+
+  // ── Dark hero mobile menu ──
+  const dk2Hamburger = document.querySelector('.dk2-hero-hamburger') as HTMLButtonElement | null;
+  const dk2MobileMenu = document.getElementById('dk2-mobile-menu');
+  const dk2MenuClose = document.querySelector('.dk2-menu-close') as HTMLButtonElement | null;
+
+  function openDk2Menu() {
+    if (!dk2MobileMenu) return;
+    dk2MobileMenu.classList.remove('hidden');
+    dk2MobileMenu.style.display = 'flex';
+    dk2MobileMenu.setAttribute('aria-hidden', 'false');
+    dk2Hamburger?.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeDk2Menu() {
+    if (!dk2MobileMenu) return;
+    dk2MobileMenu.classList.add('hidden');
+    dk2MobileMenu.style.display = '';
+    dk2MobileMenu.setAttribute('aria-hidden', 'true');
+    dk2Hamburger?.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+  }
+
+  dk2Hamburger?.addEventListener('click', openDk2Menu);
+  dk2MenuClose?.addEventListener('click', closeDk2Menu);
+  dk2MobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDk2Menu));
 </script>

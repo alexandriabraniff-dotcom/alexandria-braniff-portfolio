@@ -6,11 +6,13 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  heroNav?: boolean;
 }
 
 const {
   title,
   description = 'Alexandria Braniff — Web developer for small businesses. Custom websites built from Vancouver, BC.',
+  heroNav = false,
 } = Astro.props;
 ---
 
@@ -55,7 +57,7 @@ const {
         --color-surface: #EDECEA;
         --color-surface2: #D5D3CB;
         --color-text: #111111;
-        --color-muted: #88877F;
+        --color-muted: #5C5B55;
         --color-coral: #C8553D;
         --color-coral-dark: #A83728;
         --color-teal: #555550;
@@ -99,7 +101,7 @@ const {
       html.dark .bg-surface2{ background-color: #1A1A1A; }
       html.dark .bg-text    { background-color: #FFFFFF; }
       html.dark .text-text  { color: #FFFFFF; }
-      html.dark .text-muted { color: rgba(255,255,255,0.38); }
+      html.dark .text-muted { color: rgba(255,255,255,0.58); }
       html.dark .text-surface2 { color: #222222; }
       html.dark .text-teal  { color: rgba(255,255,255,0.5); }
       html.dark .border-surface2 { border-color: #1A1A1A; }
@@ -320,6 +322,7 @@ const {
         scroll-behavior: smooth;
         color-scheme: light;
         font-size: 16px;
+        overflow-x: hidden;
       }
 
       body {
@@ -567,7 +570,7 @@ const {
 
   <body>
     <!-- Site header -->
-    <Header />
+    <Header heroPage={heroNav} />
 
     <!-- Page content -->
     <main>

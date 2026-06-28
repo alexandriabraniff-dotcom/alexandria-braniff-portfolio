@@ -2,6 +2,11 @@
 // Sticky header — always visible, editorial minimal style
 const currentPath = Astro.url.pathname;
 
+interface Props {
+  heroPage?: boolean;
+}
+const { heroPage = false } = Astro.props;
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -10,7 +15,12 @@ const navLinks = [
 ];
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-base border-b border-surface2">
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 bg-base border-b border-surface2"
+  data-hero-page={heroPage ? 'true' : undefined}
+  style={heroPage ? 'transform: translateY(-100%); opacity: 0; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s ease;' : undefined}
+>
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="flex items-center justify-between h-16 lg:h-[4.5rem]">
 
@@ -56,7 +66,7 @@ const navLinks = [
       <button
         id="theme-toggle"
         aria-label="Toggle dark mode"
-        class="w-9 h-9 flex items-center justify-center text-muted hover:text-text transition-colors duration-200 flex-shrink-0"
+        class="theme-toggle-btn w-9 h-9 flex items-center justify-center text-muted hover:text-text transition-colors duration-200 flex-shrink-0"
       >
         <!-- Moon — shown in light mode -->
         <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -120,8 +130,8 @@ const navLinks = [
   </div>
 </header>
 
-<!-- Spacer so page content clears the fixed header -->
-<div class="h-16 lg:h-[4.5rem]"></div>
+<!-- Spacer so page content clears the fixed header (not needed on hero pages) -->
+{!heroPage && <div class="h-16 lg:h-[4.5rem]"></div>}
 
 <style is:global>
   /* Nav underline hover */
@@ -152,24 +162,35 @@ const navLinks = [
 </style>
 
 <script>
-  // Theme toggle
-  const themeBtn = document.getElementById('theme-toggle');
+  // Theme toggle — sync icons on load
   const iconMoon = document.getElementById('icon-moon');
   const iconSun = document.getElementById('icon-sun');
 
-  function applyTheme(dark: boolean) {
-    document.documentElement.classList.toggle('dark', dark);
+  function syncHeaderIcons(dark: boolean) {
     if (iconMoon) iconMoon.style.display = dark ? 'none' : '';
     if (iconSun)  iconSun.style.display  = dark ? '' : 'none';
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }
 
   // Sync icon to current state on load
-  applyTheme(document.documentElement.classList.contains('dark'));
+  syncHeaderIcons(document.documentElement.classList.contains('dark'));
 
-  themeBtn?.addEventListener('click', () => {
-    applyTheme(!document.documentElement.classList.contains('dark'));
+  // Watch for theme class changes (from any toggle button on the page)
+  const iconObserver = new MutationObserver(() => {
+    syncHeaderIcons(document.documentElement.classList.contains('dark'));
   });
+  iconObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // The header's own theme-toggle button is now part of .theme-toggle-btn — handled globally by index.astro
+  // But on non-hero pages, we still need to wire it up here:
+  const siteHeader = document.getElementById('site-header');
+  if (!siteHeader?.dataset.heroPage) {
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn?.addEventListener('click', () => {
+      const dark = !document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark', dark);
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+  }
 
   const header = document.getElementById('site-header');
   const hamburgerBtn = document.getElementById('hamburger-btn');
