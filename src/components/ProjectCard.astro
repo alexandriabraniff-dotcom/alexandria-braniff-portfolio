@@ -20,114 +20,45 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-{project.comingSoon ? (
-  <!-- Coming soon card — styled but not interactive -->
-  <div
-    class="group bg-surface overflow-hidden opacity-60 cursor-default border border-surface2"
-    aria-label={`${project.name} — coming soon`}
-  >
-    <!-- Image with coming soon overlay -->
-    <div class="w-full aspect-video relative overflow-hidden">
-      <img
-        src={project.image}
-        alt={project.name}
-        loading="lazy"
-        class="w-full h-full object-cover scale-[1.03]"
-      />
-      <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(17,17,17,0.5); backdrop-filter: blur(2px);">
-        <span class="font-body font-semibold text-xs tracking-[0.3em] uppercase" style="color: rgba(247,246,242,0.8);">
-          Coming Soon
-        </span>
-      </div>
-    </div>
-
-    <!-- Card content -->
-    <div class="p-6">
-      <h3 class="font-display font-bold text-lg text-text mb-2">
-        {project.name}
-      </h3>
-      <p class="font-body text-sm text-muted leading-relaxed">
-        {project.blurb}
-      </p>
-    </div>
+<div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0; background: #fff;">
+  <!-- Image -->
+  <div class="w-full flex-shrink-0 p-4" style="background: #fff;">
+    <img
+      src={project.image}
+      alt={`Screenshot of ${project.name}`}
+      class="w-full object-contain"
+      loading="lazy"
+    />
   </div>
-) : (
-  <!-- Real project card — clickable, hover effects -->
-  <div
-    class="project-card group bg-surface overflow-hidden cursor-pointer border border-surface2 transition-all duration-300 ease-out hover:border-text relative"
-    data-project-id={project.id}
-    role="button"
-    tabindex="0"
-    aria-label={`View details for ${project.name}`}
-  >
-    <!-- Project image (16:9 aspect ratio) -->
-    <div class="w-full aspect-video overflow-hidden bg-surface2 relative">
-      <img
-        src={project.image}
-        alt={`Screenshot of ${project.name}`}
-        loading="lazy"
-        class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-      />
-      <!-- Fallback if image doesn't load yet -->
-      <div
-        class="absolute inset-0 bg-surface2 items-center justify-center hidden"
-        aria-hidden="true"
+
+  <!-- Info -->
+  <div class="flex flex-col items-center text-center px-8 pt-8 pb-8 flex-1">
+    <h3 class="font-display font-bold text-text mb-5" style="font-size: 1.25rem; font-weight: 700;">
+      {project.name}
+    </h3>
+    <p class="font-body text-sm text-muted leading-relaxed mb-8 flex-1">
+      {project.detail?.business ?? project.blurb}
+    </p>
+
+    {project.comingSoon ? (
+      <span
+        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5"
+        style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;"
       >
-        <span class="font-body font-semibold text-xs tracking-[0.2em] text-muted uppercase">
-          Image coming
-        </span>
-      </div>
-    </div>
-
-    <!-- Left accent border on hover (via pseudo element workaround using box-shadow) -->
-    <div class="p-6">
-      <h3 class="font-display font-bold text-lg text-text mb-2 group-hover:text-muted transition-colors duration-300">
-        {project.name}
-      </h3>
-      <p class="font-body text-sm text-muted leading-relaxed mb-5">
-        {project.blurb}
-      </p>
-
-      <!-- View site button — stops click propagation so it doesn't open modal -->
+        Coming Soon
+      </span>
+    ) : (
       <a
         href={project.url ?? '#'}
         target="_blank"
         rel="noopener noreferrer"
-        class="view-site-btn inline-flex items-center gap-2 font-body text-sm font-medium text-text border border-surface2 px-4 py-2 hover:border-text transition-all duration-200"
-        aria-label={`Visit ${project.name} live site (opens in new tab)`}
+        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
+        style="background: #111; color: #fff; letter-spacing: 0.02em;"
+        onmouseover="this.style.background='#333'"
+        onmouseout="this.style.background='#111'"
       >
-        View site live
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        View Project
       </a>
-    </div>
+    )}
   </div>
-)}
-
-<style>
-  /* Subtle lift on hover */
-  .project-card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-  }
-</style>
-
-<script>
-  // Prevent "View site live" clicks from triggering the modal open
-  document.querySelectorAll('.view-site-btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  });
-
-  // Keyboard accessibility: allow Enter/Space to trigger card click
-  document.querySelectorAll('.project-card').forEach((card) => {
-    card.addEventListener('keydown', (e) => {
-      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
-        e.preventDefault();
-        (card as HTMLElement).click();
-      }
-    });
-  });
-</script>
+</div>
