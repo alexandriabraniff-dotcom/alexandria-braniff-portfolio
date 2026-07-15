@@ -205,31 +205,37 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
   const projectItems = document.querySelectorAll('#project-grid [data-category]');
   const noMsg = document.getElementById('no-projects-msg');
 
+  function applyFilter(filter: string) {
+    filterBtns.forEach(b => {
+      b.classList.remove('active', 'border-text', 'text-text');
+      b.classList.add('border-transparent', 'text-muted');
+      if (b.getAttribute('data-filter') === filter) {
+        b.classList.add('active', 'border-text', 'text-text');
+        b.classList.remove('border-transparent', 'text-muted');
+      }
+    });
+
+    let visible = 0;
+    projectItems.forEach(item => {
+      const el = item as HTMLElement;
+      if (el.dataset.category === filter) {
+        el.style.display = '';
+        visible++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (noMsg) noMsg.classList.toggle('hidden', visible > 0);
+  }
+
+  // Apply default filter on page load
+  applyFilter('web-design');
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-
-      // Update active tab styles
-      filterBtns.forEach(b => {
-        b.classList.remove('active', 'border-text', 'text-text');
-        b.classList.add('border-transparent', 'text-muted');
-      });
-      btn.classList.add('active', 'border-text', 'text-text');
-      btn.classList.remove('border-transparent', 'text-muted');
-
-      // Show/hide cards
-      let visible = 0;
-      projectItems.forEach(item => {
-        const el = item as HTMLElement;
-        if (el.dataset.category === filter) {
-          el.style.display = '';
-          visible++;
-        } else {
-          el.style.display = 'none';
-        }
-      });
-
-      if (noMsg) noMsg.classList.toggle('hidden', visible > 0);
+      const filter = btn.getAttribute('data-filter') ?? 'web-design';
+      applyFilter(filter);
     });
   });
 
