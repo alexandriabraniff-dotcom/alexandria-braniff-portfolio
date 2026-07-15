@@ -19,8 +19,9 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
   <div class="light-layout">
 
     <!-- PAGE HEADER -->
-    <section class="border-b border-surface2">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <section class="border-b border-surface2 relative overflow-hidden">
+      <img src="/images/page-header-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div class="grid lg:grid-cols-[1fr_320px] items-stretch">
           <div class="py-16 lg:py-24 pr-0 lg:pr-16 border-r border-surface2">
             <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-6">Portfolio</p>
