@@ -95,17 +95,17 @@ const modalId = `logo-modal-${project.id}`;
 {isLogoProject && (
   <div
     id={modalId}
-    class="logo-modal fixed inset-0 z-50 hidden items-center justify-center p-4"
-    style="background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);"
+    class="logo-modal fixed inset-0 z-50 hidden items-center justify-center p-6"
+    style="background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);"
     role="dialog"
     aria-modal="true"
     aria-label={`${project.name} brand identity`}
   >
-    <div class="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto" style="border-radius: 2px;">
+    <div class="relative bg-white w-full max-w-xl" style="border-radius: 2px;">
       <!-- Close button -->
       <button
-        class="logo-modal-close absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200"
-        style="border: 1px solid #E8E6E0;"
+        class="logo-modal-close absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors duration-200"
+        style="border: 1px solid #E8E6E0; background: #fff;"
         aria-label="Close"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -114,26 +114,46 @@ const modalId = `logo-modal-${project.id}`;
       </button>
 
       <!-- Header -->
-      <div class="px-8 pt-8 pb-6" style="border-bottom: 1px solid #E8E6E0;">
+      <div class="px-8 pt-7 pb-5" style="border-bottom: 1px solid #E8E6E0;">
         <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-1">Brand Identity</p>
-        <h2 class="font-display font-bold text-text" style="font-size: 1.3rem;">{project.name}</h2>
+        <h2 class="font-display font-bold text-text" style="font-size: 1.2rem;">{project.name}</h2>
       </div>
 
-      <!-- Logos -->
-      <div class="p-8 flex flex-col gap-8">
-        {project.logos!.map((logo, i) => (
-          <div
-            class="flex items-center justify-center p-10"
-            style={i === 3 ? "background: #1B2A4A;" : "background: #F7F6F2; border: 1px solid #E8E6E0;"}
-          >
-            <img
-              src={logo}
-              alt={`${project.name} logo variant ${i + 1}`}
-              class="w-full object-contain"
-              style="max-height: 280px;"
-              loading="lazy"
-            />
+      <!-- Carousel -->
+      <div class="relative px-8 py-8">
+        <!-- Slide track -->
+        <div class="logo-track overflow-hidden">
+          <div class="logo-slides flex transition-transform duration-400 ease-in-out">
+            {project.logos!.map((logo, i) => (
+              <div
+                class="logo-slide flex-shrink-0 w-full flex items-center justify-center p-10"
+                style={i === 3 ? "background: #1B2A4A; min-height: 280px;" : "background: #F7F6F2; border: 1px solid #E8E6E0; min-height: 280px;"}
+              >
+                <img
+                  src={logo}
+                  alt={`${project.name} logo variant ${i + 1}`}
+                  class="object-contain"
+                  style="max-height: 220px; max-width: 100%;"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
+        </div>
+
+        <!-- Arrows -->
+        <button class="logo-prev absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200 z-10" style="border: 1px solid #E8E6E0;" aria-label="Previous logo">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="logo-next absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200 z-10" style="border: 1px solid #E8E6E0;" aria-label="Next logo">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Dots -->
+      <div class="flex items-center justify-center gap-2 pb-6">
+        {project.logos!.map((_, i) => (
+          <button class="logo-dot w-2 h-2 rounded-full transition-colors duration-200" style={i === 0 ? "background: #111;" : "background: #D5D3CB;"} data-index={i} aria-label={`Go to logo ${i + 1}`}></button>
         ))}
       </div>
     </div>
@@ -141,44 +161,54 @@ const modalId = `logo-modal-${project.id}`;
 )}
 
 <script>
-  // Logo modal open/close
+  function closeModal(modal: Element) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.documentElement.style.overflow = '';
+  }
+
+  document.querySelectorAll('.logo-modal').forEach(modal => {
+    const slides = modal.querySelectorAll('.logo-slide');
+    const track = modal.querySelector('.logo-slides') as HTMLElement | null;
+    const dots = modal.querySelectorAll('.logo-dot');
+    let current = 0;
+
+    function goTo(index: number) {
+      current = (index + slides.length) % slides.length;
+      if (track) track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => {
+        (d as HTMLElement).style.background = i === current ? '#111' : '#D5D3CB';
+      });
+    }
+
+    modal.querySelector('.logo-prev')?.addEventListener('click', () => goTo(current - 1));
+    modal.querySelector('.logo-next')?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    modal.querySelector('.logo-modal-close')?.addEventListener('click', () => closeModal(modal));
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal); });
+  });
+
   document.querySelectorAll('.logo-modal-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
       const modalId = btn.getAttribute('data-modal');
       if (!modalId) return;
       const modal = document.getElementById(modalId);
       if (!modal) return;
+      // Reset to first slide
+      const track = modal.querySelector('.logo-slides') as HTMLElement | null;
+      if (track) track.style.transform = 'translateX(0)';
+      modal.querySelectorAll('.logo-dot').forEach((d, i) => {
+        (d as HTMLElement).style.background = i === 0 ? '#111' : '#D5D3CB';
+      });
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.documentElement.style.overflow = 'hidden';
     });
   });
 
-  document.querySelectorAll('.logo-modal').forEach(modal => {
-    // Close on X button
-    modal.querySelector('.logo-modal-close')?.addEventListener('click', () => {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.documentElement.style.overflow = '';
-    });
-
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.documentElement.style.overflow = '';
-      }
-    });
-  });
-
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    document.querySelectorAll('.logo-modal:not(.hidden)').forEach(modal => {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.documentElement.style.overflow = '';
-    });
+    document.querySelectorAll('.logo-modal:not(.hidden)').forEach(modal => closeModal(modal));
   });
 </script>
