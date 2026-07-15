@@ -5,8 +5,8 @@ import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projects from '../data/projects.json';
 
-// Only show real (non-coming-soon) projects on the homepage
-const featuredProjects = projects.filter(p => !p.comingSoon);
+// Only show real web design projects on the homepage
+const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'web-design');
 ---
 
 <Layout
