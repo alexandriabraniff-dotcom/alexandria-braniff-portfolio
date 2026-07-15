@@ -8,7 +8,9 @@ interface Props {
     blurb: string;
     image: string;
     url: string | null;
+    category?: string;
     comingSoon: boolean;
+    logos?: string[];
     detail: {
       business: string;
       built: string;
@@ -18,18 +20,37 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const isLogoProject = project.category === 'logo-brand' && project.logos && project.logos.length > 0;
 ---
 
 <div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0; background: #fff;">
-  <!-- Image -->
-  <div class="w-full flex-shrink-0 p-4" style="background: #fff;">
-    <img
-      src={project.image}
-      alt={`Screenshot of ${project.name}`}
-      class="w-full object-contain"
-      loading="lazy"
-    />
-  </div>
+  <!-- Image area: logo grid or single screenshot -->
+  {isLogoProject ? (
+    <div class="w-full flex-shrink-0 p-4" style="background: #F7F6F2;">
+      <div class="grid grid-cols-2 gap-3">
+        {project.logos!.map((logo, i) => (
+          <div class="flex items-center justify-center p-3" style={i === 3 ? "background: #1B2A4A;" : "background: #fff; border: 1px solid #E8E6E0;"}>
+            <img
+              src={logo}
+              alt={`${project.name} logo variant ${i + 1}`}
+              class="w-full object-contain"
+              style="max-height: 100px;"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div class="w-full flex-shrink-0 p-4" style="background: #fff;">
+      <img
+        src={project.image}
+        alt={`Screenshot of ${project.name}`}
+        class="w-full object-contain"
+        loading="lazy"
+      />
+    </div>
+  )}
 
   <!-- Info -->
   <div class="flex flex-col items-center text-center px-8 pt-8 pb-8 flex-1">
@@ -47,9 +68,9 @@ const { project } = Astro.props;
       >
         Coming Soon
       </span>
-    ) : (
+    ) : project.url ? (
       <a
-        href={project.url ?? '#'}
+        href={project.url}
         target="_blank"
         rel="noopener noreferrer"
         class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
@@ -59,6 +80,13 @@ const { project } = Astro.props;
       >
         View Project
       </a>
+    ) : (
+      <span
+        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5"
+        style="background: #111; color: #fff; letter-spacing: 0.02em; cursor: default;"
+      >
+        Brand Identity
+      </span>
     )}
   </div>
 </div>

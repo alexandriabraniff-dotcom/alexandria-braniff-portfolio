@@ -28,6 +28,26 @@
     }
   },
   {
+    "id": "beach-haven-cafe-branding",
+    "name": "Beach Haven Cafe",
+    "blurb": "Brand identity and logo suite for a beachside cafe in South Australia.",
+    "image": "/images/logos/beach-haven-cafe/classic-logo.png",
+    "url": null,
+    "category": "logo-brand",
+    "comingSoon": false,
+    "logos": [
+      "/images/logos/beach-haven-cafe/classic-logo.png",
+      "/images/logos/beach-haven-cafe/wordmark-green.png",
+      "/images/logos/beach-haven-cafe/logo-black.png",
+      "/images/logos/beach-haven-cafe/logo-white.png"
+    ],
+    "detail": {
+      "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. We developed a full brand identity suite to capture their relaxed coastal character across all touchpoints.",
+      "built": "Delivered a complete logo suite including a circular badge logo, wordmark, and alternate colorways for use across print, digital, and merchandise.",
+      "notable": "Four logo variants — full color, green wordmark, black, and white — give the cafe flexibility across light and dark backgrounds, uniforms, signage, and packaging."
+    }
+  },
+  {
     "id": "local-bakery",
     "name": "Local Bakery",
     "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
