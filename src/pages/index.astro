@@ -29,8 +29,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
       </a>
       <div class="hidden md:flex items-center gap-10">
         <a href="/about" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">About</a>
-        <a href="/portfolio" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Portfolio</a>
-        <a href="/contact" class="font-body text-[11px] font-semibold tracking-[0.12em] uppercase text-text hover:text-muted transition-colors duration-200">Get in touch</a>
+        <a href="/services" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Services</a>
+        <a href="/portfolio" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Projects</a>
+        <a href="/contact" class="font-body text-[11px] font-semibold tracking-[0.12em] uppercase text-text hover:text-muted transition-colors duration-200">Contact</a>
       </div>
       <div class="flex items-center gap-1">
         <button class="theme-toggle-btn w-9 h-9 flex items-center justify-center text-muted hover:text-text transition-colors duration-200" aria-label="Toggle dark mode">
@@ -62,8 +63,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
       </div>
       <nav class="flex flex-col px-6 py-8 gap-1">
         <a href="/about" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">About</a>
-        <a href="/portfolio" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">Portfolio</a>
-        <a href="/contact" class="font-body text-sm font-semibold tracking-[0.1em] uppercase text-text border-b border-text pb-0.5 mt-4 inline-block hover:text-muted hover:border-muted transition-colors">Get in touch</a>
+        <a href="/services" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">Services</a>
+        <a href="/portfolio" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">Projects</a>
+        <a href="/contact" class="font-body text-sm font-semibold tracking-[0.1em] uppercase text-text border-b border-text pb-0.5 mt-4 inline-block hover:text-muted hover:border-muted transition-colors">Contact</a>
       </nav>
       <div class="px-6 pt-4 border-t border-surface2 mt-auto">
         <button class="theme-toggle-btn flex items-center gap-3 font-body text-sm text-muted hover:text-text transition-colors py-2" aria-label="Toggle dark mode">
@@ -107,7 +109,6 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
 
         <!-- Text column -->
         <div class="flex flex-col justify-center gap-8 py-4">
-          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">01</span>
           <AnimateIn>
             <h2 class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Small business websites,<br>done properly.</h2>
           </AnimateIn>
@@ -136,8 +137,6 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
         <div class="flex items-center gap-6 mb-8">
-          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted flex-shrink-0">02</span>
-          <div class="h-px bg-surface2 flex-1"></div>
           <span class="font-serif text-text flex-shrink-0" style="font-size: 1rem; font-style: italic; font-weight: 400;">Selected Work</span>
         </div>
       </AnimateIn>
@@ -165,32 +164,43 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
   <section class="px-6 lg:px-12 py-16 lg:py-24 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
-        <div class="flex items-center gap-6 mb-14">
-          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted flex-shrink-0">03</span>
-          <div class="h-px bg-surface2 flex-1"></div>
-          <span class="font-serif text-text flex-shrink-0" style="font-size: 1rem; font-style: italic; font-weight: 400;">What I Do</span>
+        <div class="mb-12">
+          <h2 class="font-serif text-text" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">Our Services</h2>
         </div>
       </AnimateIn>
-      <div class="divide-y divide-surface2 -mx-6 lg:-mx-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { n: '01', title: 'Website Design & Build', body: 'A complete custom website designed and built around your business. From first conversation to launch day, I handle everything.' },
-          { n: '02', title: 'Custom Development', body: "Need something specific that off-the-shelf tools can't handle? I build custom functionality to spec — booking flows, integrations, and more." },
-          { n: '03', title: 'Site Maintenance', body: 'Monthly plans keep your site updated, secure, and running well. No more chasing someone for a simple content change.' },
-          { n: '04', title: 'Digital Setup & Tech', body: 'Domain, hosting, business email, Google Business Profile, analytics. I handle the full digital setup so your presence actually works.' },
+          {
+            title: 'Website Design & Build',
+            body: 'A complete custom website designed and built around your business. From first conversation to launch day, I handle everything.',
+            icon: '01',
+          },
+          {
+            title: 'Custom Development',
+            body: "Need something specific? I build custom functionality to spec — booking flows, integrations, and more.",
+            icon: '02',
+          },
+          {
+            title: 'Site Maintenance',
+            body: 'Monthly plans keep your site updated, secure, and running well. No more chasing someone for a simple content change.',
+            icon: '03',
+          },
+          {
+            title: 'Digital Setup & Tech',
+            body: 'Domain, hosting, business email, Google Business Profile, analytics. I handle the full digital setup.',
+            icon: '04',
+          },
         ].map((svc, i) => (
-          <AnimateIn delay={i * 60}>
-            <div class="service-row grid lg:grid-cols-[80px_1fr_1fr] gap-4 lg:gap-12 py-7 px-6 lg:px-12 group hover:bg-surface transition-colors duration-200">
-              <span class="font-serif text-3xl text-surface2 leading-none group-hover:text-muted transition-colors duration-300" style="font-weight: 300; font-style: italic;">{svc.n}</span>
-              <h3 class="font-serif text-text self-center" style="font-size: 1.05rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
-              <p class="font-body text-sm text-muted leading-relaxed self-center">{svc.body}</p>
-            </div>
+          <AnimateIn delay={i * 80}>
+            <a href="/services" class="svc-card group block border border-surface2 p-7 hover:border-text transition-colors duration-200">
+              <h3 class="font-serif text-text mb-3" style="font-size: 1rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
+              <p class="font-body text-sm text-muted leading-relaxed mb-6">{svc.body}</p>
+              <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted group-hover:text-text transition-colors duration-200 inline-flex items-center gap-2">
+                Learn more <span aria-hidden="true">&#8594;</span>
+              </span>
+            </a>
           </AnimateIn>
         ))}
-      </div>
-      <div class="mt-12 hidden lg:block">
-        <div class="placeholder-img warm" style="height: 200px;">
-          <img src="https://picsum.photos/seed/alexa-process/1400/400" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
       </div>
     </div>
   </section>
@@ -234,8 +244,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
       </a>
       <nav class="dk2-hero-nav-links">
         <a href="/about">About</a>
-        <a href="/portfolio">Portfolio</a>
-        <a href="/contact">Get in touch</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Projects</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="dk2-hero-nav-right">
         <button class="theme-toggle-btn dk2-theme-btn" aria-label="Toggle dark mode">
@@ -265,8 +276,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
       </div>
       <nav style="display:flex;flex-direction:column;padding:2rem 1.5rem;gap:0.25rem;">
         <a href="/about" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">About</a>
-        <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Portfolio</a>
-        <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Get in touch</a>
+        <a href="/services" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Services</a>
+        <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Projects</a>
+        <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Contact</a>
       </nav>
       <div style="padding:1rem 1.5rem;border-top:1px solid #1A1A1A;margin-top:auto;">
         <button class="theme-toggle-btn" style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.3);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;background:none;border:none;cursor:pointer;" aria-label="Toggle dark mode">

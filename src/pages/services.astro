@@ -1,4 +1,301 @@
 ---
-// Services has moved — redirect to the combined Portfolio & Services page
-return Astro.redirect('/portfolio', 301);
+import Layout from '../layouts/Layout.astro';
+import AnimateIn from '../components/AnimateIn.astro';
+
+const services = [
+  {
+    title: 'Website Design & Build',
+    blurb: 'A complete custom website, designed and built around your business.',
+    body: 'From the first conversation to launch day, I handle everything: design, development, copywriting guidance, domain setup, and deployment. You get a site that looks like yours, not a template everyone else is using.',
+    items: ['Custom design tailored to your brand', 'Responsive across all devices', 'SEO foundations built in', 'Fast performance and clean code', 'Full launch support'],
+  },
+  {
+    title: 'Custom Development',
+    blurb: 'Need something specific that off-the-shelf tools can\'t handle?',
+    body: 'I build custom functionality to spec — booking systems, contact workflows, dynamic content, integrations. Whatever your business needs to actually work online.',
+    items: ['Feature development to your spec', 'Third-party integrations', 'API connections', 'Performance optimisation'],
+  },
+  {
+    title: 'Site Maintenance',
+    blurb: 'Websites need care after launch.',
+    body: 'I offer monthly maintenance plans so your site stays updated, secure, and running well. No more chasing someone for a content update or worrying about broken plugins. I handle it so you don\'t have to think about it.',
+    items: ['Content updates', 'Security patches', 'Performance monitoring', 'Monthly reporting'],
+  },
+  {
+    title: 'Digital Setup & Tech',
+    blurb: 'Setting up a business online involves more than a website.',
+    body: 'I help with the surrounding tech: domain and hosting, business email, Google Business Profile, analytics, and anything else that gets your digital presence working properly from day one.',
+    items: ['Domain and hosting setup', 'Business email', 'Google Business Profile', 'Analytics setup'],
+  },
+];
 ---
+
+<Layout
+  title="Services — Alexandria Braniff"
+  description="Custom web design, development, maintenance and digital setup for small businesses. Built from scratch by Alexandria Braniff, Vancouver BC."
+>
+
+  <!-- ============================================
+       LIGHT LAYOUT
+  ============================================ -->
+  <div class="light-layout">
+
+    <!-- HEADER -->
+    <section class="border-b border-surface2">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
+        <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-5">Services</p>
+        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2.8rem, 6vw, 6rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">
+          What I do for<br />small business.
+        </h1>
+        <p class="font-body text-sm text-muted max-w-md mt-6" style="animation: fadeUp 0.7s ease-out both 0.3s;">
+          Every project is built from scratch. No templates, no shortcuts, no handoffs to someone else.
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICE ROWS -->
+    {services.map((svc, i) => (
+      <AnimateIn delay={i * 60}>
+        <section class="border-b border-surface2">
+          <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 lg:py-20">
+            <div class="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-start">
+              <div>
+                <h2 class="font-serif text-text mb-4" style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-style: italic; font-weight: 300; line-height: 1.2;">{svc.title}</h2>
+                <p class="font-body text-sm text-muted leading-relaxed mb-2">{svc.blurb}</p>
+                <p class="font-body text-sm text-muted leading-relaxed">{svc.body}</p>
+              </div>
+              <div class="border border-surface2 p-8">
+                <p class="font-body text-[10px] tracking-[0.2em] uppercase text-muted mb-5">What's included</p>
+                <ul class="space-y-3">
+                  {svc.items.map(item => (
+                    <li class="flex items-center gap-3 font-body text-sm text-muted">
+                      <span class="w-4 h-px bg-text flex-shrink-0" aria-hidden="true"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimateIn>
+    ))}
+
+    <!-- CTA -->
+    <section class="px-6 lg:px-12 py-24 lg:py-36">
+      <div class="max-w-7xl mx-auto">
+        <AnimateIn>
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+            <h2 class="font-serif text-text leading-[0.92]" style="font-size: clamp(2.8rem, 7.5vw, 7rem); font-style: italic; font-weight: 300;">
+              Ready to get<br />started?
+            </h2>
+            <div class="flex flex-col items-start lg:items-end gap-5">
+              <p class="font-body text-sm text-muted">Let's talk about your project.</p>
+              <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">
+                Get in touch <span aria-hidden="true">&#8594;</span>
+              </a>
+            </div>
+          </div>
+        </AnimateIn>
+      </div>
+    </section>
+
+  </div><!-- end .light-layout -->
+
+
+  <!-- ============================================
+       DARK LAYOUT
+  ============================================ -->
+  <div class="dark-layout">
+
+    <!-- HEADER -->
+    <section class="dk-svc-hero">
+      <div class="dk-svc-hero-inner">
+        <span class="dk-svc-label">Services</span>
+        <h1 class="dk-svc-heading">What I do<br /><span class="dk-svc-h-muted">for you.</span></h1>
+        <p class="dk-svc-sub">Everything built from scratch. One person. No handoffs.</p>
+      </div>
+    </section>
+
+    <!-- SERVICE ROWS -->
+    {services.map((svc) => (
+      <section class="dk-svc-row">
+        <div class="dk-svc-row-left">
+          <h2 class="dk-svc-row-title">{svc.title}</h2>
+          <p class="dk-svc-row-body">{svc.blurb} {svc.body}</p>
+        </div>
+        <div class="dk-svc-row-right">
+          <p class="dk-svc-items-label">What's included</p>
+          <ul class="dk-svc-items">
+            {svc.items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <!-- CTA -->
+    <section class="dk-svc-cta">
+      <div class="dk-svc-cta-inner">
+        <span class="dk-svc-cta-label">Ready</span>
+        <h2 class="dk-svc-cta-heading">Let's build<br />something.</h2>
+        <a href="/contact" class="dk-svc-cta-btn">Get in touch &#8594;</a>
+      </div>
+    </section>
+
+  </div><!-- end .dark-layout -->
+
+</Layout>
+
+<script>
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) light.style.display = isDark ? 'none' : 'block';
+    if (dark)  dark.style.display  = isDark ? 'block' : 'none';
+  }
+  syncLayouts();
+  const obs = new MutationObserver(syncLayouts);
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+</script>
+
+<style>
+  .light-layout { display: block; }
+  .dark-layout  { display: none; }
+
+  /* DARK HERO */
+  .dk-svc-hero {
+    border-bottom: 1px solid #1A1A1A;
+    padding: 6rem 3rem 5rem;
+  }
+  @media (max-width: 768px) { .dk-svc-hero { padding: 4rem 1.5rem 3rem; } }
+  .dk-svc-hero-inner { max-width: 860px; display: flex; flex-direction: column; gap: 2rem; }
+  .dk-svc-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .dk-svc-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    line-height: 1.0;
+    color: #FFFFFF;
+  }
+  .dk-svc-h-muted { color: rgba(255,255,255,0.3); }
+  .dk-svc-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.28);
+    line-height: 1.7;
+    max-width: 400px;
+  }
+
+  /* DARK SERVICE ROWS */
+  .dk-svc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 5rem 3rem;
+    border-bottom: 1px solid #1A1A1A;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .dk-svc-row { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; }
+  }
+  .dk-svc-row-title {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .dk-svc-row-body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.4);
+    max-width: 480px;
+  }
+  .dk-svc-items-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    margin-bottom: 1.5rem;
+  }
+  .dk-svc-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .dk-svc-items li {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .dk-svc-items li::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  /* DARK CTA */
+  .dk-svc-cta {
+    background: #FFFFFF;
+    padding: 8rem 3rem;
+  }
+  @media (max-width: 768px) { .dk-svc-cta { padding: 5rem 1.5rem; } }
+  .dk-svc-cta-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .dk-svc-cta-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(5,5,5,0.28);
+    text-transform: uppercase;
+  }
+  .dk-svc-cta-heading {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 7rem);
+    color: #050505;
+    line-height: 1.0;
+  }
+  .dk-svc-cta-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #050505;
+    padding: 1rem 2.25rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .dk-svc-cta-btn:hover { background: #1A1A1A; }
+</style>
