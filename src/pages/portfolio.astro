@@ -35,22 +35,25 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
     <!-- CATEGORY NAV -->
     <div class="border-b border-surface2 px-6 lg:px-12 overflow-x-auto">
       <div class="max-w-7xl mx-auto flex items-center gap-0">
-        <button class="port-cat-btn active font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-text text-text whitespace-nowrap transition-colors duration-200">Web Design &amp; Development</button>
-        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200">Logo &amp; Brand Identity</button>
-        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200">Mockup Projects</button>
+        <button class="port-cat-btn active font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-text text-text whitespace-nowrap transition-colors duration-200" data-filter="web-design">Web Design &amp; Development</button>
+        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200" data-filter="logo-brand">Logo &amp; Brand Identity</button>
+        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200" data-filter="mockup">Mockup Projects</button>
       </div>
     </div>
 
     <!-- PROJECT GRID -->
-    <section class="px-6 lg:px-12 py-12 lg:py-16 border-t border-surface2">
+    <section class="px-6 lg:px-12 py-12 lg:py-16">
       <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <AnimateIn delay={i * 80}>
-              <ProjectCard project={project} />
+              <div data-category={project.category ?? 'web-design'}>
+                <ProjectCard project={project} />
+              </div>
             </AnimateIn>
           ))}
         </div>
+        <p id="no-projects-msg" class="hidden font-body text-sm text-muted py-16 text-center">No projects in this category yet. Check back soon.</p>
       </div>
     </section>
 
@@ -197,6 +200,39 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
 </script>
 
 <script>
+  // Category filter
+  const filterBtns = document.querySelectorAll('.port-cat-btn');
+  const projectItems = document.querySelectorAll('#project-grid [data-category]');
+  const noMsg = document.getElementById('no-projects-msg');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update active tab styles
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'border-text', 'text-text');
+        b.classList.add('border-transparent', 'text-muted');
+      });
+      btn.classList.add('active', 'border-text', 'text-text');
+      btn.classList.remove('border-transparent', 'text-muted');
+
+      // Show/hide cards
+      let visible = 0;
+      projectItems.forEach(item => {
+        const el = item as HTMLElement;
+        if (el.dataset.category === filter) {
+          el.style.display = '';
+          visible++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      if (noMsg) noMsg.classList.toggle('hidden', visible > 0);
+    });
+  });
+
   // Sync layouts on theme toggle
   function syncLayouts() {
     const isDark = document.documentElement.classList.contains('dark');

@@ -5,6 +5,7 @@
     "blurb": "Warm, welcoming site for a beachside cafe in South Australia.",
     "image": "/images/projects/beach-haven-cafe.jpg",
     "url": "https://beachhavencafe.com.au/",
+    "category": "web-design",
     "comingSoon": false,
     "detail": {
       "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. They needed a site that captured their relaxed, welcoming atmosphere and made it easy for customers to find menus, hours, and get in touch.",
@@ -18,6 +19,7 @@
     "blurb": "High-impact personal brand site for an MMA coach in Canada.",
     "image": "/images/projects/coach-pavle.png",
     "url": "https://www.coachpavle.com/",
+    "category": "web-design",
     "comingSoon": false,
     "detail": {
       "business": "Coach Pavle is a professional MMA coach based in the Greater Toronto Area. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
@@ -31,6 +33,7 @@
     "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
     "image": "https://picsum.photos/seed/bakery-cafe/1280/720",
     "url": null,
+    "category": "web-design",
     "comingSoon": true,
     "detail": null
   },
@@ -40,6 +43,7 @@
     "blurb": "Editorial fashion site for a curated independent clothing store.",
     "image": "https://picsum.photos/seed/boutique-fashion/1280/720",
     "url": null,
+    "category": "web-design",
     "comingSoon": true,
     "detail": null
   },
@@ -49,6 +53,7 @@
     "blurb": "Trust-first site for a local tradie with a growing client base.",
     "image": "https://picsum.photos/seed/trades-build/1280/720",
     "url": null,
+    "category": "web-design",
     "comingSoon": true,
     "detail": null
   },
@@ -58,6 +63,7 @@
     "blurb": "Atmospheric, menu-forward site for a venue in Adelaide CBD.",
     "image": "https://picsum.photos/seed/restaurant-dining/1280/720",
     "url": null,
+    "category": "web-design",
     "comingSoon": true,
     "detail": null
   },
@@ -67,6 +73,7 @@
     "blurb": "Calm, clean site for a yoga and wellness studio.",
     "image": "https://picsum.photos/seed/yoga-wellness/1280/720",
     "url": null,
+    "category": "web-design",
     "comingSoon": true,
     "detail": null
   }
