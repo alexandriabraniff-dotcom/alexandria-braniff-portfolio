@@ -31,6 +31,52 @@ const {
 
     <title>{title}</title>
 
+    <!-- Structured data — Local Business schema for Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Alexandria Braniff — Web Developer",
+        "description": "Custom websites for small businesses. Designed and built from scratch by Alexandria Braniff, web developer in Vancouver, BC.",
+        "url": "https://alexandriabraniff.com",
+        "telephone": "",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1351 Continental St",
+          "addressLocality": "Vancouver",
+          "addressRegion": "BC",
+          "postalCode": "V6Z 0C6",
+          "addressCountry": "CA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 49.2756,
+          "longitude": -123.1233
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Vancouver"
+          },
+          {
+            "@type": "Country",
+            "name": "Canada"
+          }
+        ],
+        "priceRange": "$$",
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "sameAs": [],
+        "knowsAbout": [
+          "Web Design",
+          "Web Development",
+          "Small Business Websites",
+          "Next.js",
+          "Astro",
+          "Tailwind CSS"
+        ]
+      }
+    </script>
+
     <!-- Dark mode: apply class before render to prevent flash -->
     <script is:inline>
       (function() {
