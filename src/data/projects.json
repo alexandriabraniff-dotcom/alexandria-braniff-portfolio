@@ -1,15 +1,28 @@
 [
   {
-    "id": "beachside-jiujitsu",
-    "name": "Beachside Jiujitsu",
-    "blurb": "Clean, no-nonsense gym site for a BJJ club in Hove, SA.",
-    "image": "https://picsum.photos/seed/bjj-gym/1280/720",
-    "url": "https://beachside-jiujitsu.vercel.app",
+    "id": "beach-haven-cafe",
+    "name": "Beach Haven Cafe",
+    "blurb": "Warm, welcoming site for a beachside cafe in South Australia.",
+    "image": "https://picsum.photos/seed/beach-haven/1280/720",
+    "url": "https://beachhavencafe.com.au/",
     "comingSoon": false,
     "detail": {
-      "business": "Beachside Jiujitsu is a Brazilian jiu-jitsu gym in Hove, South Australia. They needed a site that matched the discipline and directness of the sport - no fluff, just clear info and a strong first impression.",
-      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. The design keeps things bold and dark with fast load times and a mobile-first layout so new members can find class times and get in touch on any device.",
-      "notable": "The whole site was designed and built from scratch with zero templates. Every section is purpose-built to convert gym-curious visitors into members who show up to class."
+      "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. They needed a site that captured their relaxed, welcoming atmosphere and made it easy for customers to find menus, hours, and get in touch.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Designed from scratch to reflect the cafe's warm coastal identity with a mobile-first layout.",
+      "notable": "Every section is purpose-built for the cafe's customers — from menus to a Dog of the Month feature that drives repeat visits and social engagement."
+    }
+  },
+  {
+    "id": "coach-pavle",
+    "name": "Coach Pavle",
+    "blurb": "High-impact personal brand site for an MMA coach in Canada.",
+    "image": "https://picsum.photos/seed/coach-pavle/1280/720",
+    "url": "https://www.coachpavle.com/",
+    "comingSoon": false,
+    "detail": {
+      "business": "Coach Pavle is a professional MMA coach based in the Greater Toronto Area. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Dark, bold design with a strong typographic hierarchy that matches the intensity of the sport.",
+      "notable": "The site establishes Coach Pavle's personal brand with zero fluff — every section is designed to build credibility and drive enquiries from athletes ready to commit."
     }
   },
   {

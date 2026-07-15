@@ -21,10 +21,12 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
 <div class="light-layout">
 
   <!-- HERO -->
-  <section id="hero" class="relative overflow-hidden border-b border-surface2">
-    <!-- Integrated hero nav bar (replaces old top-bar) -->
-    <nav class="hero-nav-bar flex items-center justify-between px-6 lg:px-12 h-16 lg:h-[4.5rem] border-b border-surface2">
-      <a href="/" class="font-display font-bold text-text text-sm tracking-[-0.02em] hover:text-muted transition-colors duration-200">Alexandria Braniff</a>
+  <section id="hero" class="relative overflow-hidden border-b border-surface2 min-h-screen flex flex-col">
+    <!-- Integrated hero nav bar -->
+    <nav class="hero-nav-bar flex items-center justify-between px-6 lg:px-12 h-16 lg:h-[4.5rem] border-b border-surface2 flex-shrink-0">
+      <a href="/" class="hover:opacity-70 transition-opacity duration-200" aria-label="Alexandria Braniff — Home">
+        <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="h-9 w-9 object-contain" />
+      </a>
       <div class="hidden md:flex items-center gap-10">
         <a href="/about" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">About</a>
         <a href="/portfolio" class="font-body text-[11px] font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Portfolio</a>
@@ -51,7 +53,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     <!-- Hero mobile menu overlay -->
     <div id="hero-mobile-menu" class="fixed inset-0 z-40 bg-base flex-col hidden" aria-hidden="true" role="dialog" aria-label="Navigation menu">
       <div class="flex items-center justify-between px-6 h-16 border-b border-surface2">
-        <a href="/" class="font-display font-bold text-text text-sm tracking-[-0.02em]">Alexandria Braniff</a>
+        <a href="/" aria-label="Alexandria Braniff — Home">
+          <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="h-9 w-9 object-contain" />
+        </a>
         <button class="hero-menu-close w-10 h-10 flex items-center justify-center text-muted hover:text-text" aria-label="Close menu">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
@@ -70,40 +74,28 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
       </div>
     </div>
 
-    <!-- Hero content grid -->
-    <div class="grid lg:grid-cols-[1fr_440px]" style="min-height: calc(100vh - 4.5rem);">
-      <div class="flex flex-col px-6 lg:px-12 py-12 lg:py-16 border-r border-surface2 relative">
-        <div class="flex items-center gap-3 mb-6" style="animation: fadeUp 0.5s ease-out both;">
-          <div class="w-8 h-8 bg-text flex items-center justify-center flex-shrink-0">
-            <span class="font-display font-bold" style="color: #F7F6F2; font-size: 9px; letter-spacing: 0.08em;">AB</span>
-          </div>
-          <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">Web Developer</span>
-        </div>
-        <div class="overflow-hidden mb-10">
-          <div class="h-px bg-surface2" style="animation: drawLineX 1s ease-out both 0.6s; transform-origin: left;"></div>
-        </div>
-        <div class="flex-1 flex flex-col justify-center">
-          <h1 class="font-serif text-text leading-[0.92] mb-10" style="font-size: clamp(3.5rem, 7vw, 7.5rem); font-style: italic; font-weight: 300;">
-            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Websites that</span>
-            <span class="block" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">never stand still.</span>
-          </h1>
-          <p class="font-body text-sm text-muted leading-relaxed max-w-[280px] mb-12" style="animation: fadeUp 0.7s ease-out both 0.5s;">
-            Custom sites for small businesses that want to look like they mean it online. Designed and built from scratch. No templates.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-3" style="animation: fadeUp 0.7s ease-out both 0.6s;">
-            <a href="/portfolio" data-magnetic class="flex justify-center font-body text-sm text-text border border-surface2 px-6 py-3 hover:border-text transition-colors duration-200">View all work</a>
-            <a href="/contact" data-magnetic class="flex justify-center font-body text-sm bg-text px-6 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
-          </div>
-        </div>
-      </div>
-      <div class="relative hidden lg:block bg-surface overflow-hidden" data-cursor="view">
-        <img src="https://picsum.photos/seed/alexa-hero/880/1080" alt="Featured project" class="absolute inset-0 w-full h-full object-cover" data-parallax="0.15" />
-        <div class="absolute bottom-6 left-6 z-10">
-          <div class="inline-flex items-center gap-2 bg-base border border-surface2 px-3 py-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-text flex-shrink-0"></span>
-            <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted">Featured Work</span>
-          </div>
-        </div>
+    <!-- Hero body — centered crest layout -->
+    <div class="flex-1 flex flex-col items-center justify-center text-center px-6 py-16 lg:py-20 relative">
+
+      <!-- Name -->
+      <h1 class="font-serif text-text leading-tight" style="font-size: clamp(2.6rem, 5.5vw, 5.5rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
+        Alexandria Braniff
+      </h1>
+
+      <!-- Role label -->
+      <p class="font-body text-muted text-[10px] tracking-[0.3em] uppercase mt-4 mb-10 lg:mb-12" style="animation: fadeUp 0.7s ease-out both 0.45s;">
+        Web Developer &mdash; Vancouver, BC
+      </p>
+
+      <!-- Tagline -->
+      <p class="font-body text-sm text-muted leading-relaxed max-w-[340px] mb-10 lg:mb-12" style="animation: fadeUp 0.7s ease-out both 0.55s;">
+        Custom websites for small businesses that want to look like they mean it online. Designed and built from scratch. No templates.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-3" style="animation: fadeUp 0.7s ease-out both 0.65s;">
+        <a href="/portfolio" class="flex justify-center font-body text-sm text-text border border-surface2 px-7 py-3 hover:border-text transition-colors duration-200">View all work</a>
+        <a href="/contact" class="flex justify-center font-body text-sm bg-text px-7 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
       </div>
     </div>
   </section>
@@ -131,7 +123,7 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
         <!-- Portrait column — large, prominent -->
         <AnimateIn delay={150}>
           <div class="placeholder-img warm lg:min-h-[520px] min-h-[300px]">
-            <img src="https://picsum.photos/seed/alexa-portrait/800/1040" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            <img src="/images/alexandria-braniff.jpg" alt="Alexandria Braniff" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
           </div>
         </AnimateIn>
 
@@ -232,75 +224,87 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
 ================================================ -->
 <div class="dark-layout" aria-hidden="true">
 
-  <!-- Section 1: HERO — cinematic split -->
+  <!-- Section 1: HERO — centered crest -->
   <section class="dk2-hero">
-    <!-- Left 62% -->
-    <div class="dk2-hero-left">
 
-      <!-- Integrated dark hero nav -->
-      <div class="dk2-hero-nav">
-        <a href="/" class="dk2-hero-wordmark">Alexandria Braniff</a>
-        <nav class="dk2-hero-nav-links">
-          <a href="/about">About</a>
-          <a href="/portfolio">Portfolio</a>
-          <a href="/contact">Get in touch</a>
-        </nav>
-        <div class="dk2-hero-nav-right">
-          <button class="theme-toggle-btn dk2-theme-btn" aria-label="Toggle dark mode">
-            <svg class="icon-moon-hero" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <svg class="icon-sun-hero hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <button class="dk2-hero-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="dk2-mobile-menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+    <!-- Dark hero nav -->
+    <div class="dk2-hero-nav">
+      <a href="/" class="dk2-hero-logo-link" aria-label="Alexandria Braniff — Home">
+        <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="dk2-nav-logo" />
+      </a>
+      <nav class="dk2-hero-nav-links">
+        <a href="/about">About</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Get in touch</a>
+      </nav>
+      <div class="dk2-hero-nav-right">
+        <button class="theme-toggle-btn dk2-theme-btn" aria-label="Toggle dark mode">
+          <svg class="icon-moon-hero" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="icon-sun-hero hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="dk2-hero-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="dk2-mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </div>
 
-      <!-- Dark hero mobile menu -->
-      <div id="dk2-mobile-menu" class="fixed inset-0 z-40 flex-col hidden" style="background:#050505;" aria-hidden="true">
-        <div class="flex items-center justify-between px-6 h-16" style="border-bottom:1px solid #1A1A1A;">
-          <span style="font-family:'Cormorant Garant',serif;font-style:italic;font-weight:300;color:rgba(255,255,255,0.7);font-size:1rem;">Alexandria Braniff</span>
-          <button class="dk2-menu-close" aria-label="Close menu" style="color:rgba(255,255,255,0.4);width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </button>
-        </div>
-        <nav style="display:flex;flex-direction:column;padding:2rem 1.5rem;gap:0.25rem;">
-          <a href="/about" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">About</a>
-          <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Portfolio</a>
-          <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Get in touch</a>
-        </nav>
-        <div style="padding:1rem 1.5rem;border-top:1px solid #1A1A1A;margin-top:auto;">
-          <button class="theme-toggle-btn" style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.3);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;background:none;border:none;cursor:pointer;" aria-label="Toggle dark mode">
-            <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            Toggle theme
-          </button>
-        </div>
+    <!-- Dark hero mobile menu -->
+    <div id="dk2-mobile-menu" class="fixed inset-0 z-40 flex-col hidden" style="background:#050505;" aria-hidden="true">
+      <div class="flex items-center justify-between px-6 h-16" style="border-bottom:1px solid #1A1A1A;">
+        <a href="/" aria-label="Alexandria Braniff — Home">
+          <img src="/images/ab-logo.png" alt="Alexandria Braniff" style="height:2.25rem;width:2.25rem;object-fit:contain;filter:brightness(0) invert(1);" />
+        </a>
+        <button class="dk2-menu-close" aria-label="Close menu" style="color:rgba(255,255,255,0.4);width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
       </div>
-
-      <div class="dk2-hero-headline-wrap">
-        <h1 class="dk2-hero-headline">
-          <span class="dk2-hl-line" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.1s;">Built for</span>
-          <span class="dk2-hl-line" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.25s;">businesses</span>
-          <span class="dk2-hl-line dk2-hl-muted" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.4s;">that mean it.</span>
-        </h1>
+      <nav style="display:flex;flex-direction:column;padding:2rem 1.5rem;gap:0.25rem;">
+        <a href="/about" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">About</a>
+        <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Portfolio</a>
+        <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Get in touch</a>
+      </nav>
+      <div style="padding:1rem 1.5rem;border-top:1px solid #1A1A1A;margin-top:auto;">
+        <button class="theme-toggle-btn" style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.3);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;background:none;border:none;cursor:pointer;" aria-label="Toggle dark mode">
+          <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          Toggle theme
+        </button>
       </div>
+    </div>
 
-      <div class="dk2-hero-bottom">
-        <p class="dk2-hero-body-text">Custom sites for small businesses. No templates. No handoffs.</p>
+    <!-- Hero body — centered crest -->
+    <div class="dk2-hero-body">
+
+      <!-- Name -->
+      <h1 class="dk2-hero-name" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
+        Alexandria Braniff
+      </h1>
+
+      <!-- Role -->
+      <p class="dk2-hero-role" style="animation: fadeUp 0.7s ease-out both 0.45s;">
+        Web Developer &mdash; Vancouver, BC
+      </p>
+
+      <!-- Thin horizontal rule -->
+      <div class="dk2-hero-hrule" style="animation: fadeUp 0.6s ease-out both 0.5s;"></div>
+
+      <!-- Tagline -->
+      <p class="dk2-hero-tagline" style="animation: fadeUp 0.7s ease-out both 0.55s;">
+        Custom websites for small businesses that want to look like they mean it online.
+      </p>
+
+      <!-- CTAs -->
+      <div class="dk2-hero-ctas" style="animation: fadeUp 0.7s ease-out both 0.65s;">
+        <a href="/portfolio" class="dk2-hero-cta-ghost">View all work</a>
         <a href="/contact" class="dk2-hero-cta">Start a project</a>
       </div>
     </div>
 
-    <!-- Right 38%: image -->
-    <div class="dk2-hero-right">
-      <img src="https://picsum.photos/seed/alexa-hero/880/1080" alt="" loading="lazy" class="dk2-hero-img" />
-    </div>
   </section>
 
   <!-- Section 2: STATEMENT — one sentence, vast space -->
@@ -348,28 +352,28 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
   .light-layout { display: block; }
   .dark-layout  { display: none;  }
 
+  /* Light hero — crest sizing */
+  .hero-crest-logo {
+    width: clamp(140px, 22vw, 220px);
+    height: clamp(140px, 22vw, 220px);
+    object-fit: contain;
+    display: block;
+  }
+  .hero-vert-rule {
+    height: clamp(40px, 6vw, 64px);
+  }
+
   /* ════════════════════════════════════
      DARK LAYOUT — Perfume bottle luxury
   ════════════════════════════════════ */
 
   /* HERO */
   .dk2-hero {
-    display: grid;
-    grid-template-columns: 62fr 38fr;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     border-bottom: 1px solid #1A1A1A;
     overflow: hidden;
-  }
-  @media (max-width: 900px) {
-    .dk2-hero { grid-template-columns: 1fr; }
-    .dk2-hero-right { display: none; }
-  }
-
-  .dk2-hero-left {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    border-right: 1px solid #1A1A1A;
   }
 
   /* Dark hero nav */
@@ -386,15 +390,18 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
   @media (max-width: 768px) {
     .dk2-hero-nav { padding: 0 1.5rem; }
   }
-  .dk2-hero-wordmark {
-    font-family: 'Cormorant Garant', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    white-space: nowrap;
-    flex-shrink: 0;
+  .dk2-hero-logo-link {
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .dk2-hero-logo-link:hover { opacity: 0.6; }
+  .dk2-nav-logo {
+    height: 2.25rem;
+    width: 2.25rem;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
   }
   .dk2-hero-nav-links {
     display: none;
@@ -451,44 +458,68 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     background: rgba(255,255,255,0.5);
   }
 
-  .dk2-hero-headline-wrap {
+  /* Dark hero body — centered crest */
+  .dk2-hero-body {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 3rem 3rem;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem 5rem;
   }
-  @media (max-width: 768px) {
-    .dk2-hero-headline-wrap { padding: 3rem 1.5rem; }
+  .dk2-hero-crest {
+    width: clamp(140px, 22vw, 220px);
+    height: clamp(140px, 22vw, 220px);
+    object-fit: contain;
+    display: block;
+    filter: brightness(0) invert(1);
   }
-  .dk2-hero-headline {
+  .dk2-hero-vert-rule {
+    width: 1px;
+    height: clamp(40px, 6vw, 64px);
+    background: rgba(255,255,255,0.12);
+    margin: 2rem 0 2.5rem;
+  }
+  .dk2-hero-name {
     font-family: 'Cormorant Garant', serif;
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(4rem, 9vw, 9rem);
-    line-height: 1.0;
+    font-size: clamp(2.6rem, 5.5vw, 5.5rem);
+    line-height: 1.1;
     color: #FFFFFF;
   }
-  .dk2-hl-line { display: block; }
-  .dk2-hl-muted { color: rgba(255,255,255,0.32); }
-
-  .dk2-hero-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 2rem 3rem 3rem;
-    border-top: 1px solid #1A1A1A;
-    flex-wrap: wrap;
-  }
-  @media (max-width: 768px) {
-    .dk2-hero-bottom { padding: 2rem 1.5rem 3rem; }
-  }
-  .dk2-hero-body-text {
+  .dk2-hero-role {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.58);
-    line-height: 1.7;
-    max-width: 300px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .dk2-hero-hrule {
+    width: 48px;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-bottom: 2rem;
+  }
+  .dk2-hero-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+    max-width: 360px;
+    margin-bottom: 2.5rem;
+  }
+  .dk2-hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  @media (min-width: 480px) {
+    .dk2-hero-ctas { flex-direction: row; }
   }
   .dk2-hero-cta {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -504,15 +535,20 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     transition: background 0.2s;
   }
   .dk2-hero-cta:hover { background: rgba(255,255,255,0.88); }
-
-  .dk2-hero-right { position: relative; overflow: hidden; }
-  .dk2-hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.2;
-    display: block;
+  .dk2-hero-cta-ghost {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 1rem 2.25rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s;
   }
+  .dk2-hero-cta-ghost:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); }
 
   /* STATEMENT */
   .dk2-statement {
