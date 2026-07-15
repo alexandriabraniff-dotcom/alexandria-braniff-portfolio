@@ -157,11 +157,11 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
           <AnimateIn delay={i * 100}>
             <div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0;">
               <!-- Image -->
-              <div class="w-full flex-shrink-0" style="aspect-ratio: 16/9; background: #F2F1ED;">
+              <div class="w-full flex-shrink-0 p-4" style="background: #F2F1ED;">
                 <img
                   src={project.image}
                   alt={`Screenshot of ${project.name}`}
-                  class="w-full h-full object-contain"
+                  class="w-full object-contain"
                   loading="lazy"
                 />
               </div>
