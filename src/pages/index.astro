@@ -152,12 +152,12 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
         </div>
       </AnimateIn>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {featuredProjects.map((project, i) => (
           <AnimateIn delay={i * 100}>
-            <div class="flex flex-col bg-base border border-surface2 overflow-hidden">
+            <div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0;">
               <!-- Image -->
-              <div class="w-full aspect-video bg-surface2 overflow-hidden flex-shrink-0">
+              <div class="w-full overflow-hidden flex-shrink-0" style="aspect-ratio: 4/3;">
                 <img
                   src={project.image}
                   alt={`Screenshot of ${project.name}`}
@@ -166,15 +166,17 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
                 />
               </div>
               <!-- Info -->
-              <div class="flex flex-col items-center text-center px-6 py-7 flex-1">
-                <h3 class="font-display font-bold text-text mb-3" style="font-size: 1rem;">{project.name}</h3>
-                <p class="font-body text-xs text-muted leading-relaxed mb-7">{project.blurb}</p>
+              <div class="flex flex-col items-center text-center px-8 pt-8 pb-8 flex-1">
+                <h3 class="font-display font-bold text-text mb-5" style="font-size: 1.25rem; font-weight: 700;">{project.name}</h3>
+                <p class="font-body text-sm text-muted leading-relaxed mb-8 flex-1">{project.blurb}</p>
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-auto inline-block font-body text-xs font-semibold tracking-[0.08em] bg-text px-7 py-3 hover:bg-muted transition-colors duration-200"
-                  style="color: #F7F6F2;"
+                  class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
+                  style="background: #111; color: #fff; letter-spacing: 0.02em;"
+                  onmouseover="this.style.background='#333'"
+                  onmouseout="this.style.background='#111'"
                 >
                   View Project
                 </a>
