@@ -23,7 +23,7 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
   <!-- HERO -->
   <section id="hero" class="relative overflow-hidden border-b border-surface2 min-h-screen flex flex-col">
     <!-- Integrated hero nav bar -->
-    <nav class="hero-nav-bar flex items-center justify-between px-6 lg:px-12 h-16 lg:h-[4.5rem] border-b border-surface2 flex-shrink-0">
+    <nav class="hero-nav-bar flex items-center justify-between px-6 lg:px-12 h-16 lg:h-[4.5rem] flex-shrink-0" style="background: rgba(247,246,242,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(213,211,203,0.4);">
       <a href="/" class="hover:opacity-70 transition-opacity duration-200" aria-label="Alexandria Braniff — Home">
         <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="h-9 w-9 object-contain" />
       </a>
@@ -79,6 +79,11 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     <!-- Hero body — centered crest layout -->
     <div class="flex-1 flex flex-col items-center justify-center text-center px-6 py-16 lg:py-20 relative">
 
+      <!-- Background image — inverted circuit pattern -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <img src="/images/hero-bg.jpg" alt="" class="w-full h-full object-cover" style="filter: invert(1); opacity: 0.07;" />
+      </div>
+
       <!-- Name -->
       <h1 class="font-serif text-text leading-tight" style="font-size: clamp(2.6rem, 5.5vw, 5.5rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
         Alexandria Braniff
@@ -110,7 +115,8 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
         <!-- Text column -->
         <div class="flex flex-col justify-center gap-8 py-4">
           <AnimateIn>
-            <h2 class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Small business websites,<br>done properly.</h2>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">About</p>
+            <h2 class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; font-style: italic; font-weight: 300;">Alexandria Braniff Web Design</h2>
           </AnimateIn>
           <AnimateIn delay={100}>
             <div class="space-y-4 font-body text-sm text-muted leading-relaxed max-w-md">
@@ -290,7 +296,11 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     </div>
 
     <!-- Hero body — centered crest -->
-    <div class="dk2-hero-body">
+    <div class="dk2-hero-body" style="position: relative;">
+      <!-- Background image -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <img src="/images/hero-bg-dark.jpg" alt="" class="w-full h-full object-cover" style="opacity: 0.18;" />
+      </div>
 
       <!-- Name -->
       <h1 class="dk2-hero-name" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
@@ -395,9 +405,12 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     justify-content: space-between;
     padding: 0 3rem;
     height: 4.5rem;
-    border-bottom: 1px solid #1A1A1A;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     gap: 2rem;
     flex-shrink: 0;
+    background: rgba(5,5,5,0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
   @media (max-width: 768px) {
     .dk2-hero-nav { padding: 0 1.5rem; }
@@ -479,6 +492,12 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .dk2-hero-body > *:not(.absolute) {
+    position: relative;
+    z-index: 1;
   }
   .dk2-hero-crest {
     width: clamp(140px, 22vw, 220px);
