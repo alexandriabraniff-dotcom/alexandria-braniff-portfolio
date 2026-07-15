@@ -167,6 +167,11 @@ const modalId = `logo-modal-${project.id}`;
     document.documentElement.style.overflow = '';
   }
 
+  // Teleport all modals to document.body so CSS transforms on parents don't break fixed positioning
+  document.querySelectorAll('.logo-modal').forEach(modal => {
+    document.body.appendChild(modal);
+  });
+
   document.querySelectorAll('.logo-modal').forEach(modal => {
     const slides = modal.querySelectorAll('.logo-slide');
     const track = modal.querySelector('.logo-slides') as HTMLElement | null;
@@ -195,7 +200,6 @@ const modalId = `logo-modal-${project.id}`;
       if (!modalId) return;
       const modal = document.getElementById(modalId);
       if (!modal) return;
-      // Reset to first slide
       const track = modal.querySelector('.logo-slides') as HTMLElement | null;
       if (track) track.style.transform = 'translateX(0)';
       modal.querySelectorAll('.logo-dot').forEach((d, i) => {
