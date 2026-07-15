@@ -96,7 +96,7 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
 
       <!-- Tagline -->
       <p class="font-body text-sm text-muted leading-relaxed max-w-[340px] mb-10 lg:mb-12" style="animation: fadeUp 0.7s ease-out both 0.55s;">
-        Custom websites for small businesses that want to look like they mean it online. Designed and built from scratch. No templates.
+        Web design and services that keep growing with your business over time.
       </p>
 
       <!-- CTAs -->
@@ -120,8 +120,8 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
           </AnimateIn>
           <AnimateIn delay={100}>
             <div class="space-y-4 font-body text-sm text-muted leading-relaxed max-w-md">
-              <p>I'm Alexandria. I build custom websites for small businesses that want to look like they mean it online. Not a template. Not a drag-and-drop builder.</p>
-              <p>Every project starts with a real conversation. I find out what you do, who your customers are, and what you need the site to achieve. Then I build it from scratch.</p>
+              <p>Hey, I'm Alexandria. I specialize in creating custom web designs with zero templates — every website is tailored specifically to the client. Before launching into a project, I start with a real conversation to understand your business, your audience, and your goals. I make sure to keep you involved and updated every single step of the way.</p>
+              <p>I love collaborating with passionate people who want to grow their companies, those who are nitpicky about the subtle details and excited to learn something new.</p>
               <a href="/about" class="inline-flex items-center gap-2 font-body text-xs font-semibold tracking-[0.15em] uppercase text-text border-b border-text pb-0.5 mt-2 hover:text-muted hover:border-muted transition-colors duration-200">About me &#8594;</a>
             </div>
           </AnimateIn>
@@ -139,26 +139,54 @@ const featuredProjects = projects.filter(p => !p.comingSoon);
   </section>
 
   <!-- SELECTED WORK -->
-  <section class="px-6 lg:px-12 py-16 lg:py-24 border-b border-surface2">
-    <div class="max-w-7xl mx-auto">
+  <section class="py-16 lg:py-24 border-b border-surface2">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <AnimateIn>
-        <div class="flex items-center gap-6 mb-8">
-          <span class="font-serif text-text flex-shrink-0" style="font-size: 1rem; font-style: italic; font-weight: 400;">Selected Work</span>
+        <div class="flex items-end justify-between mb-12">
+          <div>
+            <h2 class="font-serif text-text" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">Projects</h2>
+          </div>
+          <a href="/portfolio" class="hidden sm:inline-flex items-center gap-2 font-body text-[11px] tracking-[0.12em] uppercase text-muted hover:text-text transition-colors duration-200 border-b border-surface2 hover:border-text pb-0.5">
+            View all &#8594;
+          </a>
         </div>
       </AnimateIn>
-      <AnimateIn>
-        <div class="placeholder-img gold-tone w-full mb-8 hidden lg:flex" style="height: 120px;">
-          <img src="https://picsum.photos/seed/alexa-strip/1400/240" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
-      </AnimateIn>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {featuredProjects.map((project, i) => (
-          <AnimateIn delay={i * 100}><ProjectCard project={project} /></AnimateIn>
+          <AnimateIn delay={i * 100}>
+            <div class="flex flex-col bg-base border border-surface2 overflow-hidden">
+              <!-- Image -->
+              <div class="w-full aspect-video bg-surface2 overflow-hidden flex-shrink-0">
+                <img
+                  src={project.image}
+                  alt={`Screenshot of ${project.name}`}
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Info -->
+              <div class="flex flex-col items-center text-center px-6 py-7 flex-1">
+                <h3 class="font-display font-bold text-text mb-3" style="font-size: 1rem;">{project.name}</h3>
+                <p class="font-body text-xs text-muted leading-relaxed mb-7">{project.blurb}</p>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-auto inline-block font-body text-xs font-semibold tracking-[0.08em] bg-text px-7 py-3 hover:bg-muted transition-colors duration-200"
+                  style="color: #F7F6F2;"
+                >
+                  View Project
+                </a>
+              </div>
+            </div>
+          </AnimateIn>
         ))}
       </div>
+
       <AnimateIn>
-        <div class="mt-6">
-          <a href="/portfolio" class="inline-flex items-center gap-3 font-body text-sm font-medium text-text hover:text-muted transition-colors duration-200">
+        <div class="mt-10 sm:hidden">
+          <a href="/portfolio" class="inline-flex items-center gap-2 font-body text-sm font-medium text-text hover:text-muted transition-colors duration-200">
             <span class="h-px w-6 bg-text inline-block"></span>View all work
           </a>
         </div>

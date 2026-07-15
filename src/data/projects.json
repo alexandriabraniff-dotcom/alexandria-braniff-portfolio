@@ -3,7 +3,7 @@
     "id": "beach-haven-cafe",
     "name": "Beach Haven Cafe",
     "blurb": "Warm, welcoming site for a beachside cafe in South Australia.",
-    "image": "https://picsum.photos/seed/beach-haven/1280/720",
+    "image": "/images/projects/beach-haven-cafe.jpg",
     "url": "https://beachhavencafe.com.au/",
     "comingSoon": false,
     "detail": {
@@ -16,7 +16,7 @@
     "id": "coach-pavle",
     "name": "Coach Pavle",
     "blurb": "High-impact personal brand site for an MMA coach in Canada.",
-    "image": "https://picsum.photos/seed/coach-pavle/1280/720",
+    "image": "/images/projects/coach-pavle.jpg",
     "url": "https://www.coachpavle.com/",
     "comingSoon": false,
     "detail": {
