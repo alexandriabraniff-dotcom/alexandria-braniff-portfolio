@@ -1,6 +1,5 @@
 ---
 // ProjectCard — renders a single portfolio project entry
-// Accepts the full project object from projects.json
 interface Props {
   project: {
     id: string;
@@ -21,6 +20,7 @@ interface Props {
 
 const { project } = Astro.props;
 const isLogoProject = project.category === 'logo-brand' && project.logos && project.logos.length > 0;
+const modalId = `logo-modal-${project.id}`;
 ---
 
 <div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0; background: #fff;">
@@ -62,15 +62,22 @@ const isLogoProject = project.category === 'logo-brand' && project.logos && proj
     </p>
 
     {project.comingSoon ? (
-      <span
-        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5"
-        style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;"
-      >
+      <span class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5" style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;">
         Coming Soon
       </span>
-    ) : project.url ? (
+    ) : isLogoProject ? (
+      <button
+        class="logo-modal-trigger w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
+        style="background: #111; color: #fff; letter-spacing: 0.02em; cursor: pointer;"
+        data-modal={modalId}
+        onmouseover="this.style.background='#333'"
+        onmouseout="this.style.background='#111'"
+      >
+        Brand Identity
+      </button>
+    ) : (
       <a
-        href={project.url}
+        href={project.url ?? '#'}
         target="_blank"
         rel="noopener noreferrer"
         class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
@@ -80,13 +87,98 @@ const isLogoProject = project.category === 'logo-brand' && project.logos && proj
       >
         View Project
       </a>
-    ) : (
-      <span
-        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5"
-        style="background: #111; color: #fff; letter-spacing: 0.02em; cursor: default;"
-      >
-        Brand Identity
-      </span>
     )}
   </div>
 </div>
+
+<!-- Logo Modal -->
+{isLogoProject && (
+  <div
+    id={modalId}
+    class="logo-modal fixed inset-0 z-50 hidden items-center justify-center p-4"
+    style="background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);"
+    role="dialog"
+    aria-modal="true"
+    aria-label={`${project.name} brand identity`}
+  >
+    <div class="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto" style="border-radius: 2px;">
+      <!-- Close button -->
+      <button
+        class="logo-modal-close absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200"
+        style="border: 1px solid #E8E6E0;"
+        aria-label="Close"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 1L13 13M13 1L1 13" stroke="#111" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Header -->
+      <div class="px-8 pt-8 pb-6" style="border-bottom: 1px solid #E8E6E0;">
+        <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-1">Brand Identity</p>
+        <h2 class="font-display font-bold text-text" style="font-size: 1.3rem;">{project.name}</h2>
+      </div>
+
+      <!-- Logos -->
+      <div class="p-8 flex flex-col gap-8">
+        {project.logos!.map((logo, i) => (
+          <div
+            class="flex items-center justify-center p-10"
+            style={i === 3 ? "background: #1B2A4A;" : "background: #F7F6F2; border: 1px solid #E8E6E0;"}
+          >
+            <img
+              src={logo}
+              alt={`${project.name} logo variant ${i + 1}`}
+              class="w-full object-contain"
+              style="max-height: 280px;"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  // Logo modal open/close
+  document.querySelectorAll('.logo-modal-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal');
+      if (!modalId) return;
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.documentElement.style.overflow = 'hidden';
+    });
+  });
+
+  document.querySelectorAll('.logo-modal').forEach(modal => {
+    // Close on X button
+    modal.querySelector('.logo-modal-close')?.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.documentElement.style.overflow = '';
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.documentElement.style.overflow = '';
+      }
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.logo-modal:not(.hidden)').forEach(modal => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.documentElement.style.overflow = '';
+    });
+  });
+</script>
