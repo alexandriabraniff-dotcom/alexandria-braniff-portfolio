@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { services } from '../../data/services.js';
+
+export async function getStaticPaths() {
+  return services.map(svc => ({ params: { service: svc.id } }));
+}
+
+const { service } = Astro.params;
+const svc = services.find(s => s.id === service);
+if (!svc) return Astro.redirect('/services');
+---
+
+<Layout
+  title={`${svc.title} — Alexandria Braniff`}
+  description={svc.blurb}
+>
+
+  <!-- HEADER -->
+  <section class="border-b border-surface2 relative overflow-hidden">
+    <img src="/images/page-header-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
+      <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">
+        <a href="/services" class="hover:text-text transition-colors duration-200">Services</a>
+        <span class="mx-2 opacity-40">/</span>
+        {svc.title}
+      </p>
+      {svc.price && (
+        <span class="inline-block font-body text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 mb-4" style="background: #111; color: #F7F6F2;">
+          From {svc.price}
+        </span>
+      )}
+      <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
+        {svc.title}
+      </h1>
+      <p class="font-body text-sm text-muted max-w-md mt-4">
+        {svc.blurb}
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="px-6 lg:px-12 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+        <!-- IMAGE -->
+        <div>
+          <img
+            src={svc.image}
+            alt={svc.title}
+            class="w-full block"
+            style="border: 1px solid #E8E6E0;"
+          />
+        </div>
+
+        <!-- TEXT -->
+        <div class="flex flex-col gap-7">
+          <div>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">About this service</p>
+            <p class="font-body text-sm text-muted leading-relaxed max-w-prose" style="line-height: 1.9;">
+              {svc.detail}
+            </p>
+          </div>
+
+          <div>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">What's included</p>
+            <ul class="flex flex-col gap-3">
+              {svc.includes.map(item => (
+                <li class="flex items-center gap-3 font-body text-sm text-muted">
+                  <span class="w-4 h-px flex-shrink-0" style="background: #999;" aria-hidden="true"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {svc.price && (
+            <div class="pt-2">
+              <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-2">Starting from</p>
+              <p class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-style: italic; font-weight: 300;">{svc.price}</p>
+            </div>
+          )}
+
+          <div class="pt-2">
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200"
+              style="color: #F7F6F2; font-weight: 500;"
+            >
+              Get in touch <span aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-style: italic; font-weight: 300;">
+            Ready to get started?
+          </h2>
+          <p class="font-body text-sm text-muted mt-2">Let's talk about your project.</p>
+        </div>
+        <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">
+          Get in touch <span aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

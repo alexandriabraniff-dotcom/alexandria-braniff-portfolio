@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { services } from '../../data/services.js';
+---
+
+<Layout
+  title="Services — Alexandria Braniff"
+  description="Web design, development, SEO, maintenance and brand work for small businesses. Built from scratch by Alexandria Braniff."
+>
+
+  <!-- ============================================
+       LIGHT LAYOUT
+  ============================================ -->
+  <div class="light-layout">
+
+    <!-- HEADER -->
+    <section class="border-b border-surface2 relative overflow-hidden">
+      <img src="/images/page-header-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
+        <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">Services</p>
+        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
+          What I do for<br />your business.
+        </h1>
+        <p class="font-body text-sm text-muted max-w-md mt-4">
+          Every service is delivered by one person. No templates, no shortcuts, no handoffs.
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICE NAV -->
+    <div class="border-b border-surface2 overflow-x-auto sticky top-0 z-30" style="background: #F7F6F2;">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center gap-0">
+        {services.map((svc, i) => (
+          <button
+            class={`svc-nav-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-5 py-4 border-b-2 whitespace-nowrap transition-colors duration-200 ${i === 0 ? 'border-text text-text active' : 'border-transparent text-muted hover:text-text'}`}
+            data-target={svc.id}
+          >
+            {svc.title}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- SERVICE SECTIONS -->
+    {services.map((svc, i) => (
+      <section id={svc.id} class="border-b border-surface2 py-16 lg:py-24 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            <!-- IMAGE — left on even, right on odd -->
+            <div class={i % 2 === 1 ? 'lg:order-last' : ''}>
+              <img
+                src={svc.image}
+                alt={svc.title}
+                class="w-full block"
+                style="border: 1px solid #E8E6E0;"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- TEXT -->
+            <div class="flex flex-col gap-5">
+              <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">
+                {String(i + 1).padStart(2, '0')}
+              </p>
+              {svc.price && (
+                <span class="inline-block font-body text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 self-start" style="background: #111; color: #F7F6F2; letter-spacing: 0.18em;">
+                  From {svc.price}
+                </span>
+              )}
+              <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.5rem); font-style: italic; font-weight: 300;">
+                {svc.title}
+              </h2>
+              <p class="font-body text-sm text-muted leading-relaxed max-w-prose">
+                {svc.blurb}
+              </p>
+              <ul class="flex flex-col gap-2.5 mt-1">
+                {svc.includes.map(item => (
+                  <li class="flex items-center gap-3 font-body text-sm text-muted">
+                    <span class="w-4 h-px flex-shrink-0" style="background: #999;" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-2">
+                <a
+                  href={`/services/${svc.id}`}
+                  class="font-body text-sm font-medium text-text underline underline-offset-4 hover:text-muted transition-colors duration-200"
+                >
+                  Learn More &rarr;
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- CTA -->
+    <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div>
+            <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-style: italic; font-weight: 300;">
+              Ready to get started?
+            </h2>
+            <p class="font-body text-sm text-muted mt-2">Let's talk about your project.</p>
+          </div>
+          <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">
+            Get in touch <span aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end .light-layout -->
+
+
+  <!-- ============================================
+       DARK LAYOUT
+  ============================================ -->
+  <div class="dark-layout">
+
+    <!-- HEADER -->
+    <section class="dk-svc-hero">
+      <div class="dk-svc-hero-inner">
+        <span class="dk-svc-label">Services</span>
+        <h1 class="dk-svc-heading">What I do<br /><span class="dk-svc-h-muted">for you.</span></h1>
+        <p class="dk-svc-sub">Everything built from scratch. One person. No handoffs.</p>
+      </div>
+    </section>
+
+    <!-- SERVICE ROWS -->
+    {services.map((svc) => (
+      <section class="dk-svc-row">
+        <div class="dk-svc-row-left">
+          <h2 class="dk-svc-row-title">{svc.title}</h2>
+          <p class="dk-svc-row-body">{svc.blurb}</p>
+        </div>
+        <div class="dk-svc-row-right">
+          <p class="dk-svc-items-label">What's included</p>
+          <ul class="dk-svc-items">
+            {svc.includes.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <!-- CTA -->
+    <section class="dk-svc-cta">
+      <div class="dk-svc-cta-inner">
+        <span class="dk-svc-cta-label">Ready</span>
+        <h2 class="dk-svc-cta-heading">Let's build<br />something.</h2>
+        <a href="/contact" class="dk-svc-cta-btn">Get in touch &#8594;</a>
+      </div>
+    </section>
+
+  </div><!-- end .dark-layout -->
+
+</Layout>
+
+<script>
+  // Sync layouts
+  function syncLayouts() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const light = document.querySelector('.light-layout') as HTMLElement | null;
+    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
+    if (light) light.style.display = isDark ? 'none' : 'block';
+    if (dark)  dark.style.display  = isDark ? 'block' : 'none';
+  }
+  syncLayouts();
+  const themeObs = new MutationObserver(syncLayouts);
+  themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Nav scroll
+  document.querySelectorAll<HTMLButtonElement>('.svc-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      if (!targetId) return;
+      const section = document.getElementById(targetId);
+      if (!section) return;
+      // Account for sticky nav height
+      const nav = btn.closest('div')?.parentElement as HTMLElement | null;
+      const offset = nav ? nav.getBoundingClientRect().height : 57;
+      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // IntersectionObserver to update active nav button
+  const navBtns = document.querySelectorAll<HTMLButtonElement>('.svc-nav-btn');
+
+  function setActive(id: string) {
+    navBtns.forEach(btn => {
+      const isActive = btn.getAttribute('data-target') === id;
+      btn.classList.toggle('border-text', isActive);
+      btn.classList.toggle('text-text', isActive);
+      btn.classList.toggle('active', isActive);
+      btn.classList.toggle('border-transparent', !isActive);
+      if (!isActive) btn.classList.add('text-muted');
+      else btn.classList.remove('text-muted');
+    });
+  }
+
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    },
+    {
+      rootMargin: '-40% 0px -55% 0px',
+      threshold: 0,
+    }
+  );
+
+  sections.forEach(section => {
+    if (document.querySelector(`.svc-nav-btn[data-target="${section.id}"]`)) {
+      observer.observe(section);
+    }
+  });
+</script>
+
+<style>
+  .light-layout { display: block; }
+  .dark-layout  { display: none; }
+
+  /* DARK HERO */
+  .dk-svc-hero { border-bottom: 1px solid #1A1A1A; padding: 6rem 3rem 5rem; }
+  @media (max-width: 768px) { .dk-svc-hero { padding: 4rem 1.5rem 3rem; } }
+  .dk-svc-hero-inner { max-width: 860px; display: flex; flex-direction: column; gap: 2rem; }
+  .dk-svc-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+  .dk-svc-heading { font-family: 'Cormorant Garant', serif; font-style: italic; font-weight: 300; font-size: clamp(3.5rem, 9vw, 8rem); line-height: 1.0; color: #FFFFFF; }
+  .dk-svc-h-muted { color: rgba(255,255,255,0.3); }
+  .dk-svc-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 400px; }
+
+  /* DARK SERVICE ROWS */
+  .dk-svc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 5rem 3rem; border-bottom: 1px solid #1A1A1A; align-items: start; }
+  @media (max-width: 768px) { .dk-svc-row { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; } }
+  .dk-svc-row-title { font-family: 'Cormorant Garant', serif; font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 3vw, 2.4rem); color: #FFFFFF; line-height: 1.2; margin-bottom: 1.25rem; }
+  .dk-svc-row-body { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; line-height: 1.85; color: rgba(255,255,255,0.4); max-width: 480px; }
+  .dk-svc-items-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 1.5rem; }
+  .dk-svc-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .dk-svc-items li { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.35); padding-left: 1.25rem; position: relative; }
+  .dk-svc-items li::before { content: '-'; position: absolute; left: 0; color: rgba(255,255,255,0.15); }
+
+  /* DARK CTA */
+  .dk-svc-cta { background: #FFFFFF; padding: 8rem 3rem; }
+  .dk-svc-cta-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; }
+  .dk-svc-cta-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; color: rgba(5,5,5,0.28); text-transform: uppercase; }
+  .dk-svc-cta-heading { font-family: 'Cormorant Garant', serif; font-style: italic; font-weight: 300; font-size: clamp(2.5rem, 8vw, 7.5rem); color: #050505; line-height: 1.0; }
+  .dk-svc-cta-btn { display: inline-block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #FFFFFF; background: #050505; padding: 1rem 2.25rem; text-decoration: none; transition: background 0.2s; }
+  .dk-svc-cta-btn:hover { background: #1A1A1A; }
+</style>
