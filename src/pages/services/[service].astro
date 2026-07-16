@@ -39,19 +39,57 @@ if (!svc) return Astro.redirect('/services');
     </div>
   </section>
 
-  <!-- SERVICE NAV -->
-  <div class="border-b border-surface2 overflow-x-auto" style="background: #F7F6F2;">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center gap-0">
-      {services.map(s => (
-        <a
-          href={`/services/${s.id}`}
-          class={`font-body text-xs font-medium tracking-[0.06em] uppercase px-5 py-4 border-b-2 whitespace-nowrap transition-colors duration-200 ${s.id === svc.id ? 'border-text text-text' : 'border-transparent text-muted hover:text-text hover:border-text'}`}
+  <!-- SERVICE NAV DROPDOWN -->
+  <div class="border-b border-surface2 sticky top-0 z-30" style="background: #F7F6F2;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex items-center gap-4">
+      <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted">Browse Services</span>
+      <div class="relative">
+        <button
+          id="svc-dropdown-btn"
+          class="flex items-center gap-2 font-body text-xs font-semibold tracking-[0.06em] uppercase text-text px-4 py-2 transition-colors duration-200"
+          style="border: 1px solid #D5D3CB; background: #fff;"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-          {s.title}
-        </a>
-      ))}
+          <span>{svc.title}</span>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div
+          id="svc-dropdown-menu"
+          class="absolute left-0 top-full mt-1 w-64 hidden flex-col z-50"
+          style="background: #fff; border: 1px solid #E8E6E0; box-shadow: 0 8px 24px rgba(0,0,0,0.08);"
+        >
+          {services.map(s => (
+            <a
+              href={`/services/${s.id}`}
+              class={`font-body text-xs font-medium tracking-[0.04em] uppercase px-5 py-3.5 transition-colors duration-150 border-b last:border-0 ${s.id === svc.id ? 'text-text bg-surface2' : 'text-muted hover:text-text hover:bg-surface2'}`}
+              style="border-color: #F2F1ED;"
+            >
+              {s.title}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    const btn = document.getElementById('svc-dropdown-btn');
+    const menu = document.getElementById('svc-dropdown-menu');
+    btn?.addEventListener('click', () => {
+      const open = menu?.classList.contains('hidden');
+      menu?.classList.toggle('hidden', !open);
+      menu?.classList.toggle('flex', !!open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!btn?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
+        menu?.classList.add('hidden');
+        menu?.classList.remove('flex');
+        btn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 
   <!-- MAIN CONTENT -->
   <section class="px-6 lg:px-12 py-16 lg:py-24">
