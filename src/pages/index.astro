@@ -199,35 +199,27 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
   <section class="px-6 lg:px-12 py-16 lg:py-24 border-b border-surface2">
     <div class="max-w-7xl mx-auto">
       <AnimateIn>
-        <div class="mb-12">
+        <div class="mb-12 flex items-end justify-between">
           <h2 class="font-serif text-text" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">Our Services</h2>
+          <a href="/services" class="hidden sm:inline-flex items-center gap-2 font-body text-[11px] tracking-[0.12em] uppercase text-muted hover:text-text transition-colors duration-200 border-b border-surface2 hover:border-text pb-0.5">
+            View all &#8594;
+          </a>
         </div>
       </AnimateIn>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          {
-            title: 'Website Design & Build',
-            body: 'A complete custom website designed and built around your business. From first conversation to launch day, I handle everything.',
-            icon: '01',
-          },
-          {
-            title: 'Custom Development',
-            body: "Need something specific? I build custom functionality to spec — booking flows, integrations, and more.",
-            icon: '02',
-          },
-          {
-            title: 'Site Maintenance',
-            body: 'Monthly plans keep your site updated, secure, and running well. No more chasing someone for a simple content change.',
-            icon: '03',
-          },
-          {
-            title: 'Digital Setup & Tech',
-            body: 'Domain, hosting, business email, Google Business Profile, analytics. I handle the full digital setup.',
-            icon: '04',
-          },
+          { title: 'Website Audits', body: 'A thorough review of your existing site — speed, SEO, design, and UX — with a clear action plan.', id: 'audits', price: '$199' },
+          { title: 'Website Design & Development', body: 'A complete custom website built from scratch around your business, from first conversation to launch.', id: 'web-design' },
+          { title: 'Search Engine Optimisation', body: 'Get found on Google by the people already looking for what you offer. Local SEO and on-page included.', id: 'seo' },
+          { title: 'E-commerce Integrations', body: 'Add online selling to your site or build a store from scratch. Stripe, Shopify, and more.', id: 'ecommerce' },
+          { title: 'Website Maintenance', body: 'Monthly care so your site stays fast, secure, and up to date. No more chasing someone for a small change.', id: 'maintenance' },
+          { title: 'UI/UX Design', body: 'Interface design focused on how people actually use your site — conversion-first, not just aesthetic.', id: 'uiux' },
+          { title: 'Brand Redesign', body: 'Refresh your visual identity — logo suite, colour palette, typography, and brand style guide.', id: 'brand' },
+          { title: 'Digital Infrastructure Setup', body: 'Domain, hosting, business email, Google Business Profile, and analytics — all set up properly.', id: 'digital-setup' },
         ].map((svc, i) => (
-          <AnimateIn delay={i * 80}>
-            <a href="/services" class="svc-card group block border border-surface2 p-7 hover:border-text transition-colors duration-200">
+          <AnimateIn delay={i * 60}>
+            <a href={`/services/${svc.id}`} class="svc-card group block border border-surface2 p-7 hover:border-text transition-colors duration-200 h-full">
+              {svc.price && <span class="font-body text-[9px] tracking-[0.2em] uppercase text-muted block mb-2">{svc.price}</span>}
               <h3 class="font-serif text-text mb-3" style="font-size: 1rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
               <p class="font-body text-sm text-muted leading-relaxed mb-6">{svc.body}</p>
               <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted group-hover:text-text transition-colors duration-200 inline-flex items-center gap-2">
