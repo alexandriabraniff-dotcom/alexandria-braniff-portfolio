@@ -30,13 +30,13 @@ import { services } from '../../data/services.js';
     <!-- SERVICE NAV -->
     <div class="border-b border-surface2 overflow-x-auto sticky top-0 z-30" style="background: #F7F6F2;">
       <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center gap-0">
-        {services.map((svc, i) => (
-          <button
-            class={`svc-nav-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-5 py-4 border-b-2 whitespace-nowrap transition-colors duration-200 ${i === 0 ? 'border-text text-text active' : 'border-transparent text-muted hover:text-text'}`}
-            data-target={svc.id}
+        {services.map((svc) => (
+          <a
+            href={`/services/${svc.id}`}
+            class="font-body text-xs font-medium tracking-[0.06em] uppercase px-5 py-4 border-b-2 border-transparent text-muted hover:text-text hover:border-text whitespace-nowrap transition-colors duration-200"
           >
             {svc.title}
-          </button>
+          </a>
         ))}
       </div>
     </div>

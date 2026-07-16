@@ -39,6 +39,20 @@ if (!svc) return Astro.redirect('/services');
     </div>
   </section>
 
+  <!-- SERVICE NAV -->
+  <div class="border-b border-surface2 overflow-x-auto" style="background: #F7F6F2;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center gap-0">
+      {services.map(s => (
+        <a
+          href={`/services/${s.id}`}
+          class={`font-body text-xs font-medium tracking-[0.06em] uppercase px-5 py-4 border-b-2 whitespace-nowrap transition-colors duration-200 ${s.id === svc.id ? 'border-text text-text' : 'border-transparent text-muted hover:text-text hover:border-text'}`}
+        >
+          {s.title}
+        </a>
+      ))}
+    </div>
+  </div>
+
   <!-- MAIN CONTENT -->
   <section class="px-6 lg:px-12 py-16 lg:py-24">
     <div class="max-w-7xl mx-auto">
