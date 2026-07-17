@@ -19,10 +19,10 @@ import { services } from '../../data/services.js';
       <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
         <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">Services</p>
         <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
-          What I do for<br />your business.
+          Services
         </h1>
-        <p class="font-body text-sm text-muted max-w-md mt-4">
-          Every service is delivered by one person. No templates, no shortcuts, no handoffs.
+        <p class="font-body text-sm text-muted max-w-xl mt-4">
+          From a brand new custom website to the ongoing work that keeps it fast and found, here is everything I can do for your business. Have a look through the overview, then click into whatever you want to know more about.
         </p>
       </div>
     </section>
@@ -79,14 +79,17 @@ import { services } from '../../data/services.js';
       });
     </script>
 
-    <!-- SERVICE SECTIONS -->
-    {services.map((svc, i) => (
+    <!-- SERVICE SECTIONS — audits first, then the rest -->
+    {[
+      services.find(s => s.id === 'audits'),
+      ...services.filter(s => s.id !== 'audits'),
+    ].map((svc, i) => (
       <section id={svc.id} class="border-b border-surface2 py-16 lg:py-24 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto">
           <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             <!-- IMAGE — left on even, right on odd -->
-            <div class={i % 2 === 1 ? 'lg:order-last' : ''}>
+            <div class={i % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}>
               <img
                 src={svc.image}
                 alt={svc.title}
@@ -97,29 +100,18 @@ import { services } from '../../data/services.js';
             </div>
 
             <!-- TEXT -->
-            <div class="flex flex-col gap-5">
-              <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">
-                {String(i + 1).padStart(2, '0')}
-              </p>
+            <div class={`flex flex-col gap-5 ${i % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
               {svc.price && (
-                <span class="inline-block font-body text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 self-start" style="background: #111; color: #F7F6F2; letter-spacing: 0.18em;">
+                <span class="inline-block font-body text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 self-start" style="background: #111; color: #F7F6F2;">
                   From {svc.price}
                 </span>
               )}
               <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.5rem); font-style: italic; font-weight: 300;">
                 {svc.title}
               </h2>
-              <p class="font-body text-sm text-muted leading-relaxed max-w-prose">
-                {svc.blurb}
+              <p class="font-body text-sm text-muted leading-relaxed max-w-prose" style="line-height: 1.9;">
+                {svc.overview}
               </p>
-              <ul class="flex flex-col gap-2.5 mt-1">
-                {svc.includes.map(item => (
-                  <li class="flex items-center gap-3 font-body text-sm text-muted">
-                    <span class="w-4 h-px flex-shrink-0" style="background: #999;" aria-hidden="true"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
               <div class="mt-2">
                 <a
                   href={`/services/${svc.id}`}
@@ -135,18 +127,18 @@ import { services } from '../../data/services.js';
       </section>
     ))}
 
-    <!-- CTA -->
+    <!-- FOOTER CTA -->
     <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
       <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div>
             <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-style: italic; font-weight: 300;">
-              Ready to get started?
+              Not sure where to start?
             </h2>
-            <p class="font-body text-sm text-muted mt-2">Let's talk about your project.</p>
+            <p class="font-body text-sm text-muted mt-2 max-w-md">A website audit is the easiest first step. I will tell you exactly where your site stands and what is worth doing, with no obligation.</p>
           </div>
-          <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">
-            Get in touch <span aria-hidden="true">&#8594;</span>
+          <a href="/services/audits" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">
+            Get a website audit <span aria-hidden="true">&#8594;</span>
           </a>
         </div>
       </div>

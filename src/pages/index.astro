@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import AnimateIn from '../components/AnimateIn.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projects from '../data/projects.json';
+import { services } from '../data/services.js';
 
 // Only show real web design projects on the homepage
 const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'web-design');
@@ -207,21 +208,14 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
         </div>
       </AnimateIn>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { title: 'Website Audits', body: 'A thorough review of your existing site — speed, SEO, design, and UX — with a clear action plan.', id: 'audits', price: '$199' },
-          { title: 'Website Design & Development', body: 'A complete custom website built from scratch around your business, from first conversation to launch.', id: 'web-design' },
-          { title: 'Search Engine Optimisation', body: 'Get found on Google by the people already looking for what you offer. Local SEO and on-page included.', id: 'seo' },
-          { title: 'E-commerce Integrations', body: 'Add online selling to your site or build a store from scratch. Stripe, Shopify, and more.', id: 'ecommerce' },
-          { title: 'Website Maintenance', body: 'Monthly care so your site stays fast, secure, and up to date. No more chasing someone for a small change.', id: 'maintenance' },
-          { title: 'UI/UX Design', body: 'Interface design focused on how people actually use your site — conversion-first, not just aesthetic.', id: 'uiux' },
-          { title: 'Brand Redesign', body: 'Refresh your visual identity — logo suite, colour palette, typography, and brand style guide.', id: 'brand' },
-          { title: 'Digital Infrastructure Setup', body: 'Domain, hosting, business email, Google Business Profile, and analytics — all set up properly.', id: 'digital-setup' },
-        ].map((svc, i) => (
+        {services.map((svc, i) => (
           <AnimateIn delay={i * 60}>
             <a href={`/services/${svc.id}`} class="svc-card group block border border-surface2 p-7 hover:border-text transition-colors duration-200 h-full">
-              {svc.price && <span class="font-body text-[9px] tracking-[0.2em] uppercase text-muted block mb-2">{svc.price}</span>}
-              <h3 class="font-serif text-text mb-3" style="font-size: 1rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
-              <p class="font-body text-sm text-muted leading-relaxed mb-6">{svc.body}</p>
+              <div class="flex items-baseline justify-between gap-3 mb-3">
+                <h3 class="font-serif text-text" style="font-size: 1.05rem; font-style: italic; font-weight: 400;">{svc.title}</h3>
+                {svc.price && <span class="font-body text-sm font-semibold text-text flex-shrink-0">{svc.price}</span>}
+              </div>
+              <p class="font-body text-sm text-muted leading-relaxed mb-6">{svc.blurb}</p>
               <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted group-hover:text-text transition-colors duration-200 inline-flex items-center gap-2">
                 Learn more <span aria-hidden="true">&#8594;</span>
               </span>

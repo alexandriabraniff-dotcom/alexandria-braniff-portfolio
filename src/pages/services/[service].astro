@@ -33,9 +33,11 @@ if (!svc) return Astro.redirect('/services');
       <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
         {svc.title}
       </h1>
-      <p class="font-body text-sm text-muted max-w-md mt-4">
-        {svc.blurb}
-      </p>
+      {svc.lede && (
+        <p class="font-body text-sm text-muted max-w-xl mt-5" style="line-height: 1.9;">
+          {svc.lede}
+        </p>
+      )}
     </div>
   </section>
 
@@ -91,63 +93,39 @@ if (!svc) return Astro.redirect('/services');
     });
   </script>
 
-  <!-- MAIN CONTENT -->
-  <section class="px-6 lg:px-12 py-16 lg:py-24">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+  <!-- STEPS — alternating image/text sections -->
+  {svc.steps && svc.steps.map((step, i) => (
+    <section class="border-b border-surface2 py-16 lg:py-24 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        <!-- IMAGE -->
-        <div>
-          <img
-            src={svc.image}
-            alt={svc.title}
-            class="w-full block"
-            style="border: 1px solid #E8E6E0;"
-          />
-        </div>
+          <!-- IMAGE — left on even, right on odd -->
+          <div class={i % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}>
+            <img
+              src={step.image}
+              alt={step.heading}
+              class="w-full block"
+              style="border: 1px solid #E8E6E0;"
+              loading="lazy"
+            />
+          </div>
 
-        <!-- TEXT -->
-        <div class="flex flex-col gap-7">
-          <div>
-            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">About this service</p>
-            <p class="font-body text-sm text-muted leading-relaxed max-w-prose" style="line-height: 1.9;">
-              {svc.detail}
+          <!-- TEXT — right on even, left on odd -->
+          <div class={`flex flex-col gap-5 ${i % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted">{step.label}</p>
+            <h2 class="font-serif text-text leading-[1.1]" style="font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-style: italic; font-weight: 300;">
+              {step.heading}
+            </h2>
+            <p class="font-body text-sm text-muted max-w-prose" style="line-height: 1.9;">
+              {step.body}
             </p>
           </div>
 
-          <div>
-            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">What's included</p>
-            <ul class="flex flex-col gap-3">
-              {svc.includes.map(item => (
-                <li class="flex items-center gap-3 font-body text-sm text-muted">
-                  <span class="w-4 h-px flex-shrink-0" style="background: #999;" aria-hidden="true"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {svc.price && (
-            <div class="pt-2">
-              <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-2">Starting from</p>
-              <p class="font-serif text-text" style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-style: italic; font-weight: 300;">{svc.price}</p>
-            </div>
-          )}
-
-          <div class="pt-2">
-            <a
-              href="/contact"
-              class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200"
-              style="color: #F7F6F2; font-weight: 500;"
-            >
-              Get in touch <span aria-hidden="true">&#8594;</span>
-            </a>
-          </div>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
+
 
   <!-- CTA -->
   <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
@@ -155,15 +133,16 @@ if (!svc) return Astro.redirect('/services');
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div>
           <h2 class="font-serif text-text leading-[1.05]" style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-style: italic; font-weight: 300;">
-            Ready to get started?
+            {svc.cta?.heading ?? 'Ready to get started?'}
           </h2>
-          <p class="font-body text-sm text-muted mt-2">Let's talk about your project.</p>
+          <p class="font-body text-sm text-muted mt-2">{svc.cta?.sub ?? "Let's talk about your project."}</p>
         </div>
         <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">
-          Get in touch <span aria-hidden="true">&#8594;</span>
+          {svc.cta?.btn ?? 'Get in touch'} <span aria-hidden="true">&#8594;</span>
         </a>
       </div>
     </div>
   </section>
 
 </Layout>
+
