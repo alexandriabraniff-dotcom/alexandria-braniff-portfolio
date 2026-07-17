@@ -67,23 +67,6 @@ const navLinks = [
         })}
       </nav>
 
-      <!-- Theme toggle -->
-      <button
-        id="theme-toggle"
-        aria-label="Toggle dark mode"
-        class="theme-toggle-btn w-9 h-9 flex items-center justify-center text-muted hover:text-text transition-colors duration-200 flex-shrink-0"
-      >
-        <!-- Moon — shown in light mode -->
-        <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <!-- Sun — shown in dark mode -->
-        <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none;">
-          <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-
       <!-- Mobile hamburger -->
       <button
         id="hamburger-btn"
@@ -167,36 +150,6 @@ const navLinks = [
 </style>
 
 <script>
-  // Theme toggle — sync icons on load
-  const iconMoon = document.getElementById('icon-moon');
-  const iconSun = document.getElementById('icon-sun');
-
-  function syncHeaderIcons(dark: boolean) {
-    if (iconMoon) iconMoon.style.display = dark ? 'none' : '';
-    if (iconSun)  iconSun.style.display  = dark ? '' : 'none';
-  }
-
-  // Sync icon to current state on load
-  syncHeaderIcons(document.documentElement.classList.contains('dark'));
-
-  // Watch for theme class changes (from any toggle button on the page)
-  const iconObserver = new MutationObserver(() => {
-    syncHeaderIcons(document.documentElement.classList.contains('dark'));
-  });
-  iconObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-  // The header's own theme-toggle button is now part of .theme-toggle-btn — handled globally by index.astro
-  // But on non-hero pages, we still need to wire it up here:
-  const siteHeader = document.getElementById('site-header');
-  if (!siteHeader?.dataset.heroPage) {
-    const themeBtn = document.getElementById('theme-toggle');
-    themeBtn?.addEventListener('click', () => {
-      const dark = !document.documentElement.classList.contains('dark');
-      document.documentElement.classList.toggle('dark', dark);
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-    });
-  }
-
   const header = document.getElementById('site-header');
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileNav = document.getElementById('mobile-nav');

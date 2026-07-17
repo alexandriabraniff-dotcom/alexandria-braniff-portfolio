@@ -36,18 +36,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
         <a href="/about" class="font-body text-sm font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">About</a>
         <a href="/services" class="font-body text-sm font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Services</a>
         <a href="/portfolio" class="font-body text-sm font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Projects</a>
-        <a href="/contact" class="font-body text-sm font-semibold tracking-[0.12em] uppercase text-text hover:text-muted transition-colors duration-200">Contact</a>
+        <a href="/contact" class="font-body text-sm font-medium tracking-[0.08em] uppercase text-muted hover:text-text transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-text hover:after:w-full after:transition-all after:duration-200">Contact</a>
       </div>
       <div class="flex items-center gap-2">
-        <button class="theme-toggle-btn w-11 h-11 flex items-center justify-center text-muted hover:text-text transition-colors duration-200" aria-label="Toggle dark mode">
-          <svg class="icon-moon-hero" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg class="icon-sun-hero hidden" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
         <button class="hero-hamburger md:hidden flex flex-col justify-center items-center w-11 h-11 gap-1.5" aria-label="Open menu" aria-expanded="false" aria-controls="hero-mobile-menu">
           <span class="hero-ham-line block w-6 h-0.5 bg-text transition-all duration-300 origin-center"></span>
           <span class="hero-ham-line block w-6 h-0.5 bg-text transition-all duration-300 origin-center"></span>
@@ -72,35 +63,28 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
         <a href="/portfolio" class="font-body text-base font-medium py-4 border-b border-surface2 text-muted hover:text-text transition-colors">Projects</a>
         <a href="/contact" class="font-body text-sm font-semibold tracking-[0.1em] uppercase text-text border-b border-text pb-0.5 mt-4 inline-block hover:text-muted hover:border-muted transition-colors">Contact</a>
       </nav>
-      <div class="px-6 pt-4 border-t border-surface2 mt-auto">
-        <button class="theme-toggle-btn flex items-center gap-3 font-body text-sm text-muted hover:text-text transition-colors py-2" aria-label="Toggle dark mode">
-          <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          <span>Toggle theme</span>
-        </button>
-      </div>
     </div>
 
     <!-- Hero body — centered crest layout -->
     <div class="flex-1 flex flex-col items-center justify-center text-center px-6 py-16 lg:py-20 relative">
 
       <!-- Name -->
-      <h1 class="font-serif text-text leading-tight" style="font-size: clamp(2.6rem, 5.5vw, 5.5rem); font-style: italic; font-weight: 300; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
+      <h1 class="font-serif text-text leading-tight" style="font-size: clamp(2.6rem, 5.5vw, 5.5rem); font-style: italic; font-weight: 300;">
         Alexandria Braniff
       </h1>
 
       <!-- Role label -->
-      <p class="font-body text-muted text-[10px] tracking-[0.3em] uppercase mt-4 mb-10 lg:mb-12" style="animation: fadeUp 0.7s ease-out both 0.45s;">
+      <p class="font-body text-muted text-[10px] tracking-[0.3em] uppercase mt-4 mb-10 lg:mb-12">
         Web Developer &mdash; Vancouver, BC
       </p>
 
       <!-- Tagline -->
-      <p class="font-body text-sm text-muted leading-relaxed max-w-[340px] mb-10 lg:mb-12" style="animation: fadeUp 0.7s ease-out both 0.55s;">
+      <p class="font-body text-sm text-muted leading-relaxed max-w-[340px] mb-10 lg:mb-12">
         Web design and services that keep growing with your business over time.
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-3" style="animation: fadeUp 0.7s ease-out both 0.65s;">
+      <div class="flex flex-col sm:flex-row gap-3">
         <a href="/portfolio" class="flex justify-center font-body text-sm text-text border border-surface2 px-7 py-3 hover:border-text transition-colors duration-200">View all work</a>
         <a href="/contact" class="flex justify-center font-body text-sm bg-text px-7 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
       </div>
@@ -246,146 +230,10 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
 </div><!-- end .light-layout -->
 
 
-<!-- ================================================
-     DARK LAYOUT — Expensive perfume bottle.
-     Byredo. Le Labo. Maison Margiela. Almost nothing.
-================================================ -->
-<div class="dark-layout" aria-hidden="true">
-
-  <!-- Section 1: HERO — centered crest -->
-  <section class="dk2-hero">
-
-    <!-- Dark hero nav -->
-    <div class="dk2-hero-nav">
-      <a href="/" class="dk2-hero-logo-link" aria-label="Alexandria Braniff — Home">
-        <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="dk2-nav-logo" />
-      </a>
-      <nav class="dk2-hero-nav-links">
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/portfolio">Projects</a>
-        <a href="/contact">Contact</a>
-      </nav>
-      <div class="dk2-hero-nav-right">
-        <button class="theme-toggle-btn dk2-theme-btn" aria-label="Toggle dark mode">
-          <svg class="icon-moon-hero" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg class="icon-sun-hero hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
-        <button class="dk2-hero-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="dk2-mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Dark hero mobile menu -->
-    <div id="dk2-mobile-menu" class="fixed inset-0 z-40 flex-col hidden" style="background:#050505;" aria-hidden="true">
-      <div class="flex items-center justify-between px-6 h-16" style="border-bottom:1px solid #1A1A1A;">
-        <a href="/" aria-label="Alexandria Braniff — Home">
-          <img src="/images/ab-logo.png" alt="Alexandria Braniff" style="height:2.25rem;width:2.25rem;object-fit:contain;filter:brightness(0) invert(1);" />
-        </a>
-        <button class="dk2-menu-close" aria-label="Close menu" style="color:rgba(255,255,255,0.4);width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-      <nav style="display:flex;flex-direction:column;padding:2rem 1.5rem;gap:0.25rem;">
-        <a href="/about" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">About</a>
-        <a href="/services" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Services</a>
-        <a href="/portfolio" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);padding:1rem 0;border-bottom:1px solid #1A1A1A;">Projects</a>
-        <a href="/contact" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FFFFFF;margin-top:1rem;display:inline-block;">Contact</a>
-      </nav>
-      <div style="padding:1rem 1.5rem;border-top:1px solid #1A1A1A;margin-top:auto;">
-        <button class="theme-toggle-btn" style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.3);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;background:none;border:none;cursor:pointer;" aria-label="Toggle dark mode">
-          <span class="icon-moon-hero"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="icon-sun-hero hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.07 1.07M11.53 11.53l1.07 1.07M3.4 12.6l1.07-1.07M11.53 4.47l1.07-1.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          Toggle theme
-        </button>
-      </div>
-    </div>
-
-    <!-- Hero body — centered crest -->
-    <div class="dk2-hero-body" style="position: relative;">
-      <!-- Background image -->
-      <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <img src="/images/hero-bg-dark.jpg" alt="" class="w-full h-full object-cover" style="opacity: 0.18;" />
-      </div>
-
-      <!-- Name -->
-      <h1 class="dk2-hero-name" style="animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.3s;">
-        Alexandria Braniff
-      </h1>
-
-      <!-- Role -->
-      <p class="dk2-hero-role" style="animation: fadeUp 0.7s ease-out both 0.45s;">
-        Web Developer &mdash; Vancouver, BC
-      </p>
-
-      <!-- Thin horizontal rule -->
-      <div class="dk2-hero-hrule" style="animation: fadeUp 0.6s ease-out both 0.5s;"></div>
-
-      <!-- Tagline -->
-      <p class="dk2-hero-tagline" style="animation: fadeUp 0.7s ease-out both 0.55s;">
-        Custom websites for small businesses that want to look like they mean it online.
-      </p>
-
-      <!-- CTAs -->
-      <div class="dk2-hero-ctas" style="animation: fadeUp 0.7s ease-out both 0.65s;">
-        <a href="/portfolio" class="dk2-hero-cta-ghost">View all work</a>
-        <a href="/contact" class="dk2-hero-cta">Start a project</a>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Section 2: STATEMENT — one sentence, vast space -->
-  <section class="dk2-statement">
-    <p class="dk2-statement-text">
-      The kind of site that makes people stop and ask — where did you get that made?
-    </p>
-  </section>
-
-  <!-- Section 3: SELECTED WORK -->
-  <section class="dk2-work">
-    <div class="dk2-work-label-row">
-      <span class="dk2-tiny-label">Selected Work</span>
-      <div class="dk2-rule"></div>
-    </div>
-    <div class="dk2-work-grid">
-      {featuredProjects.map((project, i) => (
-        <AnimateIn delay={i * 100}>
-          <ProjectCard project={project} />
-        </AnimateIn>
-      ))}
-    </div>
-    <div class="dk2-work-footer">
-      <a href="/portfolio" class="dk2-view-all">View all work &#8594;</a>
-    </div>
-  </section>
-
-  <!-- Section 4: CTA — white reversal -->
-  <section class="dk2-cta">
-    <div class="dk2-cta-inner">
-      <span class="dk2-cta-label">Ready when you are</span>
-      <h2 class="dk2-cta-heading">
-        Let's build<br />something<br />worth finding.
-      </h2>
-      <a href="/contact" class="dk2-cta-btn">Get in touch</a>
-    </div>
-  </section>
-
-</div><!-- end .dark-layout -->
 
 </Layout>
 
 <style>
-  /* ---- Layout visibility toggle ---- */
-  .light-layout { display: block; }
-  .dark-layout  { display: none;  }
-
   /* Light hero — crest sizing */
   .hero-crest-logo {
     width: clamp(140px, 22vw, 220px);
@@ -396,328 +244,10 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
   .hero-vert-rule {
     height: clamp(40px, 6vw, 64px);
   }
-
-  /* ════════════════════════════════════
-     DARK LAYOUT — Perfume bottle luxury
-  ════════════════════════════════════ */
-
-  /* HERO */
-  .dk2-hero {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    border-bottom: 1px solid #1A1A1A;
-    overflow: hidden;
-  }
-
-  /* Dark hero nav */
-  .dk2-hero-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
-    height: 4.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    gap: 2rem;
-    flex-shrink: 0;
-    background: rgba(5,5,5,0.45);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-  @media (max-width: 768px) {
-    .dk2-hero-nav { padding: 0 1.5rem; }
-  }
-  .dk2-hero-logo-link {
-    display: flex;
-    align-items: center;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-  }
-  .dk2-hero-logo-link:hover { opacity: 0.6; }
-  .dk2-nav-logo {
-    height: 2.25rem;
-    width: 2.25rem;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-  }
-  .dk2-hero-nav-links {
-    display: none;
-    align-items: center;
-    gap: 2.5rem;
-  }
-  @media (min-width: 768px) { .dk2-hero-nav-links { display: flex; } }
-  .dk2-hero-nav-links a {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .dk2-hero-nav-links a:hover { color: rgba(255,255,255,0.7); }
-  .dk2-hero-nav-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-  }
-  .dk2-theme-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgba(255,255,255,0.28);
-    width: 2.25rem;
-    height: 2.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s;
-  }
-  .dk2-theme-btn:hover { color: rgba(255,255,255,0.7); }
-  .dk2-hero-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  @media (max-width: 767px) { .dk2-hero-hamburger { display: flex; } }
-  .dk2-hero-hamburger span {
-    display: block;
-    width: 18px;
-    height: 1px;
-    background: rgba(255,255,255,0.5);
-  }
-
-  /* Dark hero body — centered crest */
-  .dk2-hero-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .dk2-hero-body > *:not(.absolute) {
-    position: relative;
-    z-index: 1;
-  }
-  .dk2-hero-crest {
-    width: clamp(140px, 22vw, 220px);
-    height: clamp(140px, 22vw, 220px);
-    object-fit: contain;
-    display: block;
-    filter: brightness(0) invert(1);
-  }
-  .dk2-hero-vert-rule {
-    width: 1px;
-    height: clamp(40px, 6vw, 64px);
-    background: rgba(255,255,255,0.12);
-    margin: 2rem 0 2.5rem;
-  }
-  .dk2-hero-name {
-    font-family: 'Cormorant Garant', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(2.6rem, 5.5vw, 5.5rem);
-    line-height: 1.1;
-    color: #FFFFFF;
-  }
-  .dk2-hero-role {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-top: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  .dk2-hero-hrule {
-    width: 48px;
-    height: 1px;
-    background: rgba(255,255,255,0.12);
-    margin-bottom: 2rem;
-  }
-  .dk2-hero-tagline {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.75;
-    max-width: 360px;
-    margin-bottom: 2.5rem;
-  }
-  .dk2-hero-ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-  }
-  @media (min-width: 480px) {
-    .dk2-hero-ctas { flex-direction: row; }
-  }
-  .dk2-hero-cta {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #050505;
-    background: #FFFFFF;
-    padding: 1rem 2.25rem;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .dk2-hero-cta:hover { background: rgba(255,255,255,0.88); }
-  .dk2-hero-cta-ghost {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: 1rem 2.25rem;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .dk2-hero-cta-ghost:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); }
-
-  /* STATEMENT */
-  .dk2-statement {
-    min-height: 65vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6rem 3rem;
-    border-bottom: 1px solid #1A1A1A;
-  }
-  @media (max-width: 768px) {
-    .dk2-statement { min-height: 40vh; padding: 4rem 1.5rem; }
-  }
-  .dk2-statement-text {
-    font-family: 'Cormorant Garant', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    color: rgba(255,255,255,0.65);
-    line-height: 1.4;
-    max-width: 820px;
-    text-align: center;
-  }
-
-  /* WORK */
-  .dk2-work {
-    padding: 6rem 3rem 5rem;
-    border-bottom: 1px solid #1A1A1A;
-  }
-  @media (max-width: 768px) {
-    .dk2-work { padding: 4rem 1.5rem; }
-  }
-  .dk2-work-label-row {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-  .dk2-tiny-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    flex-shrink: 0;
-  }
-  .dk2-rule {
-    height: 1px;
-    background: #1A1A1A;
-    flex: 1;
-  }
-  .dk2-work-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  @media (max-width: 900px) { .dk2-work-grid { grid-template-columns: 1fr; } }
-  @media (min-width: 600px) and (max-width: 900px) { .dk2-work-grid { grid-template-columns: 1fr 1fr; } }
-  .dk2-work-footer {
-    margin-top: 4rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid #1A1A1A;
-  }
-  .dk2-view-all {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .dk2-view-all:hover { color: rgba(255,255,255,0.7); }
-
-  /* CTA — white reversal */
-  .dk2-cta {
-    background: #FFFFFF;
-    padding: 8rem 3rem;
-  }
-  @media (max-width: 768px) {
-    .dk2-cta { padding: 4rem 1.5rem; }
-  }
-  .dk2-cta-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
-  }
-  .dk2-cta-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(5,5,5,0.3);
-    display: block;
-  }
-  .dk2-cta-heading {
-    font-family: 'Cormorant Garant', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(3rem, 7vw, 7.5rem);
-    color: #050505;
-    line-height: 1.0;
-  }
-  .dk2-cta-btn {
-    display: inline-block;
-    margin-top: 1rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    background: #050505;
-    padding: 1rem 2.25rem;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .dk2-cta-btn:hover { background: #1A1A1A; }
 </style>
 
 <script>
-  // Parallax for light layout hero image
+  // Parallax for hero image
   const parallaxEls = document.querySelectorAll('[data-parallax]');
   function updateParallax() {
     const scrollY = window.scrollY;
@@ -728,53 +258,13 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
   }
   window.addEventListener('scroll', updateParallax, { passive: true });
 
-  // Toggle layout visibility when theme changes
-  function syncLayouts() {
-    const isDark = document.documentElement.classList.contains('dark');
-    const light = document.querySelector('.light-layout') as HTMLElement | null;
-    const dark  = document.querySelector('.dark-layout')  as HTMLElement | null;
-    if (light) { light.style.display = isDark ? 'none' : 'block'; light.setAttribute('aria-hidden', isDark ? 'true' : 'false'); }
-    if (dark)  { dark.style.display  = isDark ? 'block' : 'none'; dark.setAttribute('aria-hidden',  isDark ? 'false' : 'true'); }
-  }
-
-  syncLayouts();
-
-  // Watch for theme changes triggered by the toggle button
-  const observer = new MutationObserver(syncLayouts);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-  // ── Theme toggle — handle all .theme-toggle-btn buttons ──
-  function applyTheme(dark: boolean) {
-    document.documentElement.classList.toggle('dark', dark);
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-    // Update header toggle icons (sticky header)
-    const iconMoon = document.getElementById('icon-moon');
-    const iconSun = document.getElementById('icon-sun');
-    if (iconMoon) iconMoon.style.display = dark ? 'none' : '';
-    if (iconSun) iconSun.style.display = dark ? '' : 'none';
-    // Update all hero toggle icons (light and dark layouts)
-    document.querySelectorAll('.icon-moon-hero').forEach(el => (el as HTMLElement).style.display = dark ? 'none' : 'block');
-    document.querySelectorAll('.icon-sun-hero').forEach(el => (el as HTMLElement).style.display = dark ? 'block' : 'none');
-  }
-
-  // Sync icons on load
-  applyTheme(document.documentElement.classList.contains('dark'));
-
-  // Wire up all theme toggle buttons on this page
-  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => applyTheme(!document.documentElement.classList.contains('dark')));
-  });
-
   // ── Scroll-triggered sticky header ──
   const siteHeader = document.getElementById('site-header');
   const lightHeroEl = document.getElementById('hero');
-  const darkHeroEl = document.querySelector('.dk2-hero') as HTMLElement | null;
 
   function updateHeaderOnScroll() {
-    const isDark = document.documentElement.classList.contains('dark');
-    const activeHero = isDark ? darkHeroEl : lightHeroEl;
-    if (!siteHeader || !activeHero) return;
-    const rect = activeHero.getBoundingClientRect();
+    if (!siteHeader || !lightHeroEl) return;
+    const rect = lightHeroEl.getBoundingClientRect();
     const heroGone = rect.bottom <= 0;
     if (heroGone) {
       siteHeader.style.transform = 'translateY(0)';
@@ -786,12 +276,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
   }
 
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
-  // Re-check when theme changes (different hero element is active)
-  const themeChangeObserver = new MutationObserver(() => updateHeaderOnScroll());
-  themeChangeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
   updateHeaderOnScroll();
 
-  // ── Light hero mobile menu ──
+  // ── Hero mobile menu ──
   const heroHamburger = document.querySelector('.hero-hamburger') as HTMLButtonElement | null;
   const heroMobileMenu = document.getElementById('hero-mobile-menu');
   const heroMenuClose = document.querySelector('.hero-menu-close') as HTMLButtonElement | null;
@@ -817,31 +304,4 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
   heroHamburger?.addEventListener('click', openHeroMenu);
   heroMenuClose?.addEventListener('click', closeHeroMenu);
   heroMobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeHeroMenu));
-
-  // ── Dark hero mobile menu ──
-  const dk2Hamburger = document.querySelector('.dk2-hero-hamburger') as HTMLButtonElement | null;
-  const dk2MobileMenu = document.getElementById('dk2-mobile-menu');
-  const dk2MenuClose = document.querySelector('.dk2-menu-close') as HTMLButtonElement | null;
-
-  function openDk2Menu() {
-    if (!dk2MobileMenu) return;
-    dk2MobileMenu.classList.remove('hidden');
-    dk2MobileMenu.style.display = 'flex';
-    dk2MobileMenu.setAttribute('aria-hidden', 'false');
-    dk2Hamburger?.setAttribute('aria-expanded', 'true');
-    document.documentElement.style.overflow = 'hidden';
-  }
-
-  function closeDk2Menu() {
-    if (!dk2MobileMenu) return;
-    dk2MobileMenu.classList.add('hidden');
-    dk2MobileMenu.style.display = '';
-    dk2MobileMenu.setAttribute('aria-hidden', 'true');
-    dk2Hamburger?.setAttribute('aria-expanded', 'false');
-    document.documentElement.style.overflow = '';
-  }
-
-  dk2Hamburger?.addEventListener('click', openDk2Menu);
-  dk2MenuClose?.addEventListener('click', closeDk2Menu);
-  dk2MobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDk2Menu));
 </script>
