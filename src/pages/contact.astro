@@ -16,7 +16,7 @@ import AnimateIn from '../components/AnimateIn.astro';
 
     <section class="px-6 lg:px-8 pt-16 pb-32 lg:pt-24 lg:pb-40">
       <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start">
+        <div class="max-w-2xl">
 
           <!-- LEFT COLUMN — Form -->
           <AnimateIn>
@@ -91,30 +91,6 @@ import AnimateIn from '../components/AnimateIn.astro';
             </div>
           </AnimateIn>
 
-          <!-- RIGHT COLUMN — Image + info -->
-          <AnimateIn delay={200}>
-            <div class="space-y-10 lg:pt-24">
-              <div class="placeholder-img warm" style="aspect-ratio: 4/5;" data-cursor="view">
-                <img src="https://picsum.photos/seed/alexa-contact/640/800" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div class="space-y-6 pt-4">
-                <div>
-                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Response Time</span>
-                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Within 1 business day</p>
-                </div>
-                <div class="h-px bg-surface2"></div>
-                <div>
-                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Based In</span>
-                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Vancouver, BC</p>
-                </div>
-                <div class="h-px bg-surface2"></div>
-                <div>
-                  <span class="font-body text-[10px] tracking-[0.25em] uppercase text-muted block mb-2">Serving</span>
-                  <p class="font-serif text-text text-lg" style="font-style: italic; font-weight: 400;">Clients Worldwide</p>
-                </div>
-              </div>
-            </div>
-          </AnimateIn>
 
         </div>
       </div>
