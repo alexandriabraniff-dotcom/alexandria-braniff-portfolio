@@ -26,20 +26,14 @@ const modalId = `logo-modal-${project.id}`;
 <div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0; background: #fff;">
   <!-- Image area: logo grid or single screenshot -->
   {isLogoProject ? (
-    <div class="w-full flex-shrink-0 p-4" style="background: #F7F6F2;">
-      <div class="grid grid-cols-2 gap-3">
-        {project.logos!.map((logo, i) => (
-          <div class="flex items-center justify-center p-3" style={i === 3 ? "background: #000;" : "background: #fff; border: 1px solid #E8E6E0;"}>
-            <img
-              src={logo}
-              alt={`${project.name} logo variant ${i + 1}`}
-              class="w-full object-contain"
-              style="max-height: 100px;"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </div>
+    <div class="w-full flex-shrink-0 p-6" style="background: #fff;">
+      <img
+        src={project.image}
+        alt={`${project.name} logo`}
+        class="w-full object-contain"
+        style="max-height: 180px;"
+        loading="lazy"
+      />
     </div>
   ) : (
     <div class="w-full flex-shrink-0 p-4" style="background: #fff;">
@@ -101,7 +95,7 @@ const modalId = `logo-modal-${project.id}`;
     aria-modal="true"
     aria-label={`${project.name} brand identity`}
   >
-    <div class="relative bg-white w-full max-w-3xl" style="border-radius: 2px;">
+    <div class="relative bg-white w-full max-w-4xl" style="border-radius: 2px;">
       <!-- Close button -->
       <button
         class="logo-modal-close absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors duration-200"
@@ -127,13 +121,13 @@ const modalId = `logo-modal-${project.id}`;
             {project.logos!.map((logo, i) => (
               <div
                 class="logo-slide flex-shrink-0 w-full flex items-center justify-center p-10"
-                style={i === 3 ? "background: #000; min-height: 340px;" : "background: #F7F6F2; border: 1px solid #E8E6E0; min-height: 340px;"}
+                style="background: #2C2C2C; min-height: 360px;"
               >
                 <img
                   src={logo}
                   alt={`${project.name} logo variant ${i + 1}`}
                   class="object-contain"
-                  style="max-height: 220px; max-width: 100%;"
+                  style="max-height: 280px; max-width: 100%;"
                   loading="lazy"
                 />
               </div>
