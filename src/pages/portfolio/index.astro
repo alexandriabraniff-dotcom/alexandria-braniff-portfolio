@@ -42,8 +42,8 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
       <div class="max-w-7xl mx-auto">
         <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
-            <div data-category={project.category ?? 'web-design'}>
-              <AnimateIn delay={i * 80}>
+            <div data-category={project.category ?? 'web-design'} class="h-full">
+              <AnimateIn delay={i * 80} class="h-full">
                 <ProjectCard project={project} />
               </AnimateIn>
             </div>
@@ -103,9 +103,9 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
         </div>
         <div class="p-5 sm:p-8 lg:p-10">
           <h2 id="modal-title" class="font-serif text-text mb-4" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 400;"></h2>
-          <div id="modal-mockup-notice" class="hidden mb-8 p-4" style="background: #FDF2F2; border: 2px solid #C0392B;">
-            <p class="font-body text-sm font-bold mb-1" style="color: #C0392B; letter-spacing: 0.04em; text-transform: uppercase;">Mockup / Concept Project</p>
-            <p class="font-body text-sm" style="color: #C0392B;" id="modal-mockup-text"></p>
+          <div id="modal-mockup-notice" class="hidden mb-6 px-4 py-3" style="background: #FEF2F2; border: 1px solid #FECACA;">
+            <p class="font-body text-xs font-semibold mb-0.5 tracking-[0.1em] uppercase" style="color: #B91C1C;">Concept / Mockup Project</p>
+            <p class="font-body text-xs italic" style="color: #B91C1C;" id="modal-mockup-text"></p>
           </div>
           <div class="space-y-8">
             <div>
