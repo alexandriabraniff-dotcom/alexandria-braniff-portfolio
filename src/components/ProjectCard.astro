@@ -5,7 +5,7 @@ interface Props {
     id: string;
     name: string;
     blurb: string;
-    image: string;
+    image: string | null;
     url: string | null;
     category?: string;
     mockupBlurb?: string;
@@ -44,14 +44,20 @@ const modalId = `logo-modal-${project.id}`;
           <span class="font-body tracking-[0.14em] uppercase text-white" style="font-size: 0.55rem; font-weight: 600;">Concept / Mockup</span>
         </div>
       )}
-      <div class={isMockup ? 'pt-8' : ''}>
-        <img
-          src={project.image}
-          alt={`Screenshot of ${project.name}`}
-          class="w-full object-contain p-4"
-          loading="lazy"
-        />
-      </div>
+      {project.image ? (
+        <div class={isMockup ? 'pt-8' : ''}>
+          <img
+            src={project.image}
+            alt={`Screenshot of ${project.name}`}
+            class="w-full object-contain p-4"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div class="w-full flex items-center justify-center" style={`min-height: 180px; background: #F2F1ED; ${isMockup ? 'padding-top: 2rem;' : ''}`}>
+          <span class="font-body text-xs tracking-[0.15em] uppercase text-muted">Image coming soon</span>
+        </div>
+      )}
     </div>
   )}
 

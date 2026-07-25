@@ -229,16 +229,22 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
     }
 
     if (modalImage) {
-      modalImage.src = project.image;
-      modalImage.alt = `Screenshot of ${project.name}`;
-      modalImage.style.display = '';
-      modalImageFallback?.classList.add('hidden');
-      modalImageFallback?.classList.remove('flex');
-      modalImage.onerror = () => {
-        if (modalImage) modalImage.style.display = 'none';
+      if (project.image) {
+        modalImage.src = project.image;
+        modalImage.alt = `Screenshot of ${project.name}`;
+        modalImage.style.display = '';
+        modalImageFallback?.classList.add('hidden');
+        modalImageFallback?.classList.remove('flex');
+        modalImage.onerror = () => {
+          if (modalImage) modalImage.style.display = 'none';
+          modalImageFallback?.classList.remove('hidden');
+          modalImageFallback?.classList.add('flex');
+        };
+      } else {
+        modalImage.style.display = 'none';
         modalImageFallback?.classList.remove('hidden');
         modalImageFallback?.classList.add('flex');
-      };
+      }
     }
 
     if (modalTitle) modalTitle.textContent = project.name;

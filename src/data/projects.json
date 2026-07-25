@@ -112,6 +112,54 @@
     }
   },
   {
+    "id": "rocha-jiu-jitsu",
+    "name": "Rocha Jiu Jitsu",
+    "blurb": "Clean, competitive site for a Brazilian jiu-jitsu gym.",
+    "image": null,
+    "url": "https://rocha-jiu-jitsu.vercel.app",
+    "category": "mockup",
+    "mockupBlurb": "a Brazilian jiu-jitsu gym",
+    "featured": false,
+    "comingSoon": false,
+    "detail": {
+      "business": "Rocha Jiu Jitsu is a Brazilian jiu-jitsu gym built around technique, discipline, and community. Their site needed to communicate credibility and get serious students through the door.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Clean, no-nonsense design with a focus on class schedules, instructor credentials, and a clear path to enquiry.",
+      "notable": "The site leads with the gym's training philosophy before anything else — giving visitors a clear sense of what Rocha stands for before they even scroll."
+    }
+  },
+  {
+    "id": "high-tide-cafe",
+    "name": "High Tide Cafe",
+    "blurb": "Warm coastal site for a cafe on the beachfront in South Australia.",
+    "image": null,
+    "url": "https://high-tide-cafe.vercel.app",
+    "category": "mockup",
+    "mockupBlurb": "a beachfront cafe in Semaphore, South Australia",
+    "featured": false,
+    "comingSoon": false,
+    "detail": {
+      "business": "High Tide Cafe is a relaxed beachfront cafe in Semaphore, South Australia. The site needed to capture the easy coastal atmosphere and make it simple for locals and visitors to check the menu and get in touch.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Soft coastal palette with a mobile-first layout built around menus, opening hours, and location.",
+      "notable": "The design leans into the beachside setting — light, airy, and welcoming — so the site feels as easy as a coffee by the water."
+    }
+  },
+  {
+    "id": "boxtek-boxing-gym",
+    "name": "Boxtek Boxing Gym",
+    "blurb": "High-energy site for a boxing gym in South Australia.",
+    "image": null,
+    "url": "https://boxtek-boxing-gym.vercel.app",
+    "category": "mockup",
+    "mockupBlurb": "a boxing gym in Edwardstown, South Australia",
+    "featured": false,
+    "comingSoon": false,
+    "detail": {
+      "business": "Boxtek Boxing Gym is a boxing gym in Edwardstown, South Australia, focused on fitness training and competitive boxing. They needed a site with real presence that could attract both serious fighters and fitness newcomers.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Bold black and gold palette with a video hero, class timetable, and a strong call to action for new members.",
+      "notable": "The homepage hero leads with atmosphere over information — pulling visitors in before presenting the class schedule, coaches, and membership options."
+    }
+  },
+  {
     "id": "local-bakery",
     "name": "Local Bakery",
     "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
