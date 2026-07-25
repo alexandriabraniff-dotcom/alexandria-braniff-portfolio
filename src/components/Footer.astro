@@ -1,5 +1,4 @@
 ---
-// Site footer — wordmark, nav links, copyright, contact email
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -9,62 +8,79 @@ const navLinks = [
 ];
 ---
 
-<footer class="bg-base border-t border-surface2 mt-24">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+<footer style="background: #1B2A4A;" class="mt-0">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
 
-    <!-- Top row: wordmark + nav links -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
+    <!-- Top row: wordmark + nav -->
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
 
-      <!-- Logo -->
-      <a
-        href="/"
-        class="flex flex-col items-start gap-3 hover:opacity-70 transition-opacity duration-200"
-        aria-label="Alexandria Braniff - Home"
-      >
-        <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="h-16 w-16 object-contain" />
-        <span class="font-display font-bold text-text text-sm tracking-tight">Alexandria Braniff</span>
-      </a>
-
-      <!-- Footer navigation -->
-      <nav class="flex flex-wrap gap-x-8 gap-y-3" aria-label="Footer navigation">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="font-body text-sm text-muted hover:text-text transition-colors duration-200"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-    </div>
-
-    <!-- Divider -->
-    <div class="border-t border-surface2 mb-8"></div>
-
-    <!-- Bottom row: copyright + LinkedIn -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-
-      <!-- Copyright + tagline -->
-      <div>
-        <p class="font-body text-sm text-muted">
-          &copy; 2026 Alexandria Braniff
-        </p>
-        <p class="font-body text-xs text-muted mt-1 opacity-70">
-          Web designer &amp; developer. Vancouver, BC.
+      <!-- Logo + tagline -->
+      <div class="flex flex-col gap-4">
+        <a href="/" aria-label="Alexandria Braniff - Home" class="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200">
+          <img src="/images/ab-logo.png" alt="Alexandria Braniff" class="h-10 w-10 object-contain" style="filter: brightness(0) invert(1);" />
+          <span class="font-display font-bold text-sm tracking-tight" style="color: #F7F6F2;">Alexandria Braniff</span>
+        </a>
+        <p class="font-body text-xs leading-relaxed max-w-xs" style="color: rgba(247,246,242,0.5);">
+          Custom websites built from scratch for small businesses across Australia and Canada.
         </p>
       </div>
 
-      <!-- LinkedIn -->
-      <a
-        href="https://www.linkedin.com/in/alexandria-braniff-06b420424"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-body text-sm text-muted hover:text-text transition-colors duration-200"
-        aria-label="Alexandria Braniff on LinkedIn"
-      >
-        LinkedIn
-      </a>
+      <!-- Nav links -->
+      <nav class="flex flex-col sm:flex-row gap-x-12 gap-y-6" aria-label="Footer navigation">
+        <div class="flex flex-col gap-3">
+          <p class="font-body text-[10px] tracking-[0.2em] uppercase mb-1" style="color: rgba(247,246,242,0.4);">Pages</p>
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="font-body text-sm transition-colors duration-200"
+              style="color: rgba(247,246,242,0.65);"
+              onmouseover="this.style.color='#F7F6F2'"
+              onmouseout="this.style.color='rgba(247,246,242,0.65)'"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <p class="font-body text-[10px] tracking-[0.2em] uppercase mb-1" style="color: rgba(247,246,242,0.4);">Connect</p>
+          <a
+            href="mailto:hello@alexandriabraniff.com"
+            class="font-body text-sm transition-colors duration-200"
+            style="color: rgba(247,246,242,0.65);"
+            onmouseover="this.style.color='#F7F6F2'"
+            onmouseout="this.style.color='rgba(247,246,242,0.65)'"
+          >
+            hello@alexandriabraniff.com
+          </a>
+          <a
+            href="https://www.linkedin.com/in/alexandria-braniff-06b420424"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-body text-sm transition-colors duration-200"
+            style="color: rgba(247,246,242,0.65);"
+            onmouseover="this.style.color='#F7F6F2'"
+            onmouseout="this.style.color='rgba(247,246,242,0.65)'"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </nav>
 
     </div>
+
+    <!-- Divider -->
+    <div class="border-t mb-8" style="border-color: rgba(247,246,242,0.12);"></div>
+
+    <!-- Bottom row -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <p class="font-body text-xs" style="color: rgba(247,246,242,0.35);">
+        &copy; 2026 Alexandria Braniff. All rights reserved.
+      </p>
+      <p class="font-body text-xs" style="color: rgba(247,246,242,0.35);">
+        Vancouver, BC &mdash; Adelaide, SA
+      </p>
+    </div>
+
   </div>
 </footer>
