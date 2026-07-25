@@ -59,14 +59,12 @@ const modalId = `logo-modal-${project.id}`;
     <h3 class="font-display font-bold text-text mb-5" style="font-size: 1.25rem; font-weight: 700;">
       {project.name}
     </h3>
-    <p class="font-body text-sm text-muted leading-relaxed mb-4 flex-1">
-      {project.detail?.business ?? project.blurb}
+    <p class="font-body text-sm text-muted leading-relaxed mb-8 flex-1">
+      {isMockup
+        ? `This is my concept / mockup idea of what ${project.name}'s website could look like.`
+        : (project.detail?.business ?? project.blurb)
+      }
     </p>
-    {isMockup && (
-      <p class="font-body text-xs leading-relaxed mb-5 w-full text-left px-3 py-2" style="color: #B91C1C; background: #FEF2F2; border: 1px solid #FECACA; font-style: italic;">
-        Concept only — not a real client project. This is my own version of what {project.name}'s website could look like.
-      </p>
-    )}
 
     {project.comingSoon ? (
       <span class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5" style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;">
