@@ -7,12 +7,14 @@ interface Props {
   title: string;
   description?: string;
   heroNav?: boolean;
+  hideCta?: boolean;
 }
 
 const {
   title,
   description = 'Alexandria Braniff — Web developer for small businesses. Custom websites built from Vancouver, BC.',
   heroNav = false,
+  hideCta = false,
 } = Astro.props;
 ---
 
@@ -413,7 +415,7 @@ const {
     </main>
 
     <!-- Global CTA -->
-    <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
+    {!hideCta && <section style="background: #EEECEA; border-top: 1px solid #D5D3CB;">
       <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div>
@@ -427,7 +429,7 @@ const {
           </a>
         </div>
       </div>
-    </section>
+    </section>}
 
     <!-- Site footer -->
     <Footer />
