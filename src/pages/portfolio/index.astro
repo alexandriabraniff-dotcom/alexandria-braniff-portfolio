@@ -42,8 +42,8 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
       <div class="max-w-7xl mx-auto">
         <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
-            <div data-category={project.category ?? 'web-design'} class="h-full">
-              <AnimateIn delay={i * 80} class="h-full">
+            <div data-category={project.category ?? 'web-design'}>
+              <AnimateIn delay={i * 80}>
                 <ProjectCard project={project} />
               </AnimateIn>
             </div>
