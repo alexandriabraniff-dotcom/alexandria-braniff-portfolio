@@ -6,6 +6,7 @@
     "image": "/images/projects/beach-haven-cafe.jpg",
     "url": "https://beachhavencafe.com.au/",
     "category": "web-design",
+    "featured": true,
     "comingSoon": false,
     "detail": {
       "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. They needed a site that captured their relaxed, welcoming atmosphere and made it easy for customers to find menus, hours, and get in touch.",
@@ -20,6 +21,7 @@
     "image": "/images/projects/coach-pavle.png",
     "url": "https://www.coachpavle.com/",
     "category": "web-design",
+    "featured": true,
     "comingSoon": false,
     "detail": {
       "business": "Coach Pavle is a professional MMA coach based in the Greater Toronto Area. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
@@ -52,6 +54,7 @@
     "image": "/images/projects/yale-saloon.jpg",
     "url": "https://yale-saloon.vercel.app",
     "category": "web-design",
+    "featured": false,
     "comingSoon": false,
     "detail": {
       "business": "The Yale Saloon is Vancouver's premier country nightclub at 1300 Granville St. They needed a site that captured the energy of the venue, showcased weekly events, and handled group bookings and job applications.",
@@ -66,6 +69,7 @@
     "image": "/images/projects/dublin-calling.jpg",
     "url": "https://dublin-calling.vercel.app",
     "category": "web-design",
+    "featured": false,
     "comingSoon": false,
     "detail": {
       "business": "Dublin Calling is a party pub and kitchen with three locations in Toronto (Adelaide St and Danforth Ave) and Vancouver (Granville St). One brand, three distinct venues, each needing their own content.",
@@ -80,6 +84,7 @@
     "image": "/images/projects/cherry-bomb-cafe.jpg",
     "url": "https://cherry-bomb-cafe.vercel.app",
     "category": "web-design",
+    "featured": false,
     "comingSoon": false,
     "detail": {
       "business": "Cherry Bomb Cafe sits at 253 Lobethal Rd in Ashton, South Australia — a Victorian-inspired cafe with a private Moroccan event space and a loyal Hills community following.",
@@ -94,6 +99,7 @@
     "image": "/images/projects/lions-mma.jpg",
     "url": "https://lions-mma.vercel.app",
     "category": "web-design",
+    "featured": false,
     "comingSoon": false,
     "detail": {
       "business": "Lions MMA is a 25-year-old MMA gym in Vancouver, BC with a serious competition pedigree. Their old generic template site did nothing to reflect their history or convert new members.",
