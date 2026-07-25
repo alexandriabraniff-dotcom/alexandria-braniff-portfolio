@@ -47,7 +47,7 @@ const modalId = `logo-modal-${project.id}`;
   )}
 
   <!-- Info -->
-  <div class="flex flex-col items-center text-center px-8 pt-8 pb-8 flex-1">
+  <div class="flex flex-col items-center text-center px-4 sm:px-8 pt-8 pb-8 flex-1">
     <h3 class="font-display font-bold text-text mb-5" style="font-size: 1.25rem; font-weight: 700;">
       {project.name}
     </h3>
@@ -108,20 +108,20 @@ const modalId = `logo-modal-${project.id}`;
       </button>
 
       <!-- Header -->
-      <div class="px-8 pt-7 pb-5" style="border-bottom: 1px solid #E8E6E0;">
+      <div class="px-4 sm:px-8 pt-7 pb-5" style="border-bottom: 1px solid #E8E6E0;">
         <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-1">Brand Identity</p>
         <h2 class="font-display font-bold text-text" style="font-size: 1.2rem;">{project.name}</h2>
       </div>
 
       <!-- Carousel -->
-      <div class="relative px-8 py-8">
+      <div class="relative px-4 sm:px-8 py-6 sm:py-8">
         <!-- Slide track -->
         <div class="logo-track overflow-hidden">
           <div class="logo-slides flex transition-transform duration-400 ease-in-out">
             {project.logos!.map((logo, i) => (
               <div
-                class="logo-slide flex-shrink-0 w-full flex items-center justify-center p-10"
-                style="background: #2C2C2C; min-height: 360px;"
+                class="logo-slide flex-shrink-0 w-full flex items-center justify-center p-6 sm:p-10"
+                style="background: #2C2C2C; min-height: 260px;"
               >
                 <img
                   src={logo}

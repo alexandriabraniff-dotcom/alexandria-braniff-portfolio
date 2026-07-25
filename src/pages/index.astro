@@ -84,9 +84,9 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="/portfolio" class="flex justify-center font-body text-sm text-text border border-surface2 px-7 py-3 hover:border-text transition-colors duration-200">View all work</a>
-        <a href="/contact" class="flex justify-center font-body text-sm bg-text px-7 py-3 hover:bg-muted transition-colors duration-200" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
+      <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <a href="/portfolio" class="flex justify-center font-body text-sm text-text border border-surface2 px-7 py-3 min-h-[45px] items-center hover:border-text transition-colors duration-200 w-full sm:w-auto">View all work</a>
+        <a href="/contact" class="flex justify-center items-center font-body text-sm bg-text px-7 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200 w-full sm:w-auto" style="color: #F7F6F2; font-weight: 500;">Get in touch</a>
       </div>
     </div>
   </section>
@@ -221,7 +221,7 @@ const featuredProjects = projects.filter(p => !p.comingSoon && p.category === 'w
             </h2>
             <p class="font-body text-sm text-muted mt-2">Let's talk about your project.</p>
           </div>
-          <a href="/contact" class="inline-flex items-center gap-3 font-body text-sm bg-text px-8 py-4 hover:bg-muted transition-colors duration-200 flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">Get in touch <span aria-hidden="true">&#8594;</span></a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-3 font-body text-sm bg-text px-8 py-4 min-h-[45px] hover:bg-muted transition-colors duration-200 w-full sm:w-auto sm:flex-shrink-0" style="color: #F7F6F2; font-weight: 500;">Get in touch <span aria-hidden="true">&#8594;</span></a>
         </div>
       </AnimateIn>
     </div>
