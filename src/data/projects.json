@@ -46,6 +46,62 @@
     }
   },
   {
+    "id": "yale-saloon",
+    "name": "The Yale Saloon",
+    "blurb": "Full site for Vancouver's iconic country nightclub on Granville Street.",
+    "image": "/images/projects/yale-saloon.jpg",
+    "url": "https://yale-saloon.vercel.app",
+    "category": "web-design",
+    "comingSoon": false,
+    "detail": {
+      "business": "The Yale Saloon is Vancouver's premier country nightclub at 1300 Granville St. They needed a site that captured the energy of the venue, showcased weekly events, and handled group bookings and job applications.",
+      "built": "Built with Next.js 16 and Tailwind CSS, deployed on Vercel. Bold Western-inspired palette with full events calendar, menu, group bookings, and a job application modal.",
+      "notable": "Includes a live events calendar with per-night ticket CTAs, a Moroccan-style group bookings section, and a built-in resume submission flow for staff recruitment."
+    }
+  },
+  {
+    "id": "dublin-calling",
+    "name": "Dublin Calling",
+    "blurb": "Multi-location pub and kitchen site serving three venues across Canada.",
+    "image": "/images/projects/dublin-calling.jpg",
+    "url": "https://dublin-calling.vercel.app",
+    "category": "web-design",
+    "comingSoon": false,
+    "detail": {
+      "business": "Dublin Calling is a party pub and kitchen with three locations in Toronto (Adelaide St and Danforth Ave) and Vancouver (Granville St). One brand, three distinct venues, each needing their own content.",
+      "built": "Built with Next.js 16 App Router and Tailwind CSS. Single codebase with dynamic location routing so each venue gets its own pages, menus, events, and contact details.",
+      "notable": "Three fully independent venue experiences under one domain — menus, events, group bookings, and FAQs all managed per location without duplicating the codebase."
+    }
+  },
+  {
+    "id": "cherry-bomb-cafe",
+    "name": "Cherry Bomb Cafe",
+    "blurb": "Bohemian-rustic site for a beloved cafe in the Adelaide Hills.",
+    "image": "/images/projects/cherry-bomb-cafe.jpg",
+    "url": "https://cherry-bomb-cafe.vercel.app",
+    "category": "web-design",
+    "comingSoon": false,
+    "detail": {
+      "business": "Cherry Bomb Cafe sits at 253 Lobethal Rd in Ashton, South Australia — a Victorian-inspired cafe with a private Moroccan event space and a loyal Hills community following.",
+      "built": "Built with Next.js 16 and Tailwind CSS. Rich cherry red and cream palette with apothecary-inspired typography. Pages include menu, gallery, local transport, and the private Moroccan Room.",
+      "notable": "The Moroccan Room event space gets its own dedicated section with atmosphere-focused photography — a key revenue driver that needed to stand out from the main cafe experience."
+    }
+  },
+  {
+    "id": "lions-mma",
+    "name": "Lions MMA",
+    "blurb": "Full rebuild for one of Vancouver's most established MMA gyms.",
+    "image": "/images/projects/lions-mma.jpg",
+    "url": "https://lions-mma.vercel.app",
+    "category": "web-design",
+    "comingSoon": false,
+    "detail": {
+      "business": "Lions MMA is a 25-year-old MMA gym in Vancouver, BC with a serious competition pedigree. Their old generic template site did nothing to reflect their history or convert new members.",
+      "built": "Full rebuild in Astro with React islands, Tailwind CSS v4, and Vercel. Warm near-black palette with brass accents, a filterable class schedule, 9 individual program pages, and a blog.",
+      "notable": "A signature tale-of-the-tape design motif runs throughout the site as a nod to the sport's tradition — giving the brand a distinctive visual identity no template could replicate."
+    }
+  },
+  {
     "id": "local-bakery",
     "name": "Local Bakery",
     "blurb": "A warm, inviting site for an artisan neighbourhood bakery.",
