@@ -53,7 +53,7 @@
     "blurb": "Full site for Vancouver's iconic country nightclub on Granville Street.",
     "image": "/images/projects/yale-saloon.jpg",
     "url": "https://yale-saloon.vercel.app",
-    "category": "web-design",
+    "category": "mockup",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -68,7 +68,7 @@
     "blurb": "Multi-location pub and kitchen site serving three venues across Canada.",
     "image": "/images/projects/dublin-calling.jpg",
     "url": "https://dublin-calling.vercel.app",
-    "category": "web-design",
+    "category": "mockup",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -83,7 +83,7 @@
     "blurb": "Bohemian-rustic site for a beloved cafe in the Adelaide Hills.",
     "image": "/images/projects/cherry-bomb-cafe.jpg",
     "url": "https://cherry-bomb-cafe.vercel.app",
-    "category": "web-design",
+    "category": "mockup",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -98,7 +98,7 @@
     "blurb": "Full rebuild for one of Vancouver's most established MMA gyms.",
     "image": "/images/projects/lions-mma.jpg",
     "url": "https://lions-mma.vercel.app",
-    "category": "web-design",
+    "category": "mockup",
     "featured": false,
     "comingSoon": false,
     "detail": {

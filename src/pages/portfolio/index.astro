@@ -1,0 +1,279 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AnimateIn from '../../components/AnimateIn.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const allProjects = (await import('../../data/projects.json')).default;
+const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoon);
+---
+
+<Layout
+  title="Alexandria Braniff – Website Design Portfolio"
+  description="Portfolio of custom websites designed and built from scratch by Alexandria Braniff, web designer and developer based in Vancouver, BC working with Canadian businesses and clients worldwide."
+>
+
+  <div class="light-layout">
+
+    <!-- PAGE HEADER -->
+    <section class="border-b border-surface2 relative overflow-hidden">
+      <img src="/images/page-header-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
+        <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">Projects</p>
+        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
+          Real work with<br />real results.
+        </h1>
+        <p class="font-body text-sm text-muted max-w-md mt-4">
+          A growing collection of custom websites built from scratch for small businesses across Australia and Canada.
+        </p>
+      </div>
+    </section>
+
+    <!-- CATEGORY NAV -->
+    <div class="border-b border-surface2 px-6 lg:px-12 overflow-x-auto">
+      <div class="max-w-7xl mx-auto flex items-center gap-0">
+        <button class="port-cat-btn active font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-text text-text whitespace-nowrap transition-colors duration-200" data-filter="web-design">Web Design &amp; Development</button>
+        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200" data-filter="logo-brand">Logo &amp; Brand Identity</button>
+        <button class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-6 py-4 border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200" data-filter="mockup">Mockup Projects</button>
+      </div>
+    </div>
+
+    <!-- PROJECT GRID -->
+    <section class="px-6 lg:px-12 py-12 lg:py-16">
+      <div class="max-w-7xl mx-auto">
+        <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <div data-category={project.category ?? 'web-design'}>
+              <AnimateIn delay={i * 80}>
+                <ProjectCard project={project} />
+              </AnimateIn>
+            </div>
+          ))}
+        </div>
+        <p id="no-projects-msg" class="hidden font-body text-sm text-muted py-16 text-center">No projects in this category yet. Check back soon.</p>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="relative px-6 lg:px-8 py-32 lg:py-40 overflow-hidden border-t border-surface2">
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <AnimateIn>
+          <h2 class="font-serif text-text mb-6" style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; font-style: italic; font-weight: 300;">Got a project in mind?</h2>
+          <p class="font-body text-lg mb-10" style="color: var(--color-muted);">Let's talk about it.</p>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 font-body text-sm bg-text text-[#F7F6F2] px-8 py-4 min-h-[45px] hover:bg-muted transition-colors duration-200 w-full sm:w-auto" style="font-weight: 500;">
+            Get in touch <span aria-hidden="true">&#8594;</span>
+          </a>
+        </AnimateIn>
+      </div>
+    </section>
+
+  </div><!-- end .light-layout -->
+
+
+  <!-- PROJECT DETAIL MODAL -->
+  <dialog
+    id="project-modal"
+    class="fixed inset-0 w-full h-full bg-transparent p-0 m-0 max-w-none max-h-none"
+    aria-label="Project details"
+    aria-modal="true"
+  >
+    <div
+      id="modal-backdrop"
+      class="fixed inset-0 flex items-center justify-center p-4 md:p-8"
+      style="background: rgba(17,17,17,0.6); backdrop-filter: blur(6px);"
+    >
+      <div
+        id="modal-panel"
+        class="relative bg-surface rounded-lg w-full max-w-[860px] max-h-[90vh] overflow-y-auto shadow-2xl border border-surface2"
+        role="document"
+      >
+        <button
+          id="modal-close"
+          class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-surface2 text-muted hover:text-text hover:bg-surface transition-colors duration-200"
+          aria-label="Close modal"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="w-full aspect-video bg-surface2 overflow-hidden rounded-t-lg relative">
+          <img id="modal-image" src="" alt="" class="w-full h-full object-cover" />
+          <div id="modal-image-fallback" class="absolute inset-0 bg-surface2 items-center justify-center hidden" aria-hidden="true">
+            <span class="font-display font-bold text-xs tracking-[0.2em] text-muted uppercase">Image coming</span>
+          </div>
+        </div>
+        <div class="p-5 sm:p-8 lg:p-10">
+          <h2 id="modal-title" class="font-serif text-text mb-8" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 400;"></h2>
+          <div class="space-y-8">
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">The Business</p>
+              <p id="modal-business" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">What I Built</p>
+              <p id="modal-built" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+            <div>
+              <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">Notable</p>
+              <p id="modal-notable" class="font-body leading-relaxed" style="color: var(--color-muted);"></p>
+            </div>
+          </div>
+          <div class="mt-10 pt-8 border-t border-surface2">
+            <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200 w-full sm:w-auto">
+              View site live
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 12L12 2M12 2H6M12 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+</Layout>
+
+<script define:vars={{ projectsData: allProjects }}>
+  window.__PROJECTS__ = projectsData;
+</script>
+
+<script>
+  // Determine initial filter from URL
+  const path = window.location.pathname;
+  const initialFilter = path.includes('mockup-projects') ? 'mockup' : 'web-design';
+
+  // Category filter
+  const filterBtns = document.querySelectorAll('.port-cat-btn');
+  const projectItems = document.querySelectorAll('#project-grid [data-category]');
+  const noMsg = document.getElementById('no-projects-msg');
+
+  const urlMap: Record<string, string> = {
+    'web-design': '/portfolio',
+    'logo-brand': '/portfolio/logo-brand',
+    'mockup': '/portfolio/mockup-projects',
+  };
+
+  function applyFilter(filter: string, pushState = false) {
+    filterBtns.forEach(b => {
+      b.classList.remove('active', 'border-text', 'text-text');
+      b.classList.add('border-transparent', 'text-muted');
+      if (b.getAttribute('data-filter') === filter) {
+        b.classList.add('active', 'border-text', 'text-text');
+        b.classList.remove('border-transparent', 'text-muted');
+      }
+    });
+
+    let visible = 0;
+    projectItems.forEach(item => {
+      const el = item as HTMLElement;
+      if (el.dataset.category === filter) {
+        el.style.display = '';
+        visible++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (noMsg) noMsg.classList.toggle('hidden', visible > 0);
+
+    if (pushState && urlMap[filter]) {
+      history.pushState({ filter }, '', urlMap[filter]);
+    }
+  }
+
+  applyFilter(initialFilter);
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') ?? 'web-design';
+      applyFilter(filter, true);
+    });
+  });
+
+  window.addEventListener('popstate', (e) => {
+    const filter = (e.state?.filter as string) ?? 'web-design';
+    applyFilter(filter);
+  });
+
+  // Modal logic
+  const modal = document.getElementById('project-modal');
+  const modalPanel = document.getElementById('modal-panel');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+  const modalImage = document.getElementById('modal-image') as HTMLImageElement | null;
+  const modalImageFallback = document.getElementById('modal-image-fallback');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBusiness = document.getElementById('modal-business');
+  const modalBuilt = document.getElementById('modal-built');
+  const modalNotable = document.getElementById('modal-notable');
+  const modalUrl = document.getElementById('modal-url') as HTMLAnchorElement | null;
+
+  function openModal(projectId: string) {
+    const project = (window as any).__PROJECTS__?.find((p: any) => p.id === projectId);
+    if (!project || project.comingSoon || !project.detail) return;
+
+    if (modalImage) {
+      modalImage.src = project.image;
+      modalImage.alt = `Screenshot of ${project.name}`;
+      modalImage.style.display = '';
+      modalImageFallback?.classList.add('hidden');
+      modalImageFallback?.classList.remove('flex');
+      modalImage.onerror = () => {
+        if (modalImage) modalImage.style.display = 'none';
+        modalImageFallback?.classList.remove('hidden');
+        modalImageFallback?.classList.add('flex');
+      };
+    }
+
+    if (modalTitle) modalTitle.textContent = project.name;
+    if (modalBusiness) modalBusiness.textContent = project.detail.business;
+    if (modalBuilt) modalBuilt.textContent = project.detail.built;
+    if (modalNotable) modalNotable.textContent = project.detail.notable;
+    if (modalUrl) modalUrl.href = project.url ?? '#';
+
+    document.documentElement.style.overflow = 'hidden';
+    (modal as HTMLDialogElement)?.showModal();
+    setTimeout(() => modalClose?.focus(), 50);
+  }
+
+  function closeModal() {
+    (modal as HTMLDialogElement)?.close();
+    document.documentElement.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e) => {
+    const card = (e.target as HTMLElement).closest('[data-project-id]');
+    if (card) {
+      if ((e.target as HTMLElement).closest('a')) return;
+      const projectId = card.getAttribute('data-project-id');
+      if (projectId) openModal(projectId);
+    }
+  });
+
+  modalClose?.addEventListener('click', closeModal);
+  modalBackdrop?.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
+  modalPanel?.addEventListener('click', (e) => e.stopPropagation());
+  modal?.addEventListener('close', () => { document.documentElement.style.overflow = ''; });
+
+  modal?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(modal.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'))
+      .filter((el) => !el.closest('[aria-hidden="true"]'));
+    if (!focusable.length) return;
+    const first = focusable[0] as HTMLElement;
+    const last = focusable[focusable.length - 1] as HTMLElement;
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+</script>
+
+<style>
+  /* ── Modal ── */
+  #project-modal { border: none; outline: none; padding: 0; background: transparent; overflow: visible; }
+  #project-modal::backdrop { display: none; }
+  #modal-panel { animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+</style>
