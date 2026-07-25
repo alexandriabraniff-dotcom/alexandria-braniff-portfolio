@@ -42,8 +42,8 @@ if (!svc) return Astro.redirect('/services');
   </section>
 
   <!-- SERVICE NAV DROPDOWN -->
-  <div class="border-b border-surface2 sticky top-0 z-30" style="background: #F7F6F2;">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex items-center gap-4 overflow-x-auto">
+  <div class="border-b border-surface2 sticky top-0 z-50" style="background: #F7F6F2; overflow: visible;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex items-center gap-4">
       <span class="font-body text-[10px] tracking-[0.2em] uppercase text-muted whitespace-nowrap">Browse Services</span>
       <div class="relative flex-shrink-0">
         <button
@@ -58,7 +58,7 @@ if (!svc) return Astro.redirect('/services');
         </button>
         <div
           id="svc-dropdown-menu"
-          class="absolute left-0 top-full mt-1 w-64 hidden flex-col z-50"
+          class="absolute left-0 top-full mt-1 w-64 hidden flex-col z-[9999]"
           style="background: #fff; border: 1px solid #E8E6E0; box-shadow: 0 8px 24px rgba(0,0,0,0.08);"
         >
           {services.map(s => (
