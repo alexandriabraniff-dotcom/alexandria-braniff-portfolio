@@ -8,6 +8,7 @@ interface Props {
     image: string;
     url: string | null;
     category?: string;
+    mockupBlurb?: string;
     comingSoon: boolean;
     logos?: string[];
     detail: {
@@ -61,7 +62,7 @@ const modalId = `logo-modal-${project.id}`;
     </h3>
     <p class="font-body text-sm text-muted leading-relaxed mb-8 flex-1">
       {isMockup
-        ? `This is my concept / mockup idea of what ${project.name}'s website could look like.`
+        ? `This is my concept / mockup idea of what ${project.name}'s website could look like — ${project.mockupBlurb ?? project.blurb}.`
         : (project.detail?.business ?? project.blurb)
       }
     </p>

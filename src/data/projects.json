@@ -54,6 +54,7 @@
     "image": "/images/projects/yale-saloon.jpg",
     "url": "https://yale-saloon.vercel.app",
     "category": "mockup",
+    "mockupBlurb": "a country nightclub on Granville Street in Vancouver",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -69,6 +70,7 @@
     "image": "/images/projects/dublin-calling.jpg",
     "url": "https://dublin-calling.vercel.app",
     "category": "mockup",
+    "mockupBlurb": "a multi-location pub and kitchen with three venues across Canada",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -84,6 +86,7 @@
     "image": "/images/projects/cherry-bomb-cafe.jpg",
     "url": "https://cherry-bomb-cafe.vercel.app",
     "category": "mockup",
+    "mockupBlurb": "a bohemian cafe and private event space in the Adelaide Hills",
     "featured": false,
     "comingSoon": false,
     "detail": {
@@ -99,6 +102,7 @@
     "image": "/images/projects/lions-mma.jpg",
     "url": "https://lions-mma.vercel.app",
     "category": "mockup",
+    "mockupBlurb": "one of Vancouver's most established MMA and combat sports gyms",
     "featured": false,
     "comingSoon": false,
     "detail": {
