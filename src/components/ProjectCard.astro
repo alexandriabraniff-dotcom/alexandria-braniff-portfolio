@@ -20,6 +20,7 @@ interface Props {
 
 const { project } = Astro.props;
 const isLogoProject = project.category === 'logo-brand' && project.logos && project.logos.length > 0;
+const isMockup = project.category === 'mockup';
 const modalId = `logo-modal-${project.id}`;
 ---
 
@@ -36,13 +37,22 @@ const modalId = `logo-modal-${project.id}`;
       />
     </div>
   ) : (
-    <div class="w-full flex-shrink-0 p-4" style="background: #fff;">
-      <img
-        src={project.image}
-        alt={`Screenshot of ${project.name}`}
-        class="w-full object-contain"
-        loading="lazy"
-      />
+    <div class="w-full flex-shrink-0 relative" style="background: #fff;">
+      {isMockup && (
+        <div class="absolute top-0 left-0 right-0 z-10 flex items-center justify-center gap-2 py-2 px-3" style="background: #C0392B;">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1L7.9 4.8H12L8.8 7.1L10.1 11L6.5 8.7L2.9 11L4.2 7.1L1 4.8H5.1L6.5 1Z" fill="#fff"/></svg>
+          <span class="font-body font-bold text-white tracking-[0.18em] uppercase" style="font-size: 0.6rem;">Mockup / Concept Project</span>
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1L7.9 4.8H12L8.8 7.1L10.1 11L6.5 8.7L2.9 11L4.2 7.1L1 4.8H5.1L6.5 1Z" fill="#fff"/></svg>
+        </div>
+      )}
+      <div class={isMockup ? 'pt-8' : ''}>
+        <img
+          src={project.image}
+          alt={`Screenshot of ${project.name}`}
+          class="w-full object-contain p-4"
+          loading="lazy"
+        />
+      </div>
     </div>
   )}
 
@@ -51,9 +61,14 @@ const modalId = `logo-modal-${project.id}`;
     <h3 class="font-display font-bold text-text mb-5" style="font-size: 1.25rem; font-weight: 700;">
       {project.name}
     </h3>
-    <p class="font-body text-sm text-muted leading-relaxed mb-8 flex-1">
+    <p class="font-body text-sm text-muted leading-relaxed mb-4 flex-1">
       {project.detail?.business ?? project.blurb}
     </p>
+    {isMockup && (
+      <p class="font-body text-xs leading-relaxed mb-6 w-full text-left px-3 py-2.5" style="color: #C0392B; background: #FDF2F2; border: 1px solid #F5C6C6;">
+        <strong>Not a real client project.</strong> This is my own design concept showing what {project.name}'s website could look like.
+      </p>
+    )}
 
     {project.comingSoon ? (
       <span class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5" style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;">

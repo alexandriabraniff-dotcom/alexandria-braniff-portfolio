@@ -102,7 +102,11 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
           </div>
         </div>
         <div class="p-5 sm:p-8 lg:p-10">
-          <h2 id="modal-title" class="font-serif text-text mb-8" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 400;"></h2>
+          <h2 id="modal-title" class="font-serif text-text mb-4" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-style: italic; font-weight: 400;"></h2>
+          <div id="modal-mockup-notice" class="hidden mb-8 p-4" style="background: #FDF2F2; border: 2px solid #C0392B;">
+            <p class="font-body text-sm font-bold mb-1" style="color: #C0392B; letter-spacing: 0.04em; text-transform: uppercase;">Mockup / Concept Project</p>
+            <p class="font-body text-sm" style="color: #C0392B;" id="modal-mockup-text"></p>
+          </div>
           <div class="space-y-8">
             <div>
               <p class="font-body text-xs font-semibold tracking-[0.15em] uppercase text-teal mb-3">The Business</p>
@@ -207,10 +211,22 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
   const modalBuilt = document.getElementById('modal-built');
   const modalNotable = document.getElementById('modal-notable');
   const modalUrl = document.getElementById('modal-url') as HTMLAnchorElement | null;
+  const modalMockupNotice = document.getElementById('modal-mockup-notice');
+  const modalMockupText = document.getElementById('modal-mockup-text');
 
   function openModal(projectId: string) {
     const project = (window as any).__PROJECTS__?.find((p: any) => p.id === projectId);
     if (!project || project.comingSoon || !project.detail) return;
+
+    // Mockup notice
+    if (modalMockupNotice && modalMockupText) {
+      if (project.category === 'mockup') {
+        modalMockupText.textContent = `This is not an official ${project.name} website. I built this as my own design concept to show what their site could look like — it has not been purchased or used by the company.`;
+        modalMockupNotice.classList.remove('hidden');
+      } else {
+        modalMockupNotice.classList.add('hidden');
+      }
+    }
 
     if (modalImage) {
       modalImage.src = project.image;
