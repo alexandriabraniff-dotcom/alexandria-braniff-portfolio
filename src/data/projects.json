@@ -30,6 +30,21 @@
     }
   },
   {
+    "id": "rocha-jiu-jitsu",
+    "name": "Rocha Academy of Jiu-Jitsu",
+    "blurb": "Safe, structured kids jiu-jitsu classes across Coquitlam and North Vancouver.",
+    "image": "/images/projects/rocha-jiu-jitsu.png",
+    "url": "https://rocha-academy-jiujitsu.vercel.app",
+    "category": "web-design",
+    "featured": false,
+    "comingSoon": false,
+    "detail": {
+      "business": "Rocha Academy of Jiu-Jitsu runs kids Brazilian jiu-jitsu programs across Coquitlam and North Vancouver. The site needed to reassure parents first, then make it easy to find the right class and get started.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. An olive and tan palette, a friendly hedgehog mascot, and clear program pages split by age group and location.",
+      "notable": "The whole site is written for parents rather than athletes, leading with safety, structure, and confidence-building before technique."
+    }
+  },
+  {
     "id": "beach-haven-cafe-branding",
     "name": "Beach Haven Cafe",
     "blurb": "Brand identity and logo suite for a beachside cafe in South Australia.",
@@ -109,22 +124,6 @@
       "business": "Lions MMA is a 25-year-old MMA gym in Vancouver, BC with a serious competition pedigree. Their old generic template site did nothing to reflect their history or convert new members.",
       "built": "Full rebuild in Astro with React islands, Tailwind CSS v4, and Vercel. Warm near-black palette with brass accents, a filterable class schedule, 9 individual program pages, and a blog.",
       "notable": "A signature tale-of-the-tape design motif runs throughout the site as a nod to the sport's tradition — giving the brand a distinctive visual identity no template could replicate."
-    }
-  },
-  {
-    "id": "rocha-jiu-jitsu",
-    "name": "Rocha Jiu Jitsu",
-    "blurb": "Clean, competitive site for a Brazilian jiu-jitsu gym.",
-    "image": null,
-    "url": "https://rocha-jiu-jitsu.vercel.app",
-    "category": "mockup",
-    "mockupBlurb": "a Brazilian jiu-jitsu gym",
-    "featured": false,
-    "comingSoon": false,
-    "detail": {
-      "business": "Rocha Jiu Jitsu is a Brazilian jiu-jitsu gym built around technique, discipline, and community. Their site needed to communicate credibility and get serious students through the door.",
-      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Clean, no-nonsense design with a focus on class schedules, instructor credentials, and a clear path to enquiry.",
-      "notable": "The site leads with the gym's training philosophy before anything else — giving visitors a clear sense of what Rocha stands for before they even scroll."
     }
   },
   {
