@@ -49,7 +49,7 @@ const modalId = `logo-modal-${project.id}`;
           <img
             src={project.image}
             alt={`Screenshot of ${project.name}`}
-            class="w-full object-contain p-4"
+            class="w-full aspect-[1366/640] object-cover object-top p-4"
             loading="lazy"
           />
         </div>
@@ -66,9 +66,9 @@ const modalId = `logo-modal-${project.id}`;
     <h3 class="font-display font-bold text-text mb-3" style="font-size: 1.1rem; font-weight: 700;">
       {project.name}
     </h3>
-    <p class="font-body text-muted leading-relaxed mb-5" style="font-size: 0.9rem;">
+    <p class="font-body text-muted leading-relaxed mb-5 line-clamp-5 min-h-[8.125em]" style="font-size: 0.9rem;">
       {isMockup
-        ? `This is my concept / mockup idea of what ${project.name}'s website could look like — ${project.mockupBlurb ?? project.blurb}.`
+        ? `This is my concept / mockup idea of what ${project.name}'s website could look like: ${project.mockupBlurb ?? project.blurb}.`
         : (project.detail?.business ?? project.blurb)
       }
     </p>

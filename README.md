@@ -6,7 +6,7 @@ Personal portfolio website for Alexandria Braniff, web developer based in Adelai
 
 - **Framework**: [Astro](https://astro.build/) v4
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3 with custom design tokens
-- **Fonts**: Syne (display) + Plus Jakarta Sans (body) via Google Fonts
+- **Fonts**: Cormorant Garant (serif) + Plus Jakarta Sans (display + body) via Google Fonts
 - **Deployment**: [Vercel](https://vercel.com/)
 - **Contact form**: [Formspree](https://formspree.io/)
 
