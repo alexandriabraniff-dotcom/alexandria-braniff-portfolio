@@ -30,6 +30,21 @@
     }
   },
   {
+    "id": "wildflower-line-dancing",
+    "name": "Wildflower Line Dancing",
+    "blurb": "Lessons and events site for a line dancing company in Greater Vancouver.",
+    "image": "/images/projects/wildflower-line-dancing.png",
+    "url": "https://wildflowerlinedancing.com/",
+    "category": "web-design",
+    "featured": true,
+    "comingSoon": false,
+    "detail": {
+      "business": "Wildflower Line Dancing is a Vancouver line dancing company run by instructors Alex and Lily, teaching beginners and intermediates at weddings, birthdays, special events and private lessons. They needed a site as fun as their classes that made booking easy.",
+      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. A warm cream and blush palette with Western-inspired headings, a split photo hero and service artwork designed with the client.",
+      "notable": "Every service has its own booking form that sends enquiries straight to the team's inbox, plus a dedicated event page for their Halloween line dancing competition at The Yale Saloon."
+    }
+  },
+  {
     "id": "rocha-jiu-jitsu",
     "name": "Rocha Academy of Jiu-Jitsu",
     "blurb": "Safe, structured kids jiu-jitsu classes across Coquitlam and North Vancouver.",
