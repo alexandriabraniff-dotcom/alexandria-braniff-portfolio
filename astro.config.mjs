@@ -4,7 +4,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel({ nodeVersion: '20' }),
+  adapter: vercel(),
   integrations: [tailwind()],
   site: 'https://alexandriabraniff.com',
 });
