@@ -32,16 +32,16 @@
   {
     "id": "coach-pavle",
     "name": "Coach Pavle",
-    "blurb": "High-impact personal brand site for an MMA coach in Canada.",
+    "blurb": "High-impact personal brand site for an MMA coach in Vancouver.",
     "image": "/images/projects/coach-pavle.png",
     "url": "https://www.coachpavle.com/",
     "category": "web-design",
     "featured": true,
     "comingSoon": false,
     "detail": {
-      "business": "Coach Pavle is a professional MMA coach based in the Greater Toronto Area. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
-      "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Dark, bold design with a strong typographic hierarchy that matches the intensity of the sport.",
-      "notable": "The site establishes Coach Pavle's personal brand with zero fluff — every section is designed to build credibility and drive enquiries from athletes ready to commit."
+      "business": "Coach Pavle is a professional MMA coach based in Vancouver, BC, coaching 1-on-1 in person and online. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
+      "built": "Built with Next.js and hand-written CSS, deployed on Vercel. Dark, bold design with a strong typographic hierarchy that matches the intensity of the sport.",
+      "notable": "The site establishes Coach Pavle's personal brand with zero fluff. Every section is designed to build credibility and drive enquiries from athletes ready to commit."
     }
   },
   {
