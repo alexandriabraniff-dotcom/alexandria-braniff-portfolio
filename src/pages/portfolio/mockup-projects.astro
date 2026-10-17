@@ -16,7 +16,7 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
 
     <!-- PAGE HEADER -->
     <section class="border-b border-surface2 relative overflow-hidden">
-      <img src="/images/page-header-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+      <img src="/images/illustrations/silk.svg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
       <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
         <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">Projects</p>
         <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
@@ -204,7 +204,7 @@ const projects = allProjects.filter((p: { comingSoon: boolean }) => !p.comingSoo
     // Mockup notice
     if (modalMockupNotice && modalMockupText) {
       if (project.category === 'mockup') {
-        modalMockupText.textContent = `This is not an official ${project.name} website. I built this as my own design concept to show what their site could look like — it has not been purchased or used by the company.`;
+        modalMockupText.textContent = `This is not an official ${project.name} website. I built this as my own design concept to show what their site could look like. It has not been purchased or used by the company.`;
         modalMockupNotice.classList.remove('hidden');
       } else {
         modalMockupNotice.classList.add('hidden');

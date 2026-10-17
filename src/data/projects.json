@@ -26,7 +26,7 @@
     "detail": {
       "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. They needed a site that captured their relaxed, welcoming atmosphere and made it easy for customers to find menus, hours, and get in touch.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Designed from scratch to reflect the cafe's warm coastal identity with a mobile-first layout.",
-      "notable": "Every section is purpose-built for the cafe's customers — from menus to a Dog of the Month feature that drives repeat visits and social engagement."
+      "notable": "Every section is purpose-built for the cafe's customers, from menus to a Dog of the Month feature that drives repeat visits and social engagement."
     }
   },
   {
@@ -74,7 +74,7 @@
     "detail": {
       "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. We developed a full brand identity suite to capture their relaxed coastal character across all touchpoints.",
       "built": "Delivered a complete logo suite including a circular badge logo, wordmark, and alternate colorways for use across print, digital, and merchandise.",
-      "notable": "Four logo variants — full color, green wordmark, black, and white — give the cafe flexibility across light and dark backgrounds, uniforms, signage, and packaging."
+      "notable": "Four logo variants (full color, green wordmark, black, and white) give the cafe flexibility across light and dark backgrounds, uniforms, signage, and packaging."
     }
   },
   {
@@ -106,7 +106,7 @@
     "detail": {
       "business": "Dublin Calling is a party pub and kitchen with three locations in Toronto (Adelaide St and Danforth Ave) and Vancouver (Granville St). One brand, three distinct venues, each needing their own content.",
       "built": "Built with Next.js 16 App Router and Tailwind CSS. Single codebase with dynamic location routing so each venue gets its own pages, menus, events, and contact details.",
-      "notable": "Three fully independent venue experiences under one domain — menus, events, group bookings, and FAQs all managed per location without duplicating the codebase."
+      "notable": "Three fully independent venue experiences under one domain: menus, events, group bookings, and FAQs all managed per location without duplicating the codebase."
     }
   },
   {
@@ -120,9 +120,9 @@
     "featured": false,
     "comingSoon": false,
     "detail": {
-      "business": "Cherry Bomb Cafe sits at 253 Lobethal Rd in Ashton, South Australia — a Victorian-inspired cafe with a private Moroccan event space and a loyal Hills community following.",
+      "business": "Cherry Bomb Cafe sits at 253 Lobethal Rd in Ashton, South Australia, a Victorian-inspired cafe with a private Moroccan event space and a loyal Hills community following.",
       "built": "Built with Next.js 16 and Tailwind CSS. Rich cherry red and cream palette with apothecary-inspired typography. Pages include menu, gallery, local transport, and the private Moroccan Room.",
-      "notable": "The Moroccan Room event space gets its own dedicated section with atmosphere-focused photography — a key revenue driver that needed to stand out from the main cafe experience."
+      "notable": "The Moroccan Room event space gets its own dedicated section with atmosphere-focused photography, a key revenue driver that needed to stand out from the main cafe experience."
     }
   },
   {
@@ -138,7 +138,7 @@
     "detail": {
       "business": "Lions MMA is a 25-year-old MMA gym in Vancouver, BC with a serious competition pedigree. Their old generic template site did nothing to reflect their history or convert new members.",
       "built": "Full rebuild in Astro with React islands, Tailwind CSS v4, and Vercel. Warm near-black palette with brass accents, a filterable class schedule, 9 individual program pages, and a blog.",
-      "notable": "A signature tale-of-the-tape design motif runs throughout the site as a nod to the sport's tradition — giving the brand a distinctive visual identity no template could replicate."
+      "notable": "A signature tale-of-the-tape design motif runs throughout the site as a nod to the sport's tradition, giving the brand a distinctive visual identity no template could replicate."
     }
   },
   {
@@ -154,7 +154,7 @@
     "detail": {
       "business": "High Tide Cafe is a relaxed beachfront cafe in Semaphore, South Australia. The site needed to capture the easy coastal atmosphere and make it simple for locals and visitors to check the menu and get in touch.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Soft coastal palette with a mobile-first layout built around menus, opening hours, and location.",
-      "notable": "The design leans into the beachside setting — light, airy, and welcoming — so the site feels as easy as a coffee by the water."
+      "notable": "The design leans into the beachside setting (light, airy, and welcoming) so the site feels as easy as a coffee by the water."
     }
   },
   {
@@ -170,7 +170,7 @@
     "detail": {
       "business": "Boxtek Boxing Gym is a boxing gym in Edwardstown, South Australia, focused on fitness training and competitive boxing. They needed a site with real presence that could attract both serious fighters and fitness newcomers.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Bold black and gold palette with a video hero, class timetable, and a strong call to action for new members.",
-      "notable": "The homepage hero leads with atmosphere over information — pulling visitors in before presenting the class schedule, coaches, and membership options."
+      "notable": "The homepage hero leads with atmosphere over information, pulling visitors in before presenting the class schedule, coaches, and membership options."
     }
   },
   {
