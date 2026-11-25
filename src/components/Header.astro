@@ -93,6 +93,7 @@ const navLinks = [
     id="mobile-nav"
     class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out"
     aria-hidden="true"
+    inert
   >
     <nav
       class="px-6 pb-6 pt-2 flex flex-col gap-1 border-t border-surface2 bg-base"
@@ -175,13 +176,13 @@ const navLinks = [
       mobileNav?.classList.remove('max-h-0');
       mobileNav?.classList.add('max-h-96');
       hamburgerBtn.setAttribute('aria-expanded', 'true');
-      mobileNav?.setAttribute('aria-hidden', 'false');
+      mobileNav?.setAttribute('aria-hidden', 'false'); mobileNav?.removeAttribute('inert');
     } else {
       header?.classList.remove('menu-open');
       mobileNav?.classList.remove('max-h-96');
       mobileNav?.classList.add('max-h-0');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
-      mobileNav?.setAttribute('aria-hidden', 'true');
+      mobileNav?.setAttribute('aria-hidden', 'true'); mobileNav?.setAttribute('inert', '');
     }
   });
 
@@ -192,7 +193,7 @@ const navLinks = [
       mobileNav.classList.remove('max-h-96');
       mobileNav.classList.add('max-h-0');
       hamburgerBtn?.setAttribute('aria-expanded', 'false');
-      mobileNav.setAttribute('aria-hidden', 'true');
+      mobileNav.setAttribute('aria-hidden', 'true'); mobileNav.setAttribute('inert', '');
     });
   });
 </script>

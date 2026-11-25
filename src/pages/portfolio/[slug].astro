@@ -1,0 +1,252 @@
+---
+// Case study page, one per project in src/data/projects.json.
+// Gallery images are exported from the Figma file
+// "Alexandria Braniff Portfolio – Case Study Boards" into
+// public/images/projects/<id>/{desktop,mobile,pages}.webp.
+import Layout from '../../layouts/Layout.astro';
+import AnimateIn from '../../components/AnimateIn.astro';
+import allProjects from '../../data/projects.json';
+
+export const prerender = true;
+
+type Project = (typeof allProjects)[number] & {
+  client?: string; location?: string; year?: string; type?: string;
+  stack?: string[]; gallery?: { src: string; alt: string }[];
+};
+
+const caseStudies = (allProjects as Project[]).filter(
+  (p) => !p.comingSoon && p.category !== 'logo-brand' && p.detail && p.gallery,
+);
+
+export function getStaticPaths() {
+  return (allProjects as Project[])
+    .filter((p) => !p.comingSoon && p.category !== 'logo-brand' && p.detail && p.gallery)
+    .map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const project = caseStudies.find((p) => p.id === slug)!;
+const isMockup = project.category === 'mockup';
+
+// Next project: the next one in the same group, wrapping around.
+const group = caseStudies.filter((p) => (p.category === 'mockup') === isMockup);
+const next = group[(group.indexOf(project) + 1) % group.length];
+
+const domain = project.url ? new URL(project.url).hostname.replace(/^www\./, '') : null;
+const [lead, ...rest] = project.gallery!;
+const facts = [
+  { label: 'Client', value: project.client ?? project.name },
+  { label: 'Location', value: project.location },
+  { label: 'Year', value: project.year },
+  { label: 'Built with', value: project.stack?.join(', ') },
+].filter((f) => f.value);
+const story = [
+  { label: 'The brief', text: project.detail!.business },
+  { label: 'What I built', text: project.detail!.built },
+  { label: 'The details', text: project.detail!.notable },
+];
+---
+
+<Layout
+  title={`${project.name} – Case Study | Alexandria Braniff`}
+  description={`${project.blurb} A website case study by Alexandria Braniff, web designer and developer in Vancouver, BC.`}
+  image={lead.src}
+>
+  <article class="light-layout">
+
+    <!-- HEADER -->
+    <header class="px-6 lg:px-12 pt-10 lg:pt-14 pb-10 lg:pb-14">
+      <div class="max-w-7xl mx-auto">
+        <a href={isMockup ? '/portfolio/mockup-projects' : '/portfolio'} class="inline-flex items-center min-h-[45px] font-body text-xs tracking-[0.14em] uppercase text-muted hover:text-text transition-colors duration-200">
+          All projects
+        </a>
+        <div class="grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-16 items-end mt-6">
+          <AnimateIn>
+            <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-5">{project.type}{project.location ? ` · ${project.location}` : ''}</p>
+            <h1 class="font-serif text-text leading-[0.92]" style="font-size: clamp(2.75rem, 7vw, 6.25rem); font-style: italic; font-weight: 300;">{project.name}</h1>
+          </AnimateIn>
+          <AnimateIn delay={100}>
+            <p class="font-body text-base lg:text-lg text-muted leading-relaxed mb-7">{project.blurb}</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              {project.url && (
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-7 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
+                  Visit the live site<span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
+              <a href="#gallery" class="inline-flex items-center justify-center font-body font-semibold text-sm text-text border border-surface2 px-7 py-3 min-h-[45px] hover:border-text transition-colors duration-200">
+                See the images
+              </a>
+            </div>
+          </AnimateIn>
+        </div>
+
+        {isMockup && (
+          <div class="mt-8 px-4 py-3 max-w-3xl" style="background: #FEF2F2; border: 1px solid #FECACA;">
+            <p class="font-body text-xs font-semibold mb-0.5 tracking-[0.1em] uppercase" style="color: #991B1B;">Concept project</p>
+            <p class="font-body text-sm" style="color: #991B1B;">This is not an official {project.name} website. I designed and built it as my own concept to show what their site could look like. It has not been purchased or used by the business.</p>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <!-- LEAD IMAGE -->
+    <div class="px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <button type="button" class="gallery-open block w-full overflow-hidden" data-index="0" aria-label={`Enlarge image: ${lead.alt}`}>
+          <img src={lead.src} alt={lead.alt} width="2400" height="1500" class="w-full h-auto" fetchpriority="high" />
+        </button>
+      </div>
+    </div>
+
+    <!-- FACTS -->
+    <section class="px-6 lg:px-12 pt-12 lg:pt-16" aria-label="Project facts">
+      <dl class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-8 border-t border-surface2 pt-8">
+        {facts.map((f) => (
+          <div>
+            <dt class="font-body text-[11px] tracking-[0.18em] uppercase text-muted mb-2">{f.label}</dt>
+            <dd class="font-body text-sm text-text leading-relaxed">{f.value}</dd>
+          </div>
+        ))}
+        {domain && (
+          <div>
+            <dt class="font-body text-[11px] tracking-[0.18em] uppercase text-muted mb-2">Website</dt>
+            <dd class="font-body text-sm"><a href={project.url} target="_blank" rel="noopener noreferrer" class="text-text underline underline-offset-4 decoration-surface2 hover:decoration-text break-all">{domain}<span class="sr-only"> (opens in a new tab)</span></a></dd>
+          </div>
+        )}
+      </dl>
+    </section>
+
+    <!-- STORY -->
+    <section class="px-6 lg:px-12 py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto space-y-12 lg:space-y-16">
+        {story.map((s, i) => (
+          <AnimateIn>
+            <div class="grid lg:grid-cols-[1fr_2fr] gap-4 lg:gap-16">
+              <h2 class="font-body text-[11px] font-semibold tracking-[0.2em] uppercase text-coral-dark pt-2">{s.label}</h2>
+              <p class={i === 0 ? 'font-serif text-text leading-snug' : 'font-body text-muted leading-relaxed text-base lg:text-lg max-w-3xl'} style={i === 0 ? 'font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 400;' : ''}>{s.text}</p>
+            </div>
+          </AnimateIn>
+        ))}
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="px-6 lg:px-12 pb-16 lg:pb-24 scroll-mt-24" aria-labelledby="gallery-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="gallery-title" class="font-serif text-text mb-8" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">A closer look</h2>
+        <div class="grid gap-6 lg:gap-8">
+          {rest.map((img, i) => (
+            <AnimateIn>
+              <button type="button" class="gallery-open block w-full overflow-hidden" data-index={i + 1} aria-label={`Enlarge image: ${img.alt}`}>
+                <img src={img.src} alt={img.alt} width="2400" height="1500" class="w-full h-auto" loading="lazy" />
+              </button>
+            </AnimateIn>
+          ))}
+        </div>
+        {project.url && (
+          <div class="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-surface2 pt-10">
+            <p class="font-serif text-text" style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-style: italic; font-weight: 300;">Want to see it in action?</p>
+            <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-7 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
+              Visit {domain}<span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- NEXT PROJECT -->
+    {next && next.id !== project.id && (
+      <section class="border-t border-surface2 px-6 lg:px-12 py-16 lg:py-24 bg-surface">
+        <a href={`/portfolio/${next.id}`} class="group max-w-7xl mx-auto grid md:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-center">
+          <div>
+            <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-4">Next project</p>
+            <p class="font-serif text-text leading-[0.95] mb-4 group-hover:text-coral-dark transition-colors duration-200" style="font-size: clamp(2.25rem, 5vw, 4.5rem); font-style: italic; font-weight: 300;">{next.name}</p>
+            <p class="font-body text-muted leading-relaxed">{next.blurb}</p>
+          </div>
+          <div class="overflow-hidden" style="border: 1px solid #E8E6E0;">
+            <img src={next.image} alt="" width="1440" height="900" class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" loading="lazy" />
+          </div>
+        </a>
+      </section>
+    )}
+  </article>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="lightbox" aria-label={`${project.name} images`}>
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption" class="font-body text-sm text-[#F7F6F2]/80 mt-4 text-center"></p>
+      <div class="lightbox-controls">
+        <button type="button" id="lb-prev" class="lb-btn">Previous</button>
+        <button type="button" id="lb-close" class="lb-btn">Close</button>
+        <button type="button" id="lb-next" class="lb-btn">Next</button>
+      </div>
+    </div>
+  </dialog>
+</Layout>
+
+<script define:vars={{ images: project.gallery }}>
+  window.__GALLERY__ = images;
+</script>
+
+<script>
+  const images = (window as any).__GALLERY__ as { src: string; alt: string }[];
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement;
+  const cap = document.getElementById('lightbox-caption')!;
+  let current = 0;
+  let opener: HTMLElement | null = null;
+
+  function show(i: number) {
+    current = (i + images.length) % images.length;
+    img.src = images[current].src;
+    img.alt = images[current].alt;
+    cap.textContent = `${images[current].alt} (${current + 1} of ${images.length})`;
+  }
+  document.querySelectorAll<HTMLButtonElement>('.gallery-open').forEach((b) =>
+    b.addEventListener('click', () => {
+      opener = b;
+      show(Number(b.dataset.index));
+      dlg.showModal();
+      document.documentElement.style.overflow = 'hidden';
+    }),
+  );
+  document.getElementById('lb-prev')!.addEventListener('click', () => show(current - 1));
+  document.getElementById('lb-next')!.addEventListener('click', () => show(current + 1));
+  document.getElementById('lb-close')!.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  dlg.addEventListener('close', () => {
+    document.documentElement.style.overflow = '';
+    opener?.focus();
+  });
+</script>
+
+<style>
+  .gallery-open { cursor: zoom-in; }
+  .gallery-open img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-open:hover img { transform: scale(1.015); }
+  .gallery-open:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+  .lightbox {
+    width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+    background: rgba(17, 20, 28, 0.94);
+  }
+  .lightbox::backdrop { background: transparent; }
+  .lightbox[open] { display: flex; align-items: center; justify-content: center; }
+  .lightbox-inner { width: min(92vw, 160dvh); padding: 1rem; display: flex; flex-direction: column; align-items: center; }
+  .lightbox-inner img { width: 100%; height: auto; max-height: 78dvh; object-fit: contain; }
+  .lightbox-controls { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
+  .lb-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.875rem; font-weight: 600; color: #F7F6F2;
+    border: 1px solid rgba(247, 246, 242, 0.45); padding: 0.75rem 1.5rem; min-height: 45px; min-width: 7rem;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .lb-btn:hover, .lb-btn:focus-visible { background: #F7F6F2; color: #1B2A4A; }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-open img { transition: none; }
+    .gallery-open:hover img { transform: none; }
+  }
+</style>

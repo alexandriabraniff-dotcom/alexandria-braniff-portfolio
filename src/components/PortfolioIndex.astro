@@ -1,0 +1,104 @@
+---
+// Shared body of /portfolio and /portfolio/mockup-projects. Every project is
+// rendered once and the tabs filter client-side by data-category.
+import AnimateIn from './AnimateIn.astro';
+import ProjectCard from './ProjectCard.astro';
+import allProjects from '../data/projects.json';
+
+interface Props { initialFilter: 'web-design' | 'logo-brand' | 'mockup' }
+const { initialFilter } = Astro.props;
+const projects = allProjects.filter((p) => !p.comingSoon);
+
+const tabs = [
+  { key: 'web-design', label: 'Client Websites', href: '/portfolio' },
+  { key: 'logo-brand', label: 'Logo & Brand Identity', href: '/portfolio#logo-brand' },
+  { key: 'mockup', label: 'Concept Projects', href: '/portfolio/mockup-projects' },
+];
+const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) => (p.category ?? 'web-design') === t.key).length]));
+---
+
+<div class="light-layout" data-initial-filter={initialFilter} id="portfolio-root">
+
+  <!-- PAGE HEADER -->
+  <section class="border-b border-surface2 relative overflow-hidden">
+    <img src="/images/illustrations/silk.svg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 lg:py-20 relative z-10 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-end">
+      <div>
+        <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-5">Selected work</p>
+        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2.5rem, 5.5vw, 5rem); font-style: italic; font-weight: 300;">
+          Websites built from<br />scratch, for real businesses.
+        </h1>
+      </div>
+      <p class="font-body text-base text-muted max-w-md leading-relaxed">
+        Every project below has its own case study: the brief, what I built, and a closer look at the finished site on desktop and mobile.
+      </p>
+    </div>
+  </section>
+
+  <!-- CATEGORY TABS -->
+  <div class="border-b border-surface2 px-6 lg:px-12 overflow-x-auto">
+    <div class="max-w-7xl mx-auto flex items-center" role="tablist" aria-label="Project categories">
+      {tabs.map((t) => (
+        <button
+          class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-5 sm:px-6 py-4 min-h-[45px] border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200"
+          data-filter={t.key}
+          data-href={t.href}
+          role="tab"
+          aria-selected="false"
+        >
+          {t.label} <span class="text-muted ml-1">{counts[t.key]}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- PROJECT GRID -->
+  <section class="px-6 lg:px-12 py-14 lg:py-20">
+    <div class="max-w-7xl mx-auto">
+      <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-14 lg:gap-y-20">
+        {projects.map((project, i) => (
+          <div data-category={project.category ?? 'web-design'} style={(project.category ?? 'web-design') !== initialFilter ? 'display:none' : ''}>
+            <AnimateIn delay={(i % 2) * 80}>
+              <ProjectCard project={project} />
+            </AnimateIn>
+          </div>
+        ))}
+      </div>
+      <p id="no-projects-msg" class="hidden font-body text-sm text-muted py-16 text-center">No projects in this category yet. Check back soon.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+  const root = document.getElementById('portfolio-root');
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.port-cat-btn');
+  const items = document.querySelectorAll<HTMLElement>('#project-grid [data-category]');
+  const noMsg = document.getElementById('no-projects-msg');
+
+  function applyFilter(filter: string, push = false) {
+    filterBtns.forEach((b) => {
+      const on = b.dataset.filter === filter;
+      b.setAttribute('aria-selected', String(on));
+      b.classList.toggle('border-text', on);
+      b.classList.toggle('text-text', on);
+      b.classList.toggle('border-transparent', !on);
+      b.classList.toggle('text-muted', !on);
+    });
+    let visible = 0;
+    items.forEach((el) => {
+      const show = el.dataset.category === filter;
+      el.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noMsg?.classList.toggle('hidden', visible > 0);
+    if (push) {
+      const btn = Array.from(filterBtns).find((b) => b.dataset.filter === filter);
+      if (btn?.dataset.href) history.pushState({ filter }, '', btn.dataset.href);
+    }
+  }
+
+  const initial = location.hash === '#logo-brand' ? 'logo-brand' : (root?.dataset.initialFilter ?? 'web-design');
+  applyFilter(initial);
+  filterBtns.forEach((btn) => btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'web-design', true)));
+  window.addEventListener('popstate', (e) => applyFilter((e.state?.filter as string) ?? root?.dataset.initialFilter ?? 'web-design'));
+</script>

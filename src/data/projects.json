@@ -1,9 +1,85 @@
 [
   {
+    "id": "sub-zero",
+    "name": "SUB ZERO Festival",
+    "blurb": "Festival microsite for twelve nights of electronic music and visual art at the Biltmore Cabaret.",
+    "url": "https://subzerofestival.ca/",
+    "category": "web-design",
+    "featured": true,
+    "comingSoon": false,
+    "client": "Biltmore Cabaret and Stamina",
+    "location": "Vancouver, BC",
+    "year": "2026",
+    "type": "Music and arts festival",
+    "stack": [
+      "Webflow",
+      "Custom CSS and JavaScript",
+      "Google Tag Manager"
+    ],
+    "detail": {
+      "business": "SUB ZERO is a twelve-night electronic music and visual art festival at the Biltmore Cabaret in Vancouver. The festival needed a striking home for its lineup, schedule and tickets, ready in time for launch.",
+      "built": "Built in Webflow from the festival's own brand artwork, with icy custom typography, a frost-framed hero and a page for every night of the festival. Tuned for speed on phones and launched on its own domain.",
+      "notable": "Every show night has its own page with set times and visual artists, linked from a schedule built around the official event posters, with a festival pass and single-night tickets one click away."
+    },
+    "image": "/images/projects/sub-zero/hero.webp",
+    "gallery": [
+      {
+        "src": "/images/projects/sub-zero/desktop.webp",
+        "alt": "SUB ZERO Festival homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/sub-zero/mobile.webp",
+        "alt": "SUB ZERO Festival on three phone screens"
+      },
+      {
+        "src": "/images/projects/sub-zero/pages.webp",
+        "alt": "Two more sections of the SUB ZERO Festival website"
+      }
+    ]
+  },
+  {
+    "id": "yale-saloon",
+    "name": "The Yale Saloon",
+    "blurb": "Official website for Vancouver's home for all things country on Granville Street.",
+    "image": "/images/projects/yale-saloon/hero.webp",
+    "url": "https://yalesaloon.com",
+    "category": "web-design",
+    "featured": true,
+    "comingSoon": false,
+    "detail": {
+      "business": "The Yale Saloon is Vancouver's country bar at 1300 Granville St, home to line dancing, bull riding and live music four nights a week. The venue needed a site with real Western character that gets people through the door every night.",
+      "built": "Designed and built in Webflow with a custom Western identity: rope photo frames, hand-drawn decor, ticket-style buttons, a video hero and a book-matched wood texture, all tuned for fast loading on phones.",
+      "notable": "A live events calendar connected to the ticketing system, group bookings straight into the events team, photo submissions and a menu, all meeting WCAG 2.2 AA accessibility."
+    },
+    "client": "The Yale Saloon",
+    "location": "Vancouver, BC",
+    "year": "2026",
+    "type": "Country bar and nightclub",
+    "stack": [
+      "Webflow",
+      "Custom CSS and JavaScript",
+      "Google Tag Manager"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/yale-saloon/desktop.webp",
+        "alt": "The Yale Saloon homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/yale-saloon/mobile.webp",
+        "alt": "The Yale Saloon on three phone screens"
+      },
+      {
+        "src": "/images/projects/yale-saloon/pages.webp",
+        "alt": "Two more sections of the The Yale Saloon website"
+      }
+    ]
+  },
+  {
     "id": "wildflower-line-dancing",
     "name": "Wildflower Line Dancing",
     "blurb": "Lessons and events site for a line dancing company in Greater Vancouver.",
-    "image": "/images/projects/wildflower-line-dancing.png",
+    "image": "/images/projects/wildflower-line-dancing/hero.webp",
     "url": "https://wildflowerlinedancing.com/",
     "category": "web-design",
     "featured": true,
@@ -12,13 +88,36 @@
       "business": "Wildflower Line Dancing is a Vancouver line dancing company run by instructors Alex and Lily. They needed a fun, welcoming site that made booking lessons and events easy.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. A warm cream and blush palette with Western-inspired headings, a split photo hero and service artwork designed with the client.",
       "notable": "Every service has its own booking form that sends enquiries straight to the team's inbox, plus a dedicated event page for their Halloween line dancing competition at The Yale Saloon."
-    }
+    },
+    "client": "Wildflower Line Dancing",
+    "location": "Greater Vancouver, BC",
+    "year": "2026",
+    "type": "Lessons and events",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/wildflower-line-dancing/desktop.webp",
+        "alt": "Wildflower Line Dancing homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/wildflower-line-dancing/mobile.webp",
+        "alt": "Wildflower Line Dancing on three phone screens"
+      },
+      {
+        "src": "/images/projects/wildflower-line-dancing/pages.webp",
+        "alt": "Two more sections of the Wildflower Line Dancing website"
+      }
+    ]
   },
   {
     "id": "beach-haven-cafe",
     "name": "Beach Haven Cafe",
     "blurb": "Warm, welcoming site for a beachside cafe in South Australia.",
-    "image": "/images/projects/beach-haven-cafe.jpg",
+    "image": "/images/projects/beach-haven-cafe/hero.webp",
     "url": "https://beachhavencafe.com.au/",
     "category": "web-design",
     "featured": true,
@@ -27,13 +126,36 @@
       "business": "Beach Haven Cafe is a beloved beachside cafe in South Australia. They needed a site that captured their relaxed, welcoming atmosphere and made it easy for customers to find menus, hours, and get in touch.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Designed from scratch to reflect the cafe's warm coastal identity with a mobile-first layout.",
       "notable": "Every section is purpose-built for the cafe's customers, from menus to a Dog of the Month feature that drives repeat visits and social engagement."
-    }
+    },
+    "client": "Beach Haven Cafe",
+    "location": "South Australia",
+    "year": "2026",
+    "type": "Cafe",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/beach-haven-cafe/desktop.webp",
+        "alt": "Beach Haven Cafe homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/beach-haven-cafe/mobile.webp",
+        "alt": "Beach Haven Cafe on three phone screens"
+      },
+      {
+        "src": "/images/projects/beach-haven-cafe/pages.webp",
+        "alt": "Two more sections of the Beach Haven Cafe website"
+      }
+    ]
   },
   {
     "id": "coach-pavle",
     "name": "Coach Pavle",
     "blurb": "High-impact personal brand site for an MMA coach in Vancouver.",
-    "image": "/images/projects/coach-pavle.png",
+    "image": "/images/projects/coach-pavle/hero.webp",
     "url": "https://www.coachpavle.com/",
     "category": "web-design",
     "featured": true,
@@ -42,14 +164,37 @@
       "business": "Coach Pavle is a professional MMA coach based in Vancouver, BC, coaching 1-on-1 in person and online. He needed a site that commanded respect, reflected his coaching philosophy, and converted visitors into serious athletes.",
       "built": "Built with Next.js and hand-written CSS, deployed on Vercel. Dark, bold design with a strong typographic hierarchy that matches the intensity of the sport.",
       "notable": "The site establishes Coach Pavle's personal brand with zero fluff. Every section is designed to build credibility and drive enquiries from athletes ready to commit."
-    }
+    },
+    "client": "Coach Pavle",
+    "location": "Vancouver, BC",
+    "year": "2026",
+    "type": "Personal brand",
+    "stack": [
+      "Next.js",
+      "CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/coach-pavle/desktop.webp",
+        "alt": "Coach Pavle homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/coach-pavle/mobile.webp",
+        "alt": "Coach Pavle on three phone screens"
+      },
+      {
+        "src": "/images/projects/coach-pavle/pages.webp",
+        "alt": "Two more sections of the Coach Pavle website"
+      }
+    ]
   },
   {
     "id": "rocha-jiu-jitsu",
     "name": "Rocha Academy of Jiu-Jitsu",
     "blurb": "Safe, structured kids jiu-jitsu classes across Coquitlam and North Vancouver.",
-    "image": "/images/projects/rocha-jiu-jitsu.png",
-    "url": "https://rocha-academy-jiujitsu.vercel.app",
+    "image": "/images/projects/rocha-jiu-jitsu/hero.webp",
+    "url": "https://rochajj.com",
     "category": "web-design",
     "featured": false,
     "comingSoon": false,
@@ -57,7 +202,31 @@
       "business": "Rocha Academy of Jiu-Jitsu runs kids Brazilian jiu-jitsu programs across Coquitlam and North Vancouver. The site needed to reassure parents first, then make it easy to find the right class and get started.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. An olive and tan palette, a friendly hedgehog mascot, and clear program pages split by age group and location.",
       "notable": "The whole site is written for parents rather than athletes, leading with safety, structure, and confidence-building before technique."
-    }
+    },
+    "client": "Rocha Academy of Jiu-Jitsu",
+    "location": "Coquitlam and North Vancouver, BC",
+    "year": "2026",
+    "type": "Kids martial arts academy",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Resend",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/rocha-jiu-jitsu/desktop.webp",
+        "alt": "Rocha Academy of Jiu-Jitsu homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/rocha-jiu-jitsu/mobile.webp",
+        "alt": "Rocha Academy of Jiu-Jitsu on three phone screens"
+      },
+      {
+        "src": "/images/projects/rocha-jiu-jitsu/pages.webp",
+        "alt": "Two more sections of the Rocha Academy of Jiu-Jitsu website"
+      }
+    ]
   },
   {
     "id": "beach-haven-cafe-branding",
@@ -78,26 +247,10 @@
     }
   },
   {
-    "id": "yale-saloon",
-    "name": "The Yale Saloon",
-    "blurb": "Full site for Vancouver's iconic country nightclub on Granville Street.",
-    "image": "/images/projects/yale-saloon.jpg",
-    "url": "https://yale-saloon.vercel.app",
-    "category": "mockup",
-    "mockupBlurb": "a country nightclub on Granville Street in Vancouver",
-    "featured": false,
-    "comingSoon": false,
-    "detail": {
-      "business": "The Yale Saloon is Vancouver's premier country nightclub at 1300 Granville St. They needed a site that captured the energy of the venue, showcased weekly events, and handled group bookings and job applications.",
-      "built": "Built with Next.js 16 and Tailwind CSS, deployed on Vercel. Bold Western-inspired palette with full events calendar, menu, group bookings, and a job application modal.",
-      "notable": "Includes a live events calendar with per-night ticket CTAs, a Moroccan-style group bookings section, and a built-in resume submission flow for staff recruitment."
-    }
-  },
-  {
     "id": "dublin-calling",
     "name": "Dublin Calling",
     "blurb": "Multi-location pub and kitchen site serving three venues across Canada.",
-    "image": "/images/projects/dublin-calling.jpg",
+    "image": "/images/projects/dublin-calling/hero.webp",
     "url": "https://dublin-calling.vercel.app",
     "category": "mockup",
     "mockupBlurb": "a multi-location pub and kitchen with three venues across Canada",
@@ -107,13 +260,36 @@
       "business": "Dublin Calling is a party pub and kitchen with three locations in Toronto (Adelaide St and Danforth Ave) and Vancouver (Granville St). One brand, three distinct venues, each needing their own content.",
       "built": "Built with Next.js 16 App Router and Tailwind CSS. Single codebase with dynamic location routing so each venue gets its own pages, menus, events, and contact details.",
       "notable": "Three fully independent venue experiences under one domain: menus, events, group bookings, and FAQs all managed per location without duplicating the codebase."
-    }
+    },
+    "client": "Dublin Calling",
+    "location": "Toronto, ON and Vancouver, BC",
+    "year": "2026",
+    "type": "Multi-location pub",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/dublin-calling/desktop.webp",
+        "alt": "Dublin Calling homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/dublin-calling/mobile.webp",
+        "alt": "Dublin Calling on three phone screens"
+      },
+      {
+        "src": "/images/projects/dublin-calling/pages.webp",
+        "alt": "Two more sections of the Dublin Calling website"
+      }
+    ]
   },
   {
     "id": "cherry-bomb-cafe",
     "name": "Cherry Bomb Cafe",
     "blurb": "Bohemian-rustic site for a beloved cafe in the Adelaide Hills.",
-    "image": "/images/projects/cherry-bomb-cafe.jpg",
+    "image": "/images/projects/cherry-bomb-cafe/hero.webp",
     "url": "https://cherry-bomb-cafe.vercel.app",
     "category": "mockup",
     "mockupBlurb": "a bohemian cafe and private event space in the Adelaide Hills",
@@ -123,13 +299,36 @@
       "business": "Cherry Bomb Cafe sits at 253 Lobethal Rd in Ashton, South Australia, a Victorian-inspired cafe with a private Moroccan event space and a loyal Hills community following.",
       "built": "Built with Next.js 16 and Tailwind CSS. Rich cherry red and cream palette with apothecary-inspired typography. Pages include menu, gallery, local transport, and the private Moroccan Room.",
       "notable": "The Moroccan Room event space gets its own dedicated section with atmosphere-focused photography, a key revenue driver that needed to stand out from the main cafe experience."
-    }
+    },
+    "client": "Cherry Bomb Cafe",
+    "location": "Ashton, South Australia",
+    "year": "2026",
+    "type": "Cafe and event space",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/cherry-bomb-cafe/desktop.webp",
+        "alt": "Cherry Bomb Cafe homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/cherry-bomb-cafe/mobile.webp",
+        "alt": "Cherry Bomb Cafe on three phone screens"
+      },
+      {
+        "src": "/images/projects/cherry-bomb-cafe/pages.webp",
+        "alt": "Two more sections of the Cherry Bomb Cafe website"
+      }
+    ]
   },
   {
     "id": "lions-mma",
     "name": "Lions MMA",
     "blurb": "Full rebuild for one of Vancouver's most established MMA gyms.",
-    "image": "/images/projects/lions-mma.jpg",
+    "image": "/images/projects/lions-mma/hero.webp",
     "url": "https://lions-mma.vercel.app",
     "category": "mockup",
     "mockupBlurb": "one of Vancouver's most established MMA and combat sports gyms",
@@ -139,13 +338,37 @@
       "business": "Lions MMA is a 25-year-old MMA gym in Vancouver, BC with a serious competition pedigree. Their old generic template site did nothing to reflect their history or convert new members.",
       "built": "Full rebuild in Astro with React islands, Tailwind CSS v4, and Vercel. Warm near-black palette with brass accents, a filterable class schedule, 9 individual program pages, and a blog.",
       "notable": "A signature tale-of-the-tape design motif runs throughout the site as a nod to the sport's tradition, giving the brand a distinctive visual identity no template could replicate."
-    }
+    },
+    "client": "Lions MMA",
+    "location": "Vancouver, BC",
+    "year": "2026",
+    "type": "MMA gym",
+    "stack": [
+      "Astro",
+      "React",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/lions-mma/desktop.webp",
+        "alt": "Lions MMA homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/lions-mma/mobile.webp",
+        "alt": "Lions MMA on three phone screens"
+      },
+      {
+        "src": "/images/projects/lions-mma/pages.webp",
+        "alt": "Two more sections of the Lions MMA website"
+      }
+    ]
   },
   {
     "id": "high-tide-cafe",
     "name": "High Tide Cafe",
     "blurb": "Warm coastal site for a cafe on the beachfront in South Australia.",
-    "image": null,
+    "image": "/images/projects/high-tide-cafe/hero.webp",
     "url": "https://high-tide-cafe.vercel.app",
     "category": "mockup",
     "mockupBlurb": "a beachfront cafe in Semaphore, South Australia",
@@ -155,13 +378,36 @@
       "business": "High Tide Cafe is a relaxed beachfront cafe in Semaphore, South Australia. The site needed to capture the easy coastal atmosphere and make it simple for locals and visitors to check the menu and get in touch.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Soft coastal palette with a mobile-first layout built around menus, opening hours, and location.",
       "notable": "The design leans into the beachside setting (light, airy, and welcoming) so the site feels as easy as a coffee by the water."
-    }
+    },
+    "client": "High Tide Cafe",
+    "location": "Semaphore, South Australia",
+    "year": "2026",
+    "type": "Cafe",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/high-tide-cafe/desktop.webp",
+        "alt": "High Tide Cafe homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/high-tide-cafe/mobile.webp",
+        "alt": "High Tide Cafe on three phone screens"
+      },
+      {
+        "src": "/images/projects/high-tide-cafe/pages.webp",
+        "alt": "Two more sections of the High Tide Cafe website"
+      }
+    ]
   },
   {
     "id": "boxtek-boxing-gym",
     "name": "Boxtek Boxing Gym",
     "blurb": "High-energy site for a boxing gym in South Australia.",
-    "image": null,
+    "image": "/images/projects/boxtek-boxing-gym/hero.webp",
     "url": "https://boxtek-boxing-gym.vercel.app",
     "category": "mockup",
     "mockupBlurb": "a boxing gym in Edwardstown, South Australia",
@@ -171,7 +417,30 @@
       "business": "Boxtek Boxing Gym is a boxing gym in Edwardstown, South Australia, focused on fitness training and competitive boxing. They needed a site with real presence that could attract both serious fighters and fitness newcomers.",
       "built": "Built with Next.js and Tailwind CSS, deployed on Vercel. Bold black and gold palette with a video hero, class timetable, and a strong call to action for new members.",
       "notable": "The homepage hero leads with atmosphere over information, pulling visitors in before presenting the class schedule, coaches, and membership options."
-    }
+    },
+    "client": "Boxtek Boxing Gym",
+    "location": "Edwardstown, South Australia",
+    "year": "2026",
+    "type": "Boxing gym",
+    "stack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    "gallery": [
+      {
+        "src": "/images/projects/boxtek-boxing-gym/desktop.webp",
+        "alt": "Boxtek Boxing Gym homepage shown in a desktop browser"
+      },
+      {
+        "src": "/images/projects/boxtek-boxing-gym/mobile.webp",
+        "alt": "Boxtek Boxing Gym on three phone screens"
+      },
+      {
+        "src": "/images/projects/boxtek-boxing-gym/pages.webp",
+        "alt": "Two more sections of the Boxtek Boxing Gym website"
+      }
+    ]
   },
   {
     "id": "local-bakery",

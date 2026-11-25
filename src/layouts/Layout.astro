@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   heroNav?: boolean;
   hideCta?: boolean;
+  image?: string;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description = 'Alexandria Braniff, web developer for small businesses. Custom websites built from Vancouver, BC.',
   heroNav = false,
   hideCta = false,
+  image = '/images/ab-logo.png',
 } = Astro.props;
 ---
 
@@ -34,7 +36,7 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Alexandria Braniff" />
-    <meta property="og:image" content="https://alexandriabraniff.com/images/ab-logo.png" />
+    <meta property="og:image" content={new URL(image, 'https://alexandriabraniff.com').href} />
 
     <title>{title}</title>
 
@@ -160,6 +162,11 @@ const {
         color-scheme: light;
         font-size: 16px;
         overflow-x: hidden;
+      }
+
+      /* Fluid desktop: big monitors show the 1440 layout scaled up, not a small column */
+      @media (min-width: 1440px) {
+        html { font-size: calc(100vw / 90); }
       }
 
       body {

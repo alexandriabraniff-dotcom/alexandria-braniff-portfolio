@@ -10,6 +10,8 @@ interface Props {
     category?: string;
     mockupBlurb?: string;
     comingSoon: boolean;
+    type?: string;
+    location?: string;
     logos?: string[];
     detail: {
       business: string;
@@ -25,83 +27,52 @@ const isMockup = project.category === 'mockup';
 const modalId = `logo-modal-${project.id}`;
 ---
 
-<div class="flex flex-col overflow-hidden" style="border: 1px solid #E8E6E0; background: #fff;">
-  <!-- Image area: logo grid or single screenshot -->
-  {isLogoProject ? (
-    <div class="w-full flex-shrink-0 p-6" style="background: #fff;">
+{isLogoProject ? (
+  <div class="flex flex-col h-full overflow-hidden bg-white" style="border: 1px solid #E8E6E0;">
+    <div class="w-full flex-shrink-0 p-6 bg-white">
+      <img src={project.image} alt={`${project.name} logo`} class="w-full object-contain" style="max-height: 180px;" loading="lazy" />
+    </div>
+    <div class="flex flex-col flex-1 px-5 sm:px-6 pt-5 pb-6">
+      <p class="font-body text-[11px] tracking-[0.16em] uppercase text-muted mb-2">Brand identity</p>
+      <h3 class="font-serif text-text mb-3" style="font-size: 1.6rem; font-style: italic; font-weight: 400; line-height: 1.1;">{project.name}</h3>
+      <p class="font-body text-muted leading-relaxed mb-6 text-[0.95rem]">{project.blurb}</p>
+      <button class="logo-modal-trigger mt-auto self-start font-body text-sm font-semibold bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200" data-modal={modalId}>
+        View the brand identity
+      </button>
+    </div>
+  </div>
+) : project.comingSoon ? (
+  <div class="flex flex-col h-full overflow-hidden bg-white" style="border: 1px solid #E8E6E0;">
+    <div class="w-full aspect-[16/10] flex items-center justify-center bg-[#F2F1ED]">
+      <span class="font-body text-xs tracking-[0.15em] uppercase text-muted">Coming soon</span>
+    </div>
+    <div class="px-5 sm:px-6 pt-5 pb-6">
+      <h3 class="font-serif text-text" style="font-size: 1.6rem; font-style: italic; font-weight: 400;">{project.name}</h3>
+    </div>
+  </div>
+) : (
+  <a href={`/portfolio/${project.id}`} class="project-card group flex flex-col h-full focus-visible:outline-2 focus-visible:outline-offset-4">
+    <div class="relative w-full overflow-hidden bg-surface" style="border: 1px solid #E8E6E0;">
+      {isMockup && (
+        <span class="absolute top-3 left-3 z-10 font-body text-[0.625rem] font-semibold tracking-[0.14em] uppercase text-white px-2.5 py-1" style="background: rgba(153,27,27,0.9);">Concept project</span>
+      )}
       <img
         src={project.image}
-        alt={`${project.name} logo`}
-        class="w-full object-contain"
-        style="max-height: 180px;"
+        alt={`Homepage of the ${project.name} website`}
+        class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         loading="lazy"
+        width="1440"
+        height="900"
       />
     </div>
-  ) : (
-    <div class="w-full flex-shrink-0 relative" style="background: #fff;">
-      {isMockup && (
-        <div class="absolute top-0 left-0 right-0 z-10 flex items-center justify-center gap-1.5 py-1.5 px-3" style="background: rgba(185,28,28,0.82);">
-          <span class="font-body tracking-[0.14em] uppercase text-white" style="font-size: 0.55rem; font-weight: 600;">Concept / Mockup</span>
-        </div>
-      )}
-      {project.image ? (
-        <div class={isMockup ? 'pt-8' : ''}>
-          <img
-            src={project.image}
-            alt={`Screenshot of ${project.name}`}
-            class="w-full aspect-[1366/640] object-cover object-top p-4"
-            loading="lazy"
-          />
-        </div>
-      ) : (
-        <div class="w-full flex items-center justify-center" style={`min-height: 180px; background: #F2F1ED; ${isMockup ? 'padding-top: 2rem;' : ''}`}>
-          <span class="font-body text-xs tracking-[0.15em] uppercase text-muted">Image coming soon</span>
-        </div>
-      )}
+    <div class="flex flex-col flex-1 pt-5">
+      <p class="font-body text-[11px] tracking-[0.16em] uppercase text-muted mb-2">{project.type ?? 'Website'}{project.location ? ` · ${project.location}` : ''}</p>
+      <h3 class="font-serif text-text mb-2" style="font-size: clamp(1.5rem, 2.2vw, 2rem); font-style: italic; font-weight: 400; line-height: 1.1;">{project.name}</h3>
+      <p class="font-body text-muted leading-relaxed text-[0.95rem] mb-4">{project.blurb}</p>
+      <span class="mt-auto self-start font-body text-sm font-semibold text-text border-b border-text pb-0.5 group-hover:text-coral group-hover:border-coral transition-colors duration-200">View case study<span class="sr-only">: {project.name}</span></span>
     </div>
-  )}
-
-  <!-- Info -->
-  <div class="flex flex-col items-center text-center px-4 sm:px-6 pt-5 pb-6">
-    <h3 class="font-display font-bold text-text mb-3" style="font-size: 1.1rem; font-weight: 700;">
-      {project.name}
-    </h3>
-    <p class="font-body text-muted leading-relaxed mb-5 line-clamp-5 min-h-[8.125em]" style="font-size: 0.9rem;">
-      {isMockup
-        ? `This is my concept / mockup idea of what ${project.name}'s website could look like: ${project.mockupBlurb ?? project.blurb}.`
-        : (project.detail?.business ?? project.blurb)
-      }
-    </p>
-
-    {project.comingSoon ? (
-      <span class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5" style="background: #ccc; color: #fff; letter-spacing: 0.02em; cursor: default;">
-        Coming Soon
-      </span>
-    ) : isLogoProject ? (
-      <button
-        class="logo-modal-trigger w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
-        style="background: #111; color: #fff; letter-spacing: 0.02em; cursor: pointer;"
-        data-modal={modalId}
-        onmouseover="this.style.background='#333'"
-        onmouseout="this.style.background='#111'"
-      >
-        Brand Identity
-      </button>
-    ) : (
-      <a
-        href={project.url ?? '#'}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full inline-flex items-center justify-center font-body text-sm font-semibold py-3.5 transition-colors duration-200"
-        style="background: #111; color: #fff; letter-spacing: 0.02em;"
-        onmouseover="this.style.background='#333'"
-        onmouseout="this.style.background='#111'"
-      >
-        View Project
-      </a>
-    )}
-  </div>
-</div>
+  </a>
+)}
 
 <!-- Logo Modal -->
 {isLogoProject && (
