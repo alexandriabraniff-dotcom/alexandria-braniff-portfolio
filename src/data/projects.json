@@ -3,7 +3,7 @@
     "id": "sub-zero",
     "name": "SUB ZERO Festival",
     "blurb": "Event website for SUB ZERO 2026, twelve nights of electronic music and visual art at the Biltmore Cabaret.",
-    "url": null,
+    "url": "https://subzerofestival.ca/",
     "category": "web-design",
     "featured": true,
     "comingSoon": false,
@@ -38,7 +38,8 @@
     ],
     "scope": "Event site, designed from scratch",
     "eventSite": true,
-    "eventNote": "SUB ZERO was a limited-run event website, built for the 2026 festival at the Biltmore Cabaret and kept online only while the festival ran (December 3 to 20, 2026). That is why there is no live link. The images on this page show the site exactly as it ran."
+    "eventNote": "SUB ZERO is a limited-run event website, built for the 2026 festival at the Biltmore Cabaret (December 3 to 20, 2026). The site stays online for the festival, and the images on this page keep a record of it afterwards.",
+    "boardBg": "#0B1A3D"
   },
   {
     "id": "yale-saloon",
@@ -87,7 +88,8 @@
         "src": "/images/projects/yale-saloon/before-mobile.webp",
         "alt": "The previous Yale Saloon website on three phone screens, before the redesign"
       }
-    ]
+    ],
+    "boardBg": "#AADFEE"
   },
   {
     "id": "wildflower-line-dancing",
@@ -126,7 +128,8 @@
         "alt": "Two more sections of the Wildflower Line Dancing website"
       }
     ],
-    "scope": "New website, designed from scratch"
+    "scope": "New website, designed from scratch",
+    "boardBg": "#EBDDD0"
   },
   {
     "id": "beach-haven-cafe",
@@ -165,7 +168,8 @@
         "alt": "Two more sections of the Beach Haven Cafe website"
       }
     ],
-    "scope": "New website, designed from scratch"
+    "scope": "New website, designed from scratch",
+    "boardBg": "#DCE7E1"
   },
   {
     "id": "coach-pavle",
@@ -204,7 +208,8 @@
         "alt": "Two more sections of the Coach Pavle website"
       }
     ],
-    "scope": "New website, designed from scratch"
+    "scope": "New website, designed from scratch",
+    "boardBg": "#2A2124"
   },
   {
     "id": "rocha-jiu-jitsu",
@@ -244,7 +249,8 @@
         "alt": "Two more sections of the Rocha Academy of Jiu-Jitsu website"
       }
     ],
-    "scope": "New website, designed from scratch"
+    "scope": "New website, designed from scratch",
+    "boardBg": "#D9DECF"
   },
   {
     "id": "beach-haven-cafe-branding",
@@ -302,7 +308,8 @@
         "alt": "Two more sections of the Dublin Calling website"
       }
     ],
-    "scope": "Concept website, designed from scratch"
+    "scope": "Concept website, designed from scratch",
+    "boardBg": "#0F5132"
   },
   {
     "id": "cherry-bomb-cafe",
@@ -342,7 +349,8 @@
         "alt": "Two more sections of the Cherry Bomb Cafe website"
       }
     ],
-    "scope": "Concept website, designed from scratch"
+    "scope": "Concept website, designed from scratch",
+    "boardBg": "#EFE5D6"
   },
   {
     "id": "lions-mma",
@@ -383,7 +391,8 @@
         "alt": "Two more sections of the Lions MMA website"
       }
     ],
-    "scope": "Concept website, designed from scratch"
+    "scope": "Concept website, designed from scratch",
+    "boardBg": "#EEE8DC"
   },
   {
     "id": "high-tide-cafe",
@@ -423,7 +432,8 @@
         "alt": "Two more sections of the High Tide Cafe website"
       }
     ],
-    "scope": "Concept website, designed from scratch"
+    "scope": "Concept website, designed from scratch",
+    "boardBg": "#DDE4DE"
   },
   {
     "id": "boxtek-boxing-gym",
@@ -463,7 +473,8 @@
         "alt": "Two more sections of the Boxtek Boxing Gym website"
       }
     ],
-    "scope": "Concept website, designed from scratch"
+    "scope": "Concept website, designed from scratch",
+    "boardBg": "#1E1C17"
   },
   {
     "id": "local-bakery",
