@@ -2,8 +2,8 @@
   {
     "id": "sub-zero",
     "name": "SUB ZERO Festival",
-    "blurb": "Festival microsite for twelve nights of electronic music and visual art at the Biltmore Cabaret.",
-    "url": "https://subzerofestival.ca/",
+    "blurb": "Event website for SUB ZERO 2026, twelve nights of electronic music and visual art at the Biltmore Cabaret.",
+    "url": null,
     "category": "web-design",
     "featured": true,
     "comingSoon": false,
@@ -17,7 +17,7 @@
       "Google Tag Manager"
     ],
     "detail": {
-      "business": "SUB ZERO is a twelve-night electronic music and visual art festival at the Biltmore Cabaret in Vancouver. The festival needed a striking home for its lineup, schedule and tickets, ready in time for launch.",
+      "business": "SUB ZERO is a twelve-night electronic music and visual art festival at the Biltmore Cabaret in Vancouver. It needed a striking event website for its lineup, schedule and tickets.",
       "built": "Built in Webflow from the festival's own brand artwork, with icy custom typography, a frost-framed hero and a page for every night of the festival. Tuned for speed on phones and launched on its own domain.",
       "notable": "Every show night has its own page with set times and visual artists, linked from a schedule built around the official event posters, with a festival pass and single-night tickets one click away."
     },
@@ -35,19 +35,22 @@
         "src": "/images/projects/sub-zero/pages.webp",
         "alt": "Two more sections of the SUB ZERO Festival website"
       }
-    ]
+    ],
+    "scope": "Event site, designed from scratch",
+    "eventSite": true,
+    "eventNote": "SUB ZERO was a limited-run event website, built for the 2026 festival at the Biltmore Cabaret and kept online only while the festival ran (December 3 to 20, 2026). That is why there is no live link. The images on this page show the site exactly as it ran."
   },
   {
     "id": "yale-saloon",
     "name": "The Yale Saloon",
-    "blurb": "Official website for Vancouver's home for all things country on Granville Street.",
+    "blurb": "Complete redesign of the official website for Vancouver's home for all things country.",
     "image": "/images/projects/yale-saloon/hero.webp",
     "url": "https://yalesaloon.com",
     "category": "web-design",
     "featured": true,
     "comingSoon": false,
     "detail": {
-      "business": "The Yale Saloon is Vancouver's country bar at 1300 Granville St, home to line dancing, bull riding and live music four nights a week. The venue needed a site with real Western character that gets people through the door every night.",
+      "business": "The Yale Saloon is Vancouver's country bar on Granville Street, home to line dancing and bull riding. Its old website didn't capture the energy of the venue, so I redesigned it from the ground up.",
       "built": "Designed and built in Webflow with a custom Western identity: rope photo frames, hand-drawn decor, ticket-style buttons, a video hero and a book-matched wood texture, all tuned for fast loading on phones.",
       "notable": "A live events calendar connected to the ticketing system, group bookings straight into the events team, photo submissions and a menu, all meeting WCAG 2.2 AA accessibility."
     },
@@ -72,6 +75,17 @@
       {
         "src": "/images/projects/yale-saloon/pages.webp",
         "alt": "Two more sections of the The Yale Saloon website"
+      }
+    ],
+    "scope": "Redesign of an existing website",
+    "before": [
+      {
+        "src": "/images/projects/yale-saloon/before-desktop.webp",
+        "alt": "The previous Yale Saloon homepage on desktop, before the redesign"
+      },
+      {
+        "src": "/images/projects/yale-saloon/before-mobile.webp",
+        "alt": "The previous Yale Saloon website on three phone screens, before the redesign"
       }
     ]
   },
@@ -111,7 +125,8 @@
         "src": "/images/projects/wildflower-line-dancing/pages.webp",
         "alt": "Two more sections of the Wildflower Line Dancing website"
       }
-    ]
+    ],
+    "scope": "New website, designed from scratch"
   },
   {
     "id": "beach-haven-cafe",
@@ -149,7 +164,8 @@
         "src": "/images/projects/beach-haven-cafe/pages.webp",
         "alt": "Two more sections of the Beach Haven Cafe website"
       }
-    ]
+    ],
+    "scope": "New website, designed from scratch"
   },
   {
     "id": "coach-pavle",
@@ -187,7 +203,8 @@
         "src": "/images/projects/coach-pavle/pages.webp",
         "alt": "Two more sections of the Coach Pavle website"
       }
-    ]
+    ],
+    "scope": "New website, designed from scratch"
   },
   {
     "id": "rocha-jiu-jitsu",
@@ -226,7 +243,8 @@
         "src": "/images/projects/rocha-jiu-jitsu/pages.webp",
         "alt": "Two more sections of the Rocha Academy of Jiu-Jitsu website"
       }
-    ]
+    ],
+    "scope": "New website, designed from scratch"
   },
   {
     "id": "beach-haven-cafe-branding",
@@ -283,7 +301,8 @@
         "src": "/images/projects/dublin-calling/pages.webp",
         "alt": "Two more sections of the Dublin Calling website"
       }
-    ]
+    ],
+    "scope": "Concept website, designed from scratch"
   },
   {
     "id": "cherry-bomb-cafe",
@@ -322,7 +341,8 @@
         "src": "/images/projects/cherry-bomb-cafe/pages.webp",
         "alt": "Two more sections of the Cherry Bomb Cafe website"
       }
-    ]
+    ],
+    "scope": "Concept website, designed from scratch"
   },
   {
     "id": "lions-mma",
@@ -362,7 +382,8 @@
         "src": "/images/projects/lions-mma/pages.webp",
         "alt": "Two more sections of the Lions MMA website"
       }
-    ]
+    ],
+    "scope": "Concept website, designed from scratch"
   },
   {
     "id": "high-tide-cafe",
@@ -401,7 +422,8 @@
         "src": "/images/projects/high-tide-cafe/pages.webp",
         "alt": "Two more sections of the High Tide Cafe website"
       }
-    ]
+    ],
+    "scope": "Concept website, designed from scratch"
   },
   {
     "id": "boxtek-boxing-gym",
@@ -440,7 +462,8 @@
         "src": "/images/projects/boxtek-boxing-gym/pages.webp",
         "alt": "Two more sections of the Boxtek Boxing Gym website"
       }
-    ]
+    ],
+    "scope": "Concept website, designed from scratch"
   },
   {
     "id": "local-bakery",

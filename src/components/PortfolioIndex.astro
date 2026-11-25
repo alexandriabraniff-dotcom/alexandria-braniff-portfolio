@@ -22,15 +22,13 @@ const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) =>
   <!-- PAGE HEADER -->
   <section class="border-b border-surface2 relative overflow-hidden">
     <img src="/images/illustrations/silk.svg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity: 0.35;" />
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 lg:py-20 relative z-10 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-end">
-      <div>
-        <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-5">Selected work</p>
-        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2.5rem, 5.5vw, 5rem); font-style: italic; font-weight: 300;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 relative z-10">
+      <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-4">Projects</p>
+        <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 300;">
           Websites built from<br />scratch, for real businesses.
         </h1>
-      </div>
-      <p class="font-body text-base text-muted max-w-md leading-relaxed">
-        Every project below has its own case study: the brief, what I built, and a closer look at the finished site on desktop and mobile.
+      <p class="font-body text-sm text-muted max-w-md mt-4">
+        Custom websites for small businesses in Canada and Australia. Open any project to read the story behind it and see the finished site on desktop and mobile.
       </p>
     </div>
   </section>
@@ -53,12 +51,12 @@ const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) =>
   </div>
 
   <!-- PROJECT GRID -->
-  <section class="px-6 lg:px-12 py-14 lg:py-20">
+  <section class="px-6 lg:px-12 py-12 lg:py-16">
     <div class="max-w-7xl mx-auto">
-      <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-14 lg:gap-y-20">
+      <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, i) => (
           <div data-category={project.category ?? 'web-design'} style={(project.category ?? 'web-design') !== initialFilter ? 'display:none' : ''}>
-            <AnimateIn delay={(i % 2) * 80}>
+            <AnimateIn delay={(i % 3) * 80}>
               <ProjectCard project={project} />
             </AnimateIn>
           </div>

@@ -2,21 +2,20 @@
 // Case study page, one per project in src/data/projects.json.
 // Gallery images are exported from the Figma file
 // "Alexandria Braniff Portfolio – Case Study Boards" into
-// public/images/projects/<id>/{desktop,mobile,pages}.webp.
+// public/images/projects/<id>/{desktop,mobile,pages,before-*}.webp (2400x1500).
 import Layout from '../../layouts/Layout.astro';
 import AnimateIn from '../../components/AnimateIn.astro';
 import allProjects from '../../data/projects.json';
 
 export const prerender = true;
 
+type Img = { src: string; alt: string };
 type Project = (typeof allProjects)[number] & {
-  client?: string; location?: string; year?: string; type?: string;
-  stack?: string[]; gallery?: { src: string; alt: string }[];
+  client?: string; location?: string; year?: string; type?: string; scope?: string;
+  stack?: string[]; gallery?: Img[]; before?: Img[]; eventSite?: boolean; eventNote?: string;
 };
 
-const caseStudies = (allProjects as Project[]).filter(
-  (p) => !p.comingSoon && p.category !== 'logo-brand' && p.detail && p.gallery,
-);
+const isCaseStudy = (p: Project) => !p.comingSoon && p.category !== 'logo-brand' && !!p.detail && !!p.gallery;
 
 export function getStaticPaths() {
   return (allProjects as Project[])
@@ -24,18 +23,28 @@ export function getStaticPaths() {
     .map((p) => ({ params: { slug: p.id } }));
 }
 
+const caseStudies = (allProjects as Project[]).filter(isCaseStudy);
 const { slug } = Astro.params;
 const project = caseStudies.find((p) => p.id === slug)!;
 const isMockup = project.category === 'mockup';
 
-// Next project: the next one in the same group, wrapping around.
 const group = caseStudies.filter((p) => (p.category === 'mockup') === isMockup);
 const next = group[(group.indexOf(project) + 1) % group.length];
 
 const domain = project.url ? new URL(project.url).hostname.replace(/^www\./, '') : null;
-const [lead, ...rest] = project.gallery!;
+const gallery = project.gallery!;
+const before = project.before ?? [];
+const [lead, ...rest] = gallery;
+// Lightbox order: lead, before/after pairs, then the rest.
+const pairs = before.map((b, i) => ({ before: b, after: gallery[i] }));
+const lightbox: Img[] = before.length
+  ? [...pairs.flatMap((p) => [p.before, p.after]), ...gallery.slice(before.length)]
+  : gallery;
+const lbIndex = (src: string) => lightbox.findIndex((i) => i.src === src);
+
 const facts = [
   { label: 'Client', value: project.client ?? project.name },
+  { label: 'Project', value: project.scope },
   { label: 'Location', value: project.location },
   { label: 'Year', value: project.year },
   { label: 'Built with', value: project.stack?.join(', ') },
@@ -55,33 +64,40 @@ const story = [
   <article class="light-layout">
 
     <!-- HEADER -->
-    <header class="px-6 lg:px-12 pt-10 lg:pt-14 pb-10 lg:pb-14">
+    <header class="px-6 lg:px-12 pt-6 lg:pt-8 pb-8">
       <div class="max-w-7xl mx-auto">
-        <a href={isMockup ? '/portfolio/mockup-projects' : '/portfolio'} class="inline-flex items-center min-h-[45px] font-body text-xs tracking-[0.14em] uppercase text-muted hover:text-text transition-colors duration-200">
+        <a href={isMockup ? '/portfolio/mockup-projects' : '/portfolio'} class="inline-flex items-center min-h-[45px] font-body text-[11px] tracking-[0.14em] uppercase text-muted hover:text-text transition-colors duration-200">
           All projects
         </a>
-        <div class="grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-16 items-end mt-6">
+        <div class="grid lg:grid-cols-[1.3fr_1fr] gap-6 lg:gap-14 items-end mt-3">
           <AnimateIn>
-            <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-5">{project.type}{project.location ? ` · ${project.location}` : ''}</p>
-            <h1 class="font-serif text-text leading-[0.92]" style="font-size: clamp(2.75rem, 7vw, 6.25rem); font-style: italic; font-weight: 300;">{project.name}</h1>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-3">{project.type}{project.location ? ` · ${project.location}` : ''}</p>
+            <h1 class="font-serif text-text leading-[0.95]" style="font-size: clamp(2.25rem, 4.5vw, 4rem); font-style: italic; font-weight: 300;">{project.name}</h1>
           </AnimateIn>
           <AnimateIn delay={100}>
-            <p class="font-body text-base lg:text-lg text-muted leading-relaxed mb-7">{project.blurb}</p>
+            <p class="font-body text-sm lg:text-[1rem] text-muted leading-relaxed mb-5">{project.blurb}</p>
             <div class="flex flex-col sm:flex-row gap-3">
               {project.url && (
-                <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-7 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
                   Visit the live site<span class="sr-only"> (opens in a new tab)</span>
                 </a>
               )}
-              <a href="#gallery" class="inline-flex items-center justify-center font-body font-semibold text-sm text-text border border-surface2 px-7 py-3 min-h-[45px] hover:border-text transition-colors duration-200">
-                See the images
+              <a href="#gallery" class={`inline-flex items-center justify-center font-body font-semibold text-sm px-6 py-3 min-h-[45px] transition-colors duration-200 ${project.url ? 'text-text border border-surface2 hover:border-text' : 'bg-text text-[#F7F6F2] hover:bg-muted'}`}>
+                {before.length ? 'See the before and after' : 'See the images'}
               </a>
             </div>
           </AnimateIn>
         </div>
 
+        {project.eventNote && (
+          <div class="mt-6 px-4 py-3 max-w-3xl bg-surface border-l-2 border-text">
+            <p class="font-body text-[11px] font-semibold mb-1 tracking-[0.14em] uppercase text-text">Event website</p>
+            <p class="font-body text-sm text-muted leading-relaxed">{project.eventNote}</p>
+          </div>
+        )}
+
         {isMockup && (
-          <div class="mt-8 px-4 py-3 max-w-3xl" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <div class="mt-6 px-4 py-3 max-w-3xl" style="background: #FEF2F2; border: 1px solid #FECACA;">
             <p class="font-body text-xs font-semibold mb-0.5 tracking-[0.1em] uppercase" style="color: #991B1B;">Concept project</p>
             <p class="font-body text-sm" style="color: #991B1B;">This is not an official {project.name} website. I designed and built it as my own concept to show what their site could look like. It has not been purchased or used by the business.</p>
           </div>
@@ -89,82 +105,108 @@ const story = [
       </div>
     </header>
 
-    <!-- LEAD IMAGE -->
+    <!-- LEAD IMAGE: sized so the whole image fits on screen below the header -->
     <div class="px-6 lg:px-12">
-      <div class="max-w-7xl mx-auto">
-        <button type="button" class="gallery-open block w-full overflow-hidden" data-index="0" aria-label={`Enlarge image: ${lead.alt}`}>
-          <img src={lead.src} alt={lead.alt} width="2400" height="1500" class="w-full h-auto" fetchpriority="high" />
-        </button>
-      </div>
+      <button type="button" class="gallery-open fit-screen block mx-auto overflow-hidden" data-index={lbIndex(lead.src)} aria-label={`Enlarge image: ${lead.alt}`}>
+        <img src={lead.src} alt={lead.alt} width="2400" height="1500" class="w-full h-auto" fetchpriority="high" />
+      </button>
     </div>
 
     <!-- FACTS -->
-    <section class="px-6 lg:px-12 pt-12 lg:pt-16" aria-label="Project facts">
-      <dl class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-8 border-t border-surface2 pt-8">
+    <section class="px-6 lg:px-12 pt-10" aria-label="Project facts">
+      <dl class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-6 border-t border-surface2 pt-6">
         {facts.map((f) => (
           <div>
-            <dt class="font-body text-[11px] tracking-[0.18em] uppercase text-muted mb-2">{f.label}</dt>
+            <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted mb-1.5">{f.label}</dt>
             <dd class="font-body text-sm text-text leading-relaxed">{f.value}</dd>
           </div>
         ))}
-        {domain && (
-          <div>
-            <dt class="font-body text-[11px] tracking-[0.18em] uppercase text-muted mb-2">Website</dt>
-            <dd class="font-body text-sm"><a href={project.url} target="_blank" rel="noopener noreferrer" class="text-text underline underline-offset-4 decoration-surface2 hover:decoration-text break-all">{domain}<span class="sr-only"> (opens in a new tab)</span></a></dd>
-          </div>
-        )}
+        <div>
+          <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted mb-1.5">Website</dt>
+          <dd class="font-body text-sm text-text leading-relaxed">
+            {domain ? (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 decoration-surface2 hover:decoration-text break-all">{domain}<span class="sr-only"> (opens in a new tab)</span></a>
+            ) : project.eventSite ? 'Online for the festival only' : 'Not public'}
+          </dd>
+        </div>
       </dl>
     </section>
 
     <!-- STORY -->
-    <section class="px-6 lg:px-12 py-16 lg:py-24">
-      <div class="max-w-7xl mx-auto space-y-12 lg:space-y-16">
+    <section class="px-6 lg:px-12 py-12 lg:py-16">
+      <div class="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         {story.map((s, i) => (
           <AnimateIn>
-            <div class="grid lg:grid-cols-[1fr_2fr] gap-4 lg:gap-16">
-              <h2 class="font-body text-[11px] font-semibold tracking-[0.2em] uppercase text-coral-dark pt-2">{s.label}</h2>
-              <p class={i === 0 ? 'font-serif text-text leading-snug' : 'font-body text-muted leading-relaxed text-base lg:text-lg max-w-3xl'} style={i === 0 ? 'font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 400;' : ''}>{s.text}</p>
+            <div class="grid lg:grid-cols-[1fr_2fr] gap-3 lg:gap-14">
+              <h2 class="font-body text-[10px] font-semibold tracking-[0.2em] uppercase text-coral-dark pt-1.5">{s.label}</h2>
+              <p class={i === 0 ? 'font-serif text-text leading-snug max-w-3xl' : 'font-body text-muted leading-relaxed text-sm lg:text-[1rem] max-w-3xl'} style={i === 0 ? 'font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 400;' : ''}>{s.text}</p>
             </div>
           </AnimateIn>
         ))}
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="px-6 lg:px-12 pb-16 lg:pb-24 scroll-mt-24" aria-labelledby="gallery-title">
-      <div class="max-w-7xl mx-auto">
-        <h2 id="gallery-title" class="font-serif text-text mb-8" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">A closer look</h2>
-        <div class="grid gap-6 lg:gap-8">
-          {rest.map((img, i) => (
-            <AnimateIn>
-              <button type="button" class="gallery-open block w-full overflow-hidden" data-index={i + 1} aria-label={`Enlarge image: ${img.alt}`}>
-                <img src={img.src} alt={img.alt} width="2400" height="1500" class="w-full h-auto" loading="lazy" />
-              </button>
-            </AnimateIn>
-          ))}
-        </div>
-        {project.url && (
-          <div class="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-surface2 pt-10">
-            <p class="font-serif text-text" style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-style: italic; font-weight: 300;">Want to see it in action?</p>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-7 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
-              Visit {domain}<span class="sr-only"> (opens in a new tab)</span>
-            </a>
+    <!-- BEFORE AND AFTER (redesigns only) -->
+    {before.length > 0 && (
+      <section id="gallery" class="px-6 lg:px-12 pb-12 lg:pb-16 scroll-mt-24" aria-labelledby="ba-title">
+        <div class="max-w-7xl mx-auto">
+          <h2 id="ba-title" class="font-serif text-text mb-2" style="font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-style: italic; font-weight: 300;">Before and after</h2>
+          <p class="font-body text-sm text-muted mb-6 max-w-2xl">The previous website on the left, the redesign on the right. Select any image to see it larger.</p>
+          <div class="space-y-8">
+            {pairs.map((pair) => (
+              <AnimateIn>
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+                  {[['Before', pair.before], ['After', pair.after]].map(([label, img]) => (
+                    <figure>
+                      <figcaption class="font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-2" style={label === 'Before' ? 'color: var(--color-muted);' : 'color: var(--color-coral-dark);'}>{label}</figcaption>
+                      <button type="button" class="gallery-open block w-full overflow-hidden" data-index={lbIndex((img as Img).src)} aria-label={`Enlarge image: ${(img as Img).alt}`}>
+                        <img src={(img as Img).src} alt={(img as Img).alt} width="2400" height="1500" class="w-full h-auto" loading="lazy" />
+                      </button>
+                    </figure>
+                  ))}
+                </div>
+              </AnimateIn>
+            ))}
           </div>
-        )}
+        </div>
+      </section>
+    )}
+
+    <!-- GALLERY -->
+    <section id={before.length ? 'more' : 'gallery'} class="px-6 lg:px-12 pb-12 lg:pb-16 scroll-mt-24" aria-labelledby="gallery-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="gallery-title" class="font-serif text-text mb-6" style="font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-style: italic; font-weight: 300;">{before.length ? 'More of the redesign' : 'A closer look'}</h2>
       </div>
+      <div class="space-y-6 lg:space-y-8">
+        {(before.length ? gallery.slice(before.length) : rest).map((img) => (
+          <AnimateIn>
+            <button type="button" class="gallery-open fit-screen block mx-auto overflow-hidden" data-index={lbIndex(img.src)} aria-label={`Enlarge image: ${img.alt}`}>
+              <img src={img.src} alt={img.alt} width="2400" height="1500" class="w-full h-auto" loading="lazy" />
+            </button>
+          </AnimateIn>
+        ))}
+      </div>
+      {project.url && (
+        <div class="max-w-7xl mx-auto mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-surface2 pt-8">
+          <p class="font-serif text-text" style="font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-style: italic; font-weight: 300;">Want to see it in action?</p>
+          <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
+            Visit {domain}<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+      )}
     </section>
 
     <!-- NEXT PROJECT -->
     {next && next.id !== project.id && (
-      <section class="border-t border-surface2 px-6 lg:px-12 py-16 lg:py-24 bg-surface">
-        <a href={`/portfolio/${next.id}`} class="group max-w-7xl mx-auto grid md:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-center">
+      <section class="border-t border-surface2 px-6 lg:px-12 py-12 lg:py-16 bg-surface">
+        <a href={`/portfolio/${next.id}`} class="group max-w-5xl mx-auto grid md:grid-cols-[1fr_1.3fr] gap-6 lg:gap-12 items-center">
           <div>
-            <p class="font-body text-[11px] tracking-[0.25em] uppercase text-muted mb-4">Next project</p>
-            <p class="font-serif text-text leading-[0.95] mb-4 group-hover:text-coral-dark transition-colors duration-200" style="font-size: clamp(2.25rem, 5vw, 4.5rem); font-style: italic; font-weight: 300;">{next.name}</p>
-            <p class="font-body text-muted leading-relaxed">{next.blurb}</p>
+            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-3">Next project</p>
+            <p class="font-serif text-text leading-[0.95] mb-3 group-hover:text-coral-dark transition-colors duration-200" style="font-size: clamp(1.9rem, 3.6vw, 3.2rem); font-style: italic; font-weight: 300;">{next.name}</p>
+            <p class="font-body text-sm text-muted leading-relaxed">{next.blurb}</p>
           </div>
-          <div class="overflow-hidden" style="border: 1px solid #E8E6E0;">
-            <img src={next.image} alt="" width="1440" height="900" class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" loading="lazy" />
+          <div class="overflow-hidden bg-white p-3" style="border: 1px solid #E8E6E0;">
+            <img src={next.image} alt="" width="1600" height="1000" class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" loading="lazy" />
           </div>
         </a>
       </section>
@@ -175,7 +217,7 @@ const story = [
   <dialog id="lightbox" class="lightbox" aria-label={`${project.name} images`}>
     <div class="lightbox-inner">
       <img id="lightbox-img" src="" alt="" />
-      <p id="lightbox-caption" class="font-body text-sm text-[#F7F6F2]/80 mt-4 text-center"></p>
+      <p id="lightbox-caption" class="font-body text-sm text-[#F7F6F2]/80 mt-3 text-center"></p>
       <div class="lightbox-controls">
         <button type="button" id="lb-prev" class="lb-btn">Previous</button>
         <button type="button" id="lb-close" class="lb-btn">Close</button>
@@ -185,7 +227,7 @@ const story = [
   </dialog>
 </Layout>
 
-<script define:vars={{ images: project.gallery }}>
+<script define:vars={{ images: lightbox }}>
   window.__GALLERY__ = images;
 </script>
 
@@ -226,6 +268,8 @@ const story = [
 </script>
 
 <style>
+  /* Whole 16:10 image fits on screen: height = viewport minus room for the header */
+  .fit-screen { width: min(100%, 80rem, calc((100svh - 11rem) * 1.6)); }
   .gallery-open { cursor: zoom-in; }
   .gallery-open img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
   .gallery-open:hover img { transform: scale(1.015); }
@@ -236,9 +280,9 @@ const story = [
   }
   .lightbox::backdrop { background: transparent; }
   .lightbox[open] { display: flex; align-items: center; justify-content: center; }
-  .lightbox-inner { width: min(92vw, 160dvh); padding: 1rem; display: flex; flex-direction: column; align-items: center; }
-  .lightbox-inner img { width: 100%; height: auto; max-height: 78dvh; object-fit: contain; }
-  .lightbox-controls { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
+  .lightbox-inner { width: min(94vw, calc((100dvh - 9rem) * 1.6)); padding: 1rem; display: flex; flex-direction: column; align-items: center; }
+  .lightbox-inner img { width: 100%; height: auto; }
+  .lightbox-controls { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; justify-content: center; }
   .lb-btn {
     font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.875rem; font-weight: 600; color: #F7F6F2;
     border: 1px solid rgba(247, 246, 242, 0.45); padding: 0.75rem 1.5rem; min-height: 45px; min-width: 7rem;
