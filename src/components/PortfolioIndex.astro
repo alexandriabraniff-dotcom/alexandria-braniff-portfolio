@@ -33,20 +33,17 @@ const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) =>
     </div>
   </section>
 
-  <!-- CATEGORY TABS -->
-  <div class="border-b border-surface2 px-6 lg:px-12 overflow-x-auto">
-    <div class="max-w-7xl mx-auto flex items-center" role="tablist" aria-label="Project categories">
-      {tabs.map((t) => (
-        <button
-          class="port-cat-btn font-body text-xs font-medium tracking-[0.06em] uppercase px-5 sm:px-6 py-4 min-h-[45px] border-b-2 border-transparent text-muted hover:text-text whitespace-nowrap transition-colors duration-200"
-          data-filter={t.key}
-          data-href={t.href}
-          role="tab"
-          aria-selected="false"
-        >
-          {t.label} <span class="text-muted ml-1">{counts[t.key]}</span>
-        </button>
-      ))}
+  <!-- CATEGORY TABS: wrapped buttons on phones so all three are always visible, underline tabs from sm up -->
+  <div class="border-b border-surface2 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto py-4 sm:py-0">
+      <p class="sm:hidden font-body text-[10px] tracking-[0.2em] uppercase text-muted mb-3" id="tabs-hint">Choose a category</p>
+      <div class="port-tabs" role="tablist" aria-label="Project categories">
+        {tabs.map((t) => (
+          <button class="port-cat-btn font-body font-medium uppercase" data-filter={t.key} data-href={t.href} role="tab" aria-selected="false">
+            {t.label} <span class="port-count">{counts[t.key]}</span>
+          </button>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -77,10 +74,6 @@ const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) =>
     filterBtns.forEach((b) => {
       const on = b.dataset.filter === filter;
       b.setAttribute('aria-selected', String(on));
-      b.classList.toggle('border-text', on);
-      b.classList.toggle('text-text', on);
-      b.classList.toggle('border-transparent', !on);
-      b.classList.toggle('text-muted', !on);
     });
     let visible = 0;
     items.forEach((el) => {
@@ -100,3 +93,26 @@ const counts = Object.fromEntries(tabs.map((t) => [t.key, projects.filter((p) =>
   filterBtns.forEach((btn) => btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'web-design', true)));
   window.addEventListener('popstate', (e) => applyFilter((e.state?.filter as string) ?? root?.dataset.initialFilter ?? 'web-design'));
 </script>
+
+<style>
+  /* Phones: three full-width stacked buttons, the selected one filled. */
+  .port-tabs { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+  .port-cat-btn {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    min-height: 48px; padding: 0.75rem 1rem; font-size: 0.75rem; letter-spacing: 0.06em;
+    color: #1B2A4A; border: 1px solid #D5D3CB; background: #fff; text-align: left;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .port-cat-btn[aria-selected="true"] { background: #1B2A4A; border-color: #1B2A4A; color: #F7F6F2; }
+  .port-count { font-weight: 600; opacity: 0.75; }
+  /* sm and up: the original underline tabs in one row. */
+  @media (min-width: 640px) {
+    .port-tabs { display: flex; gap: 0; }
+    .port-cat-btn {
+      justify-content: flex-start; border: 0; border-bottom: 2px solid transparent; background: transparent;
+      padding: 1rem 1.5rem; min-height: 45px; white-space: nowrap; color: #556080;
+    }
+    .port-cat-btn:hover { color: #1B2A4A; }
+    .port-cat-btn[aria-selected="true"] { background: transparent; color: #1B2A4A; border-bottom-color: #1B2A4A; }
+  }
+</style>

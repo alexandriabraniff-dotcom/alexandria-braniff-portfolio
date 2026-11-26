@@ -5,6 +5,7 @@
 // public/images/projects/<id>/{desktop,mobile,pages,before-*}.webp (2400x1500).
 import Layout from '../../layouts/Layout.astro';
 import AnimateIn from '../../components/AnimateIn.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import allProjects from '../../data/projects.json';
 
 export const prerender = true;
@@ -28,8 +29,14 @@ const { slug } = Astro.params;
 const project = caseStudies.find((p) => p.id === slug)!;
 const isMockup = project.category === 'mockup';
 
+// Other projects: the rest of this group starting from the next one (wrapping
+// round), then the other group (client sites vs concepts).
 const group = caseStudies.filter((p) => (p.category === 'mockup') === isMockup);
-const next = group[(group.indexOf(project) + 1) % group.length];
+const at = group.indexOf(project);
+const others = [
+  ...group.slice(at + 1), ...group.slice(0, at),
+  ...caseStudies.filter((p) => (p.category === 'mockup') !== isMockup),
+];
 
 const domain = project.url ? new URL(project.url).hostname.replace(/^www\./, '') : null;
 const gallery = project.gallery!;
@@ -45,7 +52,7 @@ const bandStyle = `--band:${project.boardBg ?? '#EDECEA'}`;
 
 const facts = [
   { label: 'Client', value: project.client ?? project.name },
-  { label: 'Project', value: project.scope },
+  { label: 'Services', value: project.scope },
   { label: 'Location', value: project.location },
   { label: 'Year', value: project.year },
   { label: 'Built with', value: project.stack?.join(', ') },
@@ -113,37 +120,44 @@ const story = [
       </button>
     </div>
 
-    <!-- FACTS -->
-    <section class="px-6 lg:px-12 pt-10" aria-label="Project facts">
-      <dl class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-6 border-t border-surface2 pt-6">
-        {facts.map((f) => (
-          <div>
-            <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted mb-1.5">{f.label}</dt>
-            <dd class="font-body text-sm text-text leading-relaxed">{f.value}</dd>
-          </div>
-        ))}
-        <div>
-          <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted mb-1.5">Website</dt>
-          <dd class="font-body text-sm text-text leading-relaxed">
-            {domain ? (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 decoration-surface2 hover:decoration-text break-all">{domain}<span class="sr-only"> (opens in a new tab)</span></a>
-            ) : project.eventSite ? 'Online for the festival only' : 'Not public'}
-          </dd>
-        </div>
-      </dl>
-    </section>
-
-    <!-- STORY -->
+    <!-- STORY + PROJECT DETAILS -->
     <section class="px-6 lg:px-12 py-12 lg:py-16">
-      <div class="max-w-7xl mx-auto space-y-8 lg:space-y-10">
-        {story.map((s, i) => (
-          <AnimateIn>
-            <div class="grid lg:grid-cols-[1fr_2fr] gap-3 lg:gap-14">
-              <h2 class="font-body text-[10px] font-semibold tracking-[0.2em] uppercase text-coral-dark pt-1.5">{s.label}</h2>
-              <p class={i === 0 ? 'font-serif text-text leading-snug max-w-3xl' : 'font-body text-muted leading-relaxed text-sm lg:text-[1rem] max-w-3xl'} style={i === 0 ? 'font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 400;' : ''}>{s.text}</p>
-            </div>
-          </AnimateIn>
-        ))}
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.7fr_1fr] gap-10 lg:gap-16 items-start">
+        <div class="space-y-8 lg:space-y-10">
+          {story.map((s, i) => (
+            <AnimateIn>
+              <h2 class="font-body text-[10px] font-semibold tracking-[0.2em] uppercase text-coral-dark mb-3">{s.label}</h2>
+              <p class={i === 0 ? 'font-serif text-text leading-snug' : 'font-body text-muted leading-relaxed text-sm lg:text-[1rem]'} style={i === 0 ? 'font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 400;' : ''}>{s.text}</p>
+            </AnimateIn>
+          ))}
+        </div>
+
+        <AnimateIn delay={100}>
+          <aside class="bg-white p-6 lg:p-7 lg:sticky" style="border: 1px solid #E8E6E0; top: calc(var(--hdr, 4.5rem) + 1.5rem);" aria-labelledby="facts-title">
+            <h2 id="facts-title" class="font-body text-[10px] font-semibold tracking-[0.2em] uppercase text-text mb-4">Project details</h2>
+            <dl class="divide-y divide-surface2">
+              {facts.map((f) => (
+                <div class="grid grid-cols-[6.5rem_1fr] gap-4 py-3">
+                  <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted pt-1">{f.label}</dt>
+                  <dd class="font-body text-sm text-text leading-relaxed">{f.value}</dd>
+                </div>
+              ))}
+              <div class="grid grid-cols-[6.5rem_1fr] gap-4 py-3">
+                <dt class="font-body text-[10px] tracking-[0.18em] uppercase text-muted pt-1">Website</dt>
+                <dd class="font-body text-sm text-text leading-relaxed">
+                  {domain ? (
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 decoration-surface2 hover:decoration-text break-all">{domain}<span class="sr-only"> (opens in a new tab)</span></a>
+                  ) : project.eventSite ? 'Online for the festival only' : 'Not public'}
+                </dd>
+              </div>
+            </dl>
+            {project.url && (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="mt-5 w-full inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
+                Visit the live site<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            )}
+          </aside>
+        </AnimateIn>
       </div>
     </section>
 
@@ -182,30 +196,33 @@ const story = [
         </div>
       ))}
       {project.url && (
-        <div class="max-w-7xl mx-6 lg:mx-12 xl:mx-auto mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-surface2 pt-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-10"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-surface2 pt-8">
           <p class="font-serif text-text" style="font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-style: italic; font-weight: 300;">Want to see it in action?</p>
           <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center font-body font-semibold text-sm bg-text text-[#F7F6F2] px-6 py-3 min-h-[45px] hover:bg-muted transition-colors duration-200">
             Visit {domain}<span class="sr-only"> (opens in a new tab)</span>
           </a>
-        </div>
+        </div></div>
       )}
     </section>
 
-    <!-- NEXT PROJECT -->
-    {next && next.id !== project.id && (
-      <section class="border-t border-surface2 px-6 lg:px-12 py-12 lg:py-16 bg-surface">
-        <a href={`/portfolio/${next.id}`} class="group max-w-5xl mx-auto grid md:grid-cols-[1fr_1.3fr] gap-6 lg:gap-12 items-center">
-          <div>
-            <p class="font-body text-[10px] tracking-[0.25em] uppercase text-muted mb-3">Next project</p>
-            <p class="font-serif text-text leading-[0.95] mb-3 group-hover:text-coral-dark transition-colors duration-200" style="font-size: clamp(1.9rem, 3.6vw, 3.2rem); font-style: italic; font-weight: 300;">{next.name}</p>
-            <p class="font-body text-sm text-muted leading-relaxed">{next.blurb}</p>
+    <!-- OTHER PROJECTS: same cards as the Projects page, in a row people can page through -->
+    <section class="border-t border-surface2 py-12 lg:py-16 bg-surface" aria-labelledby="others-title">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex items-end justify-between gap-4 mb-8">
+          <h2 id="others-title" class="font-serif text-text" style="font-size: clamp(1.8rem, 3.5vw, 3rem); font-style: italic; font-weight: 300;">Other projects</h2>
+          <div class="flex gap-2">
+            <button type="button" id="others-prev" class="others-btn" aria-controls="others-track">Previous</button>
+            <button type="button" id="others-next" class="others-btn" aria-controls="others-track">Next</button>
           </div>
-          <div class="overflow-hidden bg-white p-3" style="border: 1px solid #E8E6E0;">
-            <img src={next.image} alt="" width="1600" height="1000" class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" loading="lazy" />
-          </div>
-        </a>
-      </section>
-    )}
+        </div>
+        <ul id="others-track" class="others-track" aria-label="Other projects">
+          {others.map((p) => (
+            <li class="others-item"><ProjectCard project={p} /></li>
+          ))}
+        </ul>
+        <p id="others-status" class="font-body text-xs text-muted mt-4" aria-live="polite"></p>
+      </div>
+    </section>
   </article>
 
   <!-- LIGHTBOX -->
@@ -267,6 +284,30 @@ const story = [
     document.documentElement.style.overflow = '';
     opener?.focus();
   });
+
+  // Other projects row: Previous / Next move one card at a time.
+  const track = document.getElementById('others-track');
+  const prevBtn = document.getElementById('others-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('others-next') as HTMLButtonElement | null;
+  const status = document.getElementById('others-status');
+  if (track && prevBtn && nextBtn) {
+    const items = Array.from(track.children) as HTMLElement[];
+    const step = () => (items[1] ? items[1].offsetLeft - items[0].offsetLeft : track.clientWidth);
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= max;
+      const first = Math.round(track.scrollLeft / step());
+      const shown = Math.max(1, Math.round(track.clientWidth / step()));
+      if (status) status.textContent = `Showing ${first + 1} to ${Math.min(first + shown, items.length)} of ${items.length} projects`;
+    };
+    prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    let t: number | undefined;
+    track.addEventListener('scroll', () => { clearTimeout(t); t = window.setTimeout(update, 80); });
+    window.addEventListener('resize', update);
+    update();
+  }
 </script>
 
 <style>
@@ -305,5 +346,24 @@ const story = [
     transition: background-color 0.2s, color 0.2s;
   }
   .lb-btn:hover, .lb-btn:focus-visible { background: #F7F6F2; color: #1B2A4A; }
+
+  .others-track {
+    display: grid; grid-auto-flow: column; gap: 1.5rem;
+    grid-auto-columns: 85%;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    list-style: none; margin: 0; padding: 0;
+  }
+  .others-track::-webkit-scrollbar { display: none; }
+  .others-item { scroll-snap-align: start; display: flex; flex-direction: column; }
+  .others-item > :global(*) { flex: 1; }
+  @media (min-width: 640px) { .others-track { grid-auto-columns: calc((100% - 1.5rem) / 2); } }
+  @media (min-width: 1024px) { .others-track { grid-auto-columns: calc((100% - 3rem) / 3); } }
+  .others-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8125rem; font-weight: 600; color: #1B2A4A;
+    border: 1px solid #1B2A4A; background: transparent; padding: 0.6rem 1.1rem; min-height: 45px;
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+  }
+  .others-btn:hover:not(:disabled), .others-btn:focus-visible { background: #1B2A4A; color: #F7F6F2; }
+  .others-btn:disabled { opacity: 0.35; cursor: default; }
 
 </style>

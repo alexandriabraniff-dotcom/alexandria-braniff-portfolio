@@ -7,7 +7,7 @@
     "category": "web-design",
     "featured": true,
     "comingSoon": false,
-    "client": "Biltmore Cabaret and Stamina",
+    "client": "The MRG Group, owners of the Biltmore Cabaret",
     "location": "Vancouver, BC",
     "year": "2026",
     "type": "Music and arts festival",
@@ -36,7 +36,7 @@
         "alt": "Two more sections of the SUB ZERO Festival website"
       }
     ],
-    "scope": "Event site, designed from scratch",
+    "scope": "Festival website, designed and built from scratch",
     "eventSite": true,
     "eventNote": "SUB ZERO is a limited-run event website, built for the 2026 festival at the Biltmore Cabaret (December 3 to 20, 2026). The site stays online for the festival, and the images on this page keep a record of it afterwards.",
     "boardBg": "#0B1A3D"
@@ -78,7 +78,7 @@
         "alt": "Two more sections of the The Yale Saloon website"
       }
     ],
-    "scope": "Redesign of an existing website",
+    "scope": "Full redesign and rebuild of their existing website",
     "before": [
       {
         "src": "/images/projects/yale-saloon/before-desktop.webp",
@@ -128,7 +128,7 @@
         "alt": "Two more sections of the Wildflower Line Dancing website"
       }
     ],
-    "scope": "New website, designed from scratch",
+    "scope": "Custom website, designed and built from scratch",
     "boardBg": "#EBDDD0"
   },
   {
@@ -168,7 +168,7 @@
         "alt": "Two more sections of the Beach Haven Cafe website"
       }
     ],
-    "scope": "New website, designed from scratch",
+    "scope": "Custom website, designed and built from scratch",
     "boardBg": "#DCE7E1"
   },
   {
@@ -208,7 +208,7 @@
         "alt": "Two more sections of the Coach Pavle website"
       }
     ],
-    "scope": "New website, designed from scratch",
+    "scope": "Custom website, designed and built from scratch",
     "boardBg": "#2A2124"
   },
   {
@@ -249,7 +249,7 @@
         "alt": "Two more sections of the Rocha Academy of Jiu-Jitsu website"
       }
     ],
-    "scope": "New website, designed from scratch",
+    "scope": "Custom website, designed and built from scratch",
     "boardBg": "#D9DECF"
   },
   {
@@ -308,7 +308,7 @@
         "alt": "Two more sections of the Dublin Calling website"
       }
     ],
-    "scope": "Concept website, designed from scratch",
+    "scope": "Concept website, designed and built as my own idea",
     "boardBg": "#0F5132"
   },
   {
@@ -349,7 +349,7 @@
         "alt": "Two more sections of the Cherry Bomb Cafe website"
       }
     ],
-    "scope": "Concept website, designed from scratch",
+    "scope": "Concept website, designed and built as my own idea",
     "boardBg": "#EFE5D6"
   },
   {
@@ -391,7 +391,7 @@
         "alt": "Two more sections of the Lions MMA website"
       }
     ],
-    "scope": "Concept website, designed from scratch",
+    "scope": "Concept website, designed and built as my own idea",
     "boardBg": "#EEE8DC"
   },
   {
@@ -432,7 +432,7 @@
         "alt": "Two more sections of the High Tide Cafe website"
       }
     ],
-    "scope": "Concept website, designed from scratch",
+    "scope": "Concept website, designed and built as my own idea",
     "boardBg": "#DDE4DE"
   },
   {
@@ -473,7 +473,7 @@
         "alt": "Two more sections of the Boxtek Boxing Gym website"
       }
     ],
-    "scope": "Concept website, designed from scratch",
+    "scope": "Concept website, designed and built as my own idea",
     "boardBg": "#1E1C17"
   },
   {
